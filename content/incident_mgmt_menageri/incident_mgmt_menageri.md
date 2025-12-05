@@ -2011,6 +2011,7 @@ Now go manage some incidents. The animals are waiting.
 ---
 
 
+<!-- Reference definitions at bottom -->
 
 [Eugene_F_Kranz_at_his_console_at_the_NASA_Mission_Control_Center]: Eugene_F_Kranz_at_his_console_at_the_NASA_Mission_Control_Center.jpg
 

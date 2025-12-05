@@ -673,10 +673,10 @@ Hidalgo, Alex. Implementing Service Level Objectives. O'Reilly Media, 5 Aug. 202
 <!-- Reference definitions at bottom -->
 [levelofeffortforeach9]: levelofeffortforeach9.png
 
-[slo-vs-sla-vs-sli-1]: slo-vs-sla-vs-sli-1.jpg width=407px height=220px
+[slo-vs-sla-vs-sli-1]: slo-vs-sla-vs-sli-1.jpg
 
-[new-sla-graphic-small]: new-sla-graphic-small.png width=162px height=108px
+[new-sla-graphic-small]: new-sla-graphic-small.png
 
-[slo-new-illustration-small]: slo-new-illustration-small.png width=160px height=107px
+[slo-new-illustration-small]: slo-new-illustration-small.png
 
-[Errorbudgetburndowngraph]: Errorbudgetburndowngraph.png width=478px height=292px
+[Errorbudgetburndowngraph]: Errorbudgetburndowngraph.png

@@ -2904,4 +2904,4 @@ That's what the rest of this essay explores - the other animals in our bestiary,
 But the Black Swan teaches the deepest lesson: **Build systems that can survive your own ignorance.**
 
 
-[black-swan]: black-swan.png width=400px height=400px
+[black-swan]: black-swan.png

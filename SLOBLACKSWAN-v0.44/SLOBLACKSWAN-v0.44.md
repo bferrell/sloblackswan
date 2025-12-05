@@ -16183,29 +16183,28 @@ The animals are waiting.
 
 [SLO-SWAN-4]: SLO-SWAN-4.png
 
-[book-authoring-workflow]: book-authoring-workflow.tiff width=800px height=600px
+[book-authoring-workflow]: book-authoring-workflow.png
 
 [levelofeffortforeach9]: levelofeffortforeach9.png
 
-[slo-vs-sla-vs-sli-1]: slo-vs-sla-vs-sli-1.jpg width=407px height=220px
+[slo-vs-sla-vs-sli-1]: slo-vs-sla-vs-sli-1.jpg
 
-[new-sla-graphic-small]: new-sla-graphic-small.png width=162px height=108px
+[new-sla-graphic-small]: new-sla-graphic-small.png
 
-[slo-new-illustration-small]: slo-new-illustration-small.png width=160px height=107px
-
-[Errorbudgetburndowngraph]: Errorbudgetburndowngraph.png width=478px height=292px
+[slo-new-illustration-small]: slo-new-illustration-small.png
+[Errorbudgetburndowngraph]: Errorbudgetburndowngraph.png
 
 [animal-matrix-improved-small]: animal-matrix-improved-small.png
 
-[black-swan]: black-swan.png width=400px height=400px
+[black-swan]: black-swan.png
 
-[grey_swan]: grey_swan.png width=403px height=403px
+[grey_swan]: grey_swan.png
 
 [grey-swan-test]: grey-swan-test.png
 
 [grey-rhino]: grey-rhino.png
 
-[grey-elephant]: grey-elephant.png width=405px height=405px
+[grey-elephant]: grey-elephant.png
 
 [black-jellyfish]: black-jellyfish.png
 

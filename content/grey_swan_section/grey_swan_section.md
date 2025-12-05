@@ -1369,6 +1369,6 @@ You can't catch a Black Swan with an SLO. But you absolutely can catch a Grey Sw
 
 ---
 
-[grey_swan]: grey_swan.png width=403px height=403px
+[grey_swan]: grey_swan.png
 
 [grey-swan-test]: grey-swan-test.png

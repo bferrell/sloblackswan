@@ -786,4 +786,4 @@ Elephants thrive in cultures where discomfort is avoided. Change the culture to 
 - "Best elephant spotted" is a real award
 - Signal that this behavior
 
-[grey-elephant]: grey-elephant.png width=405px height=405px
+[grey-elephant]: grey-elephant.png

@@ -42,4 +42,4 @@ This has been a great project, and I think I've found a way to rapidly and accur
 {::pagebreak /}
 
 
-[book-authoring-workflow]: book-authoring-workflow.tiff width=800px height=600px
+[book-authoring-workflow]: book-authoring-workflow.png
