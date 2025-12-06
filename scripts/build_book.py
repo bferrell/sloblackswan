@@ -4,6 +4,15 @@ import datetime
 import re
 import shutil
 import sys
+import subprocess
+
+# Try to import weasyprint and markdown
+try:
+    import markdown
+    from weasyprint import HTML, CSS
+    WEASYPRINT_AVAILABLE = True
+except ImportError:
+    WEASYPRINT_AVAILABLE = False
 
 def parse_manifest(manifest_path):
     names = []
@@ -51,6 +60,7 @@ def main():
     parser.add_argument("-d", "--root_dir", required=True, help="Root name of the target directory")
     parser.add_argument("-v", "--version", required=True, help="Version string")
     parser.add_argument("-m", "--manifest", required=True, help="Path to manifest file")
+    parser.add_argument("-P", "--pdf", action="store_true", help="Generate PDF output using WeasyPrint")
     
     args = parser.parse_args()
     
@@ -98,12 +108,6 @@ def main():
                     outfile.write("\n\n")
             else:
                 print(f"Error: No .md file found in directory {target_path}")
-                # "report an error to the user and exit" - we can exit or continue. 
-                # Prompt says "report an error to the user and exit" in context of "if neither name exist". 
-                # But here the directory exists but no md file. It's safer to probably warn or error.
-                # I'll stick to warning here to match previous behavior unless strict error requested.
-                # Re-reading prompt: "if neiter name exist, report an error to the user and exit."
-                # This refers to finding the section itself. If directory exists, section exists.
                 pass
 
             # Copy other files (images)
@@ -141,6 +145,122 @@ def main():
             outfile.write(img_def + "\n")
             
     print(f"Build complete. Output in {output_dir_path}")
+
+    # PDF Generation Logic with WeasyPrint
+    if args.pdf:
+        if not WEASYPRINT_AVAILABLE:
+            print("Error: weasyprint and markdown libraries are not installed.")
+            print("Please run: pip install weasyprint markdown")
+            return
+
+        print("Generating PDF with WeasyPrint...")
+        output_pdf_filename = f"{args.root_dir}-{args.version}.pdf"
+        output_pdf_path = os.path.join(output_dir_path, output_pdf_filename)
+        
+        # Read the generated markdown content
+        with open(output_md_path, 'r') as f:
+            md_content = f.read()
+            
+        # Replace pagebreaks with HTML div
+        # Pattern: {::pagebreak /}
+        # Replacement: <div class="pagebreak"></div>
+        html_ready_md = md_content.replace("{::pagebreak /}", '<div class="pagebreak"></div>')
+        
+        # Convert Markdown to HTML
+        # Using extensions for tables, code highlighting, etc. might be good, 
+        # but sticking to basic for now as per minimal requirements.
+        html_content = markdown.markdown(html_ready_md, extensions=['extra', 'codehilite', 'tables'])
+
+        # Fix Image Paths
+        # Markdown conversion usually leaves paths relative. We need them absolute for WeasyPrint 
+        # (or valid relative to base_url, but absolute is safer given mixed sources).
+        # Actually, WeasyPrint base_url handles relative paths if set correctly.
+        # We will set base_url to output_dir_path.
+        
+        # CSS Styling - Updated for GitHub Style
+        css_string = """
+        @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.5;
+            color: #24292f;
+            font-size: 16px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            color: #1f2328;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 0.3em;
+        }
+        code, pre {
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 85%;
+        }
+        .pagebreak {
+            break-before: always;
+            page-break-before: always;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow-x: auto;
+            border-radius: 6px;
+        }
+        blockquote {
+            border-left: 0.25em solid #d0d7de;
+            padding: 0 1em;
+            color: #656d76;
+            margin-left: 0;
+        }
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            display: block;
+            width: max-content;
+            max-width: 100%;
+            overflow: auto;
+        }
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #d0d7de;
+        }
+        table tr {
+            background-color: #ffffff;
+            border-top: 1px solid #d8dee4;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        """
+        
+        try:
+            # Render PDF
+            HTML(string=html_content, base_url=output_dir_path).write_pdf(
+                output_pdf_path,
+                stylesheets=[CSS(string=css_string)]
+            )
+            print(f"PDF generated successfully: {output_pdf_path}")
+            
+        except Exception as e:
+            print(f"An unexpected error occurred during PDF generation: {e}")
 
 if __name__ == "__main__":
     main()
