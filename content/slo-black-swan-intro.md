@@ -66,6 +66,7 @@ In this book, we'll explore:
 - **Detection strategies** that go beyond traditional SLOs
 - **Organizational and cultural factors** that create, amplify, or mitigate these risks
 - **Practical frameworks** for preparing your systems and teams for each type of event
+- **Incident Management Framework** To deal with each animal, hybrids of animals and stampedes 
 
 We'll use Python pseudo-code to illustrate concepts, draw on decades of SRE experience, and connect reliability engineering to broader theories of risk, uncertainty, and organizational behavior.
 

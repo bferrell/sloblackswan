@@ -1,6 +1,6 @@
 ## About this Book
 
-This evolution required a workflow as unique as the project itself. Fundamentally, I started developing all of my writing using Scrivener. Scrivener existed well before AI. It's great for organizing your thoughts, organizing your data, organizing your research, organizing your images, and then rendering documents in many different formats. For this work, it is the primary source of truth and the primary rendering engine for any of my working PDFs.
+This revelation required a workflow as unique as the project itself. Fundamentally, I started developing all of my writing using Scrivener. Scrivener existed well before AI. It's great for organizing your thoughts, organizing your data, organizing your research, organizing your images, and then rendering documents in many different formats. For this work, it is the primary source of truth and the primary rendering engine for any of my working PDFs.
 
 Most of the research, the tables, the graphs, have been created under Cursor 2.0. I developed a platform specifically to author this book. Actually, I didn't just develop it, I developed it pair-programming style, with Cursor AI itself. The workflow is as follows:
 
@@ -25,7 +25,13 @@ Most of the research, the tables, the graphs, have been created under Cursor 2.0
    - Cursor agents perform technical validation of claims
    - Validate soundness of code snippets involving actual computations or calculations
 
-5. **Iteration**
+5. **Create and push a PR to github**
+   - Any changes made in a forked source should be rolled into a PR against main if you want to contribute.
+   - I evaluate any PRs and make a decision on whether to merge as is, "squash",or "cherry pick" commits
+   - Once the PR is merged into main, a github actions is triggered to update the current version
+   - changes are merged back into the Scrivener source of truth.
+
+6. **Iteration**
    - Repeat the cycle, growing the work organically
 
 The following diagram better illustrates this workflow:
@@ -34,7 +40,7 @@ The following diagram better illustrates this workflow:
 
 The AI functioned as a research assistant and copywriter. It startles me sometimes how well it knows (or emulates) my intent.
 
-When I got the document to a stage of being complete, I placed it into a [GitHub repo](https://https://github.com/l0r3zz/sloblackswan) for public distribution. As changes are made, GitHub Actions trigger to always have a current copy of the markdown master. One can download the markdown and either drop this into some AI agent for continued processing or evaluation, or render it to a PDF for a more human-readable version.
+Now that the document is nearing a stage of being complete, I've  placed it into a [GitHub repo](https://https://github.com/l0r3zz/sloblackswan) for public distribution and commenting. As changes are made, GitHub Actions trigger to always have a current copy of the markdown master. One can download the markdown and either drop this into some AI agent for continued processing or evaluation, or render it to a PDF for a more human-readable version.
 
 I invite all readers to submit PRs to the document if you find any inaccuracies. If you take exceptions to some of the assertions or conclusions, please use GitHub issues so that we can hash this out.
 

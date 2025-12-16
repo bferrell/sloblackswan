@@ -169,11 +169,11 @@ But this isn't counsel of despair. Taleb isn't saying "give up on metrics." He's
 
 The answer isn't to abandon SLOs. It's to recognize that SLOs are tools for managing Mediocristan reliability while simultaneously building antifragile systems that can handle Extremistan shocks.
 
-We need both:
+**We need both ! :**
 - SLOs for the predictable day-to-day reliability work
 - Antifragility for the unpredictable disasters that will eventually arrive
 
-The rest of this essay explores how to do both. How to use SLOs for what they're good at while preparing for the Black Swans they can't catch.
+The rest of this book explores how to do both. How to use SLOs for what they're good at while preparing for the Black Swans they can't catch.
 
 Because the turkey's mistake wasn't gathering data or tracking trends. The turkey's mistake was believing that data and trends were enough.
 
