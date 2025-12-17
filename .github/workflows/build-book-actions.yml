@@ -1,4 +1,4 @@
-ame: Build  SLOs can't catch a Black Swan
+name: Build  SLOs can't catch a Black Swan
 
 on:
 #  push:
@@ -104,7 +104,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add *
+          # Stage everything (including deletions), respecting .gitignore
+          git add -A
 
           # If nothing changed, exit quietly
           if git diff --cached --quiet; then
@@ -112,5 +113,5 @@ jobs:
             exit 0
           fi
 
-           git commit -m "Add compiled docs for PR #${PR_NUMBER}"
-           git push
+          git commit -m "Add compiled docs for PR #${PR_NUMBER}"
+          git push
