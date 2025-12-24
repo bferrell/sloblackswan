@@ -34,24 +34,72 @@ def generate_pdf(md_path, output_pdf_path, output_dir):
     # Convert Markdown to HTML
     html_content = markdown.markdown(html_ready_md, extensions=['extra', 'codehilite', 'tables'])
 
-    # CSS Styling - Updated for GitHub Style (Linux-compatible fonts for GitHub Actions)
+    # CSS Styling - Updated for Swiss Style with Smart Page Numbering
     css_string = textwrap.dedent("""\
-        @page { size: Letter; margin: 1in; }
-        body { font-family: 'DejaVu Sans', 'Liberation Sans', 'Noto Sans', Helvetica, Arial, sans-serif; font-variant-numeric: lining-nums tabular-nums; line-height: 1.5; color: #24292f; font-size: 16px; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'DejaVu Sans', 'Liberation Sans', 'Noto Sans', Helvetica, Arial, sans-serif; font-variant-numeric: lining-nums tabular-nums; color: #1f2328; margin-top: 1.5em; margin-bottom: 0.5em; font-weight: 600; }
-        h1 { font-size: 2em; border-bottom: 1px solid #d0d7de; padding-bottom: 0.3em; }
-        h2 { font-size: 1.5em; border-bottom: 1px solid #d0d7de; padding-bottom: 0.3em; }
-        code, pre { font-family: 'DejaVu Sans Mono', 'Liberation Mono', Consolas, monospace; font-size: 85%; }
-        .pagebreak { break-before: always; page-break-before: always; }
-        img { max-width: 100%; height: auto; }
-        pre { background-color: #f6f8fa; padding: 16px; overflow-x: auto; border-radius: 6px; }
-        blockquote { border-left: 0.25em solid #d0d7de; padding: 0 1em; color: #656d76; margin-left: 0; }
-        table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto; }
-        table th, table td { padding: 6px 13px; border: 1px solid #d0d7de; }
-        table tr { background-color: #ffffff; border-top: 1px solid #d8dee4; }
-        table tr:nth-child(2n) { background-color: #f6f8fa; }
-    """).strip()
+        /* Define Page Size and Footer Area */
+        @page { 
+            size: Letter; 
+            margin: 1in; 
+            @bottom-right {
+                content: "Page " counter(page);
+                font-family: 'Helvetica Neue', Helvetica, sans-serif;
+                font-size: 10pt;
+                color: #888888;
+            }
+        }
 
+        /* Define a 'Title' page type that has no footer */
+        @page:first {
+            @bottom-right { content: none; }
+        }
+
+        /* If you need to force a reset at a specific 'Preface' class */
+        .preface { 
+            counter-reset: page 1; 
+            break-before: always; 
+        }
+
+        body { 
+            font-family: 'Helvetica Neue', Helvetica, 'Liberation Sans', 'DejaVu Sans', Arial, sans-serif; 
+            font-variant-numeric: lining-nums tabular-nums; 
+            line-height: 1.55; 
+            color: #333333; 
+            font-size: 13.5pt; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { 
+            font-family: 'Helvetica Neue', Helvetica, 'Liberation Sans', 'DejaVu Sans', Arial, sans-serif; 
+            color: #111111; 
+            margin-top: 1.6em; 
+            margin-bottom: 0.6em; 
+            font-weight: 700; 
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.2em; letter-spacing: -0.02em; }
+        h2 { font-size: 1.6em; border-bottom: 1px solid #eeeeee; padding-bottom: 0.2em; }
+        
+        code, pre { 
+            font-family: 'Menlo', 'Monaco', 'Liberation Mono', 'DejaVu Sans Mono', monospace; 
+            font-size: 0.9em; 
+            background-color: #f8f8f8; 
+        }
+
+        pre { padding: 1.2em; border-radius: 4px; border: 1px solid #e1e4e8; line-height: 1.45; overflow-x: auto; }
+        
+        .pagebreak { break-before: always; }
+        
+        img { max-width: 100%; height: auto; display: block; margin: 1.5em auto; }
+        
+        blockquote { border-left: 3px solid #dddddd; padding: 0 1.2em; color: #666666; margin: 1.5em 0; font-style: italic; }
+
+        /* Swiss Table Styling */
+        table { border-collapse: collapse; width: 100%; margin: 2em 0; font-size: 0.95em; }
+        table th { font-weight: 700; text-align: left; border-bottom: 2px solid #333333; padding: 10px 12px; }
+        table td { padding: 10px 12px; border-bottom: 1px solid #eeeeee; color: #444444; }
+        table tr:nth-child(even) { background-color: #fafafa; }
+    """).strip()
     try:
         # Render PDF
         HTML(string=html_content, base_url=output_dir).write_pdf(
