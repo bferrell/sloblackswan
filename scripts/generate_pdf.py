@@ -1,7 +1,13 @@
 import sys
 import os
-import markdown
-from weasyprint import HTML, CSS
+
+# Try to import weasyprint and markdown with error handling
+try:
+    import markdown
+    from weasyprint import HTML, CSS
+    WEASYPRINT_AVAILABLE = True
+except ImportError:
+    WEASYPRINT_AVAILABLE = False
 
 # Ensure we can import from the same directory if needed
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -9,8 +15,17 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.getcwd())
 
 def generate_pdf(md_path, output_pdf_path, output_dir):
-    with open(md_path, 'r', encoding='utf-8') as f:
-        md_content = f.read()
+    if not WEASYPRINT_AVAILABLE:
+        print("Error: weasyprint and markdown libraries are not installed.")
+        print("Please run: pip install weasyprint markdown")
+        sys.exit(1)
+
+    try:
+        with open(md_path, 'r', encoding='utf-8') as f:
+            md_content = f.read()
+    except Exception as e:
+        print(f"Error reading {md_path}: {e}")
+        sys.exit(1)
 
     # Replace pagebreak syntax with HTML
     html_ready_md = md_content.replace('{::pagebreak /}', '<div class="pagebreak"></div>')
@@ -18,7 +33,7 @@ def generate_pdf(md_path, output_pdf_path, output_dir):
     # Convert Markdown to HTML
     html_content = markdown.markdown(html_ready_md, extensions=['extra', 'codehilite', 'tables'])
 
-    # CSS styling matched to build_book.py
+    # CSS Styling - Updated for GitHub Style (Linux-compatible fonts for GitHub Actions)
     css_string = """
     @page { size: Letter; margin: 1in; }
     body { font-family: 'DejaVu Sans', 'Liberation Sans', 'Noto Sans', Helvetica, Arial, sans-serif; font-variant-numeric: lining-nums tabular-nums; line-height: 1.5; color: #24292f; font-size: 16px; }
@@ -36,11 +51,16 @@ def generate_pdf(md_path, output_pdf_path, output_dir):
     table tr:nth-child(2n) { background-color: #f6f8fa; }
     """
 
-    HTML(string=html_content, base_url=output_dir).write_pdf(
-        output_pdf_path,
-        stylesheets=[CSS(string=css_string)]
-    )
-    print(f"PDF generated successfully: {output_pdf_path}")
+    try:
+        # Render PDF
+        HTML(string=html_content, base_url=output_dir).write_pdf(
+            output_pdf_path,
+            stylesheets=[CSS(string=css_string)]
+        )
+        print(f"PDF generated successfully: {output_pdf_path}")
+    except Exception as e:
+        print(f"An unexpected error occurred during PDF generation: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
