@@ -53,9 +53,9 @@ def generate_pdf(md_path, output_pdf_path, output_dir):
             @bottom-right { content: none; }
         }
 
-        /* If you need to force a reset at a specific 'Preface' class */
+        /* Preface section - reset page numbering to 1 for main content */
         .preface { 
-            counter-reset: page 1; 
+            counter-reset: page 1;
             break-before: always; 
         }
 

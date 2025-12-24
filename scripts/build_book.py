@@ -220,6 +220,7 @@ def main():
             .preface {
                 counter-reset: page 1;
                 break-before: always;
+                page-break-before: always;
             }
             img {
                 max-width: 100%;
