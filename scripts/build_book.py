@@ -183,7 +183,33 @@ def main():
             @page {
                 size: Letter;
                 margin: .75in;
+                @bottom-right {
+                    content: "Page " counter(page);
+                    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+                    font-size: 10pt;
+                    color: #888888;
+                }                
             }
+        /* Define a 'Title' page type that has no footer */
+        @page:first {
+            @bottom-right { content: none; }
+        }
+
+        /* Named page for Preface - resets page numbering */
+        @page preface {
+            counter-reset: page 1;
+            @bottom-right {
+                content: "Page " counter(page);
+                font-family: 'Helvetica Neue', Helvetica, sans-serif;
+                font-size: 10pt;
+                color: #888888;
+            }
+        }
+
+        .preface { 
+            page: preface;
+        }
+            
             body {
                 font-family: "DejaVu Sans", "Liberation Sans", "Noto Sans", Helvetica, Arial, sans-serif;
                 font-variant-numeric: lining-nums tabular-nums;
@@ -214,11 +240,6 @@ def main():
                 font-size: 85%;
             }
             .pagebreak {
-                break-before: always;
-                page-break-before: always;
-            }
-            .preface {
-                counter-reset: page 1;
                 break-before: always;
                 page-break-before: always;
             }

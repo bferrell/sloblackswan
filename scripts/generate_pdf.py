@@ -53,10 +53,19 @@ def generate_pdf(md_path, output_pdf_path, output_dir):
             @bottom-right { content: none; }
         }
 
-        /* Preface section - reset page numbering to 1 for main content */
-        .preface { 
+        /* Named page for Preface - resets page numbering */
+        @page preface {
             counter-reset: page 1;
-            break-before: always; 
+            @bottom-right {
+                content: "Page " counter(page);
+                font-family: 'Helvetica Neue', Helvetica, sans-serif;
+                font-size: 10pt;
+                color: #888888;
+            }
+        }
+
+        .preface { 
+            page: preface;
         }
 
         body { 
