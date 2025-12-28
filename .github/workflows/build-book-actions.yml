@@ -110,7 +110,7 @@ jobs:
       - name: Insert Pagebreaks
         run: |
           source .venv/bin/activate
-          python scripts/insert_pagebreaks.py "${{ steps.build_md.outputs.md_path }}" --overwrite
+          python scripts/insert_pagebreaks.py "${{ steps.build_md.outputs.md_path }}" --overwrite --force-first
 
       - name: Generate TOC with doctoc
         run: |
