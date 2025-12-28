@@ -599,7 +599,7 @@ The 1980 ARPANET collapse taught network engineers a brutal lesson: resilience m
 Before this, network engineers assumed resilience would only help. After this, they understood that resilience mechanisms needed to be designed with failure modes in mind. The failure mode wasn't in any model. The metrics that mattered weren't being measured. And that's exactly why it was a black swan.
 
 Your job isn't to predict every failure mode. It's to build systems where resilience mechanisms are tested against failure, where error detection is comprehensive, and where monitoring covers both outcomes and the mechanisms that maintain them. Because sometimes, the mechanisms designed to make systems resilient can become weapons against themselves.
-{::pagebreak /}
+
 #### The 1988 Morris Worm: When Availability Metrics Lied
 
 **Date**: November 2, 1988  
@@ -655,7 +655,7 @@ class MorrisWorm:
             "network_monitoring": "Network monitoring fundamentally changed"
         }
 ```
-{::pagebreak /}
+
 ##### The First "0-Day" Internet Security Event
 
 The Morris Worm was the first major internet security event where the attack spread faster than humans could respond. Robert Tappan Morris, the graduate student who created it, intended it to spread stealthily to gauge the size of the internet. But a programming error caused it to replicate excessively. The worm was designed to check if a system was already infected, but the check was flawed, causing it to infect systems multiple times.
@@ -964,7 +964,7 @@ The Morris Worm was the first major internet worm. It was the first "0-day" inte
 But most critically: it revealed that availability SLOs measure uptime, not integrity. Systems were "up" but compromised. The metric needed to detect compromise didn't exist yet. And that's exactly why it was a black swan.
 
 Your job isn't to predict every threat. It's to build systems that can detect anomalies, respond to incidents, and measure integrity as well as availability. Because sometimes, systems are "up" but compromised. And when they are, availability metrics will lie to you.
-{::pagebreak /}
+
 #### The 2008 Financial Crisis: When Economics Became Infrastructure
 
 **Date**: September 15, 2008  
@@ -1198,7 +1198,7 @@ The 2008 financial crisis taught infrastructure teams a brutal lesson: predictab
 Nobody modeled simultaneous demand spikes and budget cuts. Nobody planned for funding collapses during cloud adoption surges. Nobody anticipated traffic pattern shifts driven by economic panic. And that's exactly why it was a black swan.
 
 Your job isn't to predict the unpredictable. It's to build systems resilient enough to handle it when it arrives.
-{::pagebreak /}
+
 #### COVID-19's Infrastructure Impact: When the Internet Didn't Collapse
 
 **Date**: March 2020 onwards  
@@ -1254,11 +1254,11 @@ class CovidInfrastructureAnalysis:
             "resilience": "Unlike 1980/1988, infrastructure handled the load"
         }
 ```
-{::pagebreak /}
+
 ##### The Resilience Comparison: What Didn't Happen
 
 Here's what makes this event fundamentally different from the 1980 ARPANET collapse and the 1988 Morris Worm: the Internet didn't collapse. It demonstrated remarkable resilience. Let's compare:
-
+{::pagebreak /}
 **1980 ARPANET Collapse: Single Point of Failure**
 
 In 1980, a hardware malfunction in IMP29 caused a network-wide cascade failure. Corrupted status messages propagated exponentially. The garbage collection algorithm, designed to keep the network clean, amplified the failure. The entire ARPANET went dark for nearly four hours. Every node. Every connection. Manual node-by-node restart required.
@@ -1412,7 +1412,7 @@ def sustained_load_analysis():
     #### Unlike temporary spikes, sustained load requires sustained capacity
     return sustained_resilience(load_characteristics, infrastructure_response)
 ```
-{::pagebreak /}
+
 ##### Why Your SLOs Couldn't Prepare You
 
 This is the core problem: your SLOs assume gradual changes. They're built on historical patterns. They expect normal growth curves. The COVID-19 shift created scenarios that broke those assumptions -- but unlike 1980 and 1988, infrastructure adapted rather than collapsed.
@@ -1448,7 +1448,7 @@ class SLOAdaptation:
 ```
 
 The lesson isn't that SLOs failed. It's that well-designed infrastructure can adapt when SLOs break. Unlike 1980's cascade failure or 1988's malware propagation, 2020's infrastructure adapted. It scaled. It distributed load. It augmented capacity. It maintained service, even if quality had to be reduced.
-{::pagebreak /}
+
 ##### The Resilience Mechanisms: How It Worked
 
 Why did the Internet survive in 2020 when it collapsed in 1980 and 1988? The mechanisms were different. Let's examine them:
