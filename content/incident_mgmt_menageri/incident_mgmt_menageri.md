@@ -8,7 +8,7 @@ Incident management didn't start in Silicon Valley. It started in the wilderness
 
 In 1970, a wildfire in California killed 16 firefighters. The investigation revealed a pattern: fires were being fought by ad-hoc groups with unclear command structures, no communication protocols, and competing authorities. Chaos killed people.
 
-The result was the Incident Command System (ICS), developed by FIRESCOPE (Firefighting Resources of California Organized for Potential Emergencies) in the 1970s. ICS wasn't about fires--it was about human coordination under extreme stress when lives are at stake.
+The result was the Incident Command System (ICS), developed by FIRESCOPE (Firefighting Resources of California Organized for Potential Emergencies) in the 1970s. ICS wasn't about fires, it was about human coordination under extreme stress when lives are at stake.
 
 The system worked. It spread from wildfire management to hazmat responses, to search and rescue, to emergency medical services, to disaster response. By the time 9/11 happened, ICS was the standard framework for managing any crisis involving multiple agencies and unclear situations.
 
@@ -30,7 +30,7 @@ The sophistication varied. ITIL codified incident management for enterprise IT i
 
 ### The Google Model: SRE and the Incident Management Revolution
 
-Google's Site Reliability Engineering organization didn't just adapt ICS--they transformed it for the reality of distributed systems operated by software engineers, not emergency responders.
+Google's Site Reliability Engineering organization didn't just adapt ICS, they transformed it for the reality of distributed systems operated by software engineers, not emergency responders.
 
 The key insights:
 
@@ -68,7 +68,7 @@ Google's approach: if you haven't practiced the runbook in a game day, you don't
 
 Google (and Netflix, and Amazon) discovered something counterintuitive: the best way to get better at incidents is to cause more incidents.
 
-Controlled chaos--deliberately breaking things in production--serves multiple purposes:
+Controlled chaos, deliberately breaking things in production, serves multiple purposes:
 
 - Tests your runbooks under realistic conditions
 - Trains your teams on incident response
@@ -79,7 +79,7 @@ This is antifragility in action: getting stronger through stress.
 
 **The Incident Commander Role**
 
-Google formalized the Incident Commander (IC) as a dedicated role during incidents. The IC doesn't fix the problem--they coordinate the people who do.
+Google formalized the Incident Commander (IC) as a dedicated role during incidents. The IC doesn't fix the problem; they coordinate the people who do.
 
 Key responsibilities:
 
@@ -160,7 +160,7 @@ Before moving further, let's get closure on some important traditional  terms ar
 | Acronym | Name | Definition |
 |--------|------|------------|
 | **MTTF** | Mean Time To Failure | Duration of normal operation before an incident occurs. Represents system stability leading up to a failure. |
-| **TTD** | Time To Diagnose | Time from the moment the incident begins until the underlying problem is identified--when responders understand what is failing and why. |
+| **TTD** | Time To Diagnose | Time from the moment the incident begins until the underlying problem is identified, when responders understand what is failing and why. |
 | **TIA** | Time To Action | Time from incident start (or investigation start) to the first meaningful corrective action. Covers human response and system triage before mitigation begins. |
 | **ETRS** | Estimated Time to Restore Service | Time from incident start until service is restored to a functional, customer-usable state. Restoration does not necessarily imply full resolution. |
 | **ETTR** | Estimated Time to Resolution | Time from incident start until the underlying issue is fully remediated and the system is back in normal operation (restore → fix → verify → monitor). |
@@ -411,7 +411,7 @@ If no one admitted any of these things, your postmortem was theater. Real incide
 
 **Psychological Safety as Technical Requirement**
 
-Google's Project Aristotle found psychological safety was the #1 predictor of team effectiveness. For incident management, it's not just important--it's foundational.
+Google's Project Aristotle found psychological safety was the #1 predictor of team effectiveness. For incident management, it's not just important, it's foundational.
 
 Psychological safety means:
 
@@ -463,7 +463,7 @@ Before we dive into animal-specific incident management, we need one more tool: 
 
 ICS gives us structure. NIST gives us phases. Google SRE gives us practices. But none of them answer the fundamental question: **How should we think about this problem?**
 
-That's where the Cynefin Framework comes in. Developed by Dave Snowden in the late 1990s, Cynefin (pronounced "kuh-NEV-in") is a sense-making framework that categorizes situations based on the relationship between cause and effect. The name is Welsh for "the place of your multiple belongings"--representing the multiple factors in our environment that influence us in ways we can never fully understand.
+That's where the Cynefin Framework comes in. Developed by Dave Snowden in the late 1990s, Cynefin (pronounced "kuh-NEV-in") is a sense-making framework that categorizes situations based on the relationship between cause and effect. The name is Welsh for "the place of your multiple belongings," representing the multiple factors in our environment that influence us in ways we can never fully understand.
 
 For incident response, Cynefin provides something critical: **Different types of problems require different types of thinking.** Using the wrong approach wastes time, makes things worse, or both.
 
@@ -1027,7 +1027,7 @@ The pandemic itself was a Grey Rhino (WHO had warned for years). But the specifi
 
 **The Incident Management Challenge:**
 
-This wasn't a discrete incident--it was a permanent shift masquerading as a temporary surge.
+This wasn't a discrete incident; it was a permanent shift masquerading as a temporary surge.
 
 **Week 1: Crisis Response (Chaotic Domain)**
 
@@ -1928,7 +1928,7 @@ Stampedes almost always start in **Confusion** or **Chaotic** domains:
 
 #### The Stampede Pattern
 
-Sometimes a single risk event--often a Black Swan--doesn't just cause direct damage. It stresses the system in ways that reveal all the other animals that were hiding in the shadows.
+Sometimes a single risk event, often a Black Swan, doesn't just cause direct damage. It stresses the system in ways that reveal all the other animals that were hiding in the shadows.
 
 Think of it like a stampede in the wild: one lion (Black Swan) appears, and suddenly you realize the savannah is full of animals you didn't know were there. Grey Rhinos that were grazing peacefully start charging. Elephants in the Room become impossible to ignore. Jellyfish that were floating dormant suddenly bloom and sting everything.
 
@@ -2014,7 +2014,7 @@ As you address components, they transition:
 #### Example 1: The AWS DynamoDB Outage (October 20, 2025) as a Stampede
 
 **The Trigger:**
-At 12:11 AM PDT (07:11 UTC) on October 20, 2025, AWS engineers detected a rise in error rates and latency across multiple services in the US-EAST-1 region. By 1:26 AM (08:26 UTC), the problem had escalated into full DynamoDB endpoint failures. The root cause was traced to a DNS resolution error affecting DynamoDB's control layer--a misconfigured DNS propagation update that triggered recursive health checks and retry storms.
+At 12:11 AM PDT (07:11 UTC) on October 20, 2025, AWS engineers detected a rise in error rates and latency across multiple services in the US-EAST-1 region. By 1:26 AM (08:26 UTC), the problem had escalated into full DynamoDB endpoint failures. The root cause was traced to a DNS resolution error affecting DynamoDB's control layer, a misconfigured DNS propagation update that triggered recursive health checks and retry storms.
 
 **The Stampede Breakdown:**
 
@@ -2038,7 +2038,7 @@ This incident revealed a classic stampede: multiple animals attacking simultaneo
 
 - Inside Amazon, discussions around staff loss and burnout were politically radioactive
 - The cultural silence prevented action, even as warning signs mounted
-- Institutional memory--often invisible and untracked--evaporated
+- Institutional memory, often invisible and untracked, evaporated
 - Without that folklore, detection time ballooned to 75 minutes
 - **Cynefin Action:** Break down into technical (Complicated) and organizational (Complex) components. Create psychological safety for truth-telling.
 
@@ -2070,7 +2070,7 @@ This incident revealed a classic stampede: multiple animals attacking simultaneo
 
 **Why This Was a Stampede:**
 
-The incident wasn't just a technical failure--it was a crisis of forgotten knowledge. A generation of dashboards had nobody left who could interpret them under stress. The outage exposed a deeper form of technical debt: epistemic debt. When memory leaves, the system's ability to self-repair dies quietly.
+The incident wasn't just a technical failure; it was a crisis of forgotten knowledge. A generation of dashboards had nobody left who could interpret them under stress. The outage exposed a deeper form of technical debt: epistemic debt. When memory leaves, the system's ability to self-repair dies quietly.
 
 **The Coordination Challenge:**
 
@@ -2080,7 +2080,7 @@ The IC had to simultaneously:
 - Address infrastructure capacity issues (Complicated analysis for Grey Rhino)
 - Navigate organizational silence about talent loss (Complex experimentation for Elephant)
 
-All while coordinating across 113 affected services and multiple regions. This is why stampedes are so dangerous--they require multiple types of thinking at once, and the organizational context (the Elephant) makes technical response more difficult.
+All while coordinating across 113 affected services and multiple regions. This is why stampedes are so dangerous; they require multiple types of thinking at once, and the organizational context (the Elephant) makes technical response more difficult.
 
 **Cynefin Analysis:**
 
@@ -2127,15 +2127,15 @@ All while coordinating across 113 affected services and multiple regions. This i
 - Dependency mapping and cascade resistance (Black Jellyfish prevention)
 
 **The Meta-Learning:**
-This stampede revealed all three animals simultaneously. The DNS misconfiguration (Black Jellyfish trigger) exposed the Grey Rhino (known but ignored talent loss risks) and forced acknowledgment of the Elephant (cultural silence about organizational issues). The incident demonstrates that when multiple animals attack, you can't address them sequentially--you must coordinate multiple response strategies simultaneously.
+This stampede revealed all three animals simultaneously. The DNS misconfiguration (Black Jellyfish trigger) exposed the Grey Rhino (known but ignored talent loss risks) and forced acknowledgment of the Elephant (cultural silence about organizational issues). The incident demonstrates that when multiple animals attack, you can't address them sequentially; you must coordinate multiple response strategies simultaneously.
 
 **Lessons for SREs:**
 
 - Institutional memory is part of your reliability stack
-- People need redundancy too--losing senior staff isn't just a headcount issue, it's a hazard amplifier
-- Observe the topology, not just the service--map secondary dependencies
+- People need redundancy too; losing senior staff isn't just a headcount issue, it's a hazard amplifier
+- Observe the topology, not just the service; map secondary dependencies
 - Measure resilience by adaptability, not just uptime
-- Evolve incident protocols--local fixes don't work in globally entangled systems
+- Evolve incident protocols; local fixes don't work in globally entangled systems
 
 #### Example 2: The October 10, 2025 Crypto Crash as a Stampede
 
