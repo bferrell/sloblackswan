@@ -6,17 +6,17 @@ We've spent considerable time exploring our menagerie of risks: the unpredictabl
 
 But here's the uncomfortable truth we need to confront before we close: this bestiary, comprehensive as it is, is still a map. And the map is not the territory.
 
-For centuries, Europeans "knew" that all swans were white. The statement "all swans are white" wasn't a hypothesis—it was an observed fact, confirmed by thousands of sightings across hundreds of years. Philosophers used it as an example of certain knowledge derived from empirical observation.
+For centuries, Europeans "knew" that all swans were white. The statement "all swans are white" wasn't a hypothesis; it was an observed fact, confirmed by thousands of sightings across hundreds of years. Philosophers used it as an example of certain knowledge derived from empirical observation.
 
 Then Dutch explorer Willem de Vlamingh reached Western Australia in 1697 and found black swans. Suddenly, centuries of certainty evaporated. The "fact" was revealed as a limitation of experience, not a truth about reality.
 
-The lesson isn't just that black swans exist. It's that our taxonomies are always incomplete. Our categories describe what we've encountered, not what exists. The bestiary we've built—Black Swans, Grey Swans, Grey Rhinos, Elephants, and Black Jellyfish—represents our current understanding of risks that SLOs can't catch. It's a useful framework. It's not exhaustive.
+The lesson isn't just that black swans exist. It's that our taxonomies are always incomplete. Our categories describe what we've encountered, not what exists. The bestiary we've built, Black Swans, Grey Swans, Grey Rhinos, Elephants, and Black Jellyfish, represents our current understanding of risks that SLOs can't catch. It's a useful framework. It's not exhaustive.
 
 There are almost certainly other animals lurking at the edges of Mediocristan that we haven't encountered yet. There are creatures co-inhabiting Extremistan alongside Black Swans that we can't even conceive of until we meet them. Our five-animal taxonomy is better than no taxonomy, but it's hubris to think we've cataloged everything that can go wrong in complex systems.
 
 This is the meta-lesson of Taleb's work: epistemic humility. Not just about specific events, but about our frameworks for understanding events. We don't just need to prepare for Black Swans; we need to prepare for risk types we haven't imagined yet.
 
-So this conclusion isn't just about summarizing the bestiary. It's about building the organizational and technical capabilities to handle what lies beyond the bestiary—the risks we don't yet have names for.
+So this conclusion isn't just about summarizing the bestiary. It's about building the organizational and technical capabilities to handle what lies beyond the bestiary, the risks we don't yet have names for.
 
 ### What We've Learned: The Bestiary in Review
 
@@ -371,7 +371,7 @@ The 2008 financial crisis wasn't one thing. It was:
 - Black Jellyfish (credit cascade, counterparty web)
 - Grey Swan (extent of correlation, speed of cascade)
 
-Stampedes—where one event stresses the system and reveals an ecosystem of hidden risks—are the norm for catastrophic failures, not the exception.
+Stampedes, where one event stresses the system and reveals an ecosystem of hidden risks, are the norm for catastrophic failures, not the exception.
 
 This means you can't just prepare for individual animals. You have to:
 
@@ -384,7 +384,7 @@ This means you can't just prepare for individual animals. You have to:
 
 ### Beyond the Bestiary: Preparing for Unknown Unknowns
 
-Here's where we move from taxonomy to capability. If there are risk types we haven't encountered yet—and there almost certainly are—how do we prepare?
+Here's where we move from taxonomy to capability. If there are risk types we haven't encountered yet, and there almost certainly are, how do we prepare?
 
 #### The Antifragile Principle: Benefit from Disorder
 
