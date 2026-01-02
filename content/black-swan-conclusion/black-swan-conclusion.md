@@ -19,6 +19,7 @@ This is the meta-lesson of Taleb's work: epistemic humility. Not just about spec
 So this conclusion isn't just about summarizing the bestiary. It's about building the organizational and technical capabilities to handle what lies beyond the bestiary, the risks we don't yet have names for.
 {::pagebreak /}
 ### What We've Learned: The Bestiary in Review
+![][sloblackswan-infographic]
 
 Before we move beyond the framework, let's synthesize what we've established.
 
@@ -2133,3 +2134,5 @@ The animals are waiting.
 
 *End of "You Can't Catch a Black Swan with an SLO"*
 
+
+[sloblackswan-infographic]: sloblackswan-infographic.png
