@@ -1,6 +1,7 @@
 ## The Black Swan: The Truly Unpredictable
 
 ![][black-swan]
+
 We've established what Black Swans are in theory. Now let's explore what they mean in practice for infrastructure reliability, why your SLOs fundamentally can't catch them, and what you can actually do about events that are, by definition, impossible to predict.
 
 {::pagebreak /}
@@ -210,7 +211,7 @@ class TurkeySystem:
             "slo_status": "GREEN - All metrics within bounds"
         }
     
-    def thanksgiving(self):
+    def black_friday(self):
         """The day the model breaks catastrophically."""
         return {
             "status": "CATASTROPHIC FAILURE",
@@ -516,7 +517,11 @@ The incident didn't just change how networks were designed. It changed how netwo
 
 ##### What This Means for You
 
-The 1980 ARPANET collapse is ancient history. But the pattern it revealed isn't. Resilience mechanisms can amplify failures. Garbage collection can fail on corrupted data. Error detection gaps can allow problems to persist. Your SLOs assume you can measure what matters. But some failure modes aren't in the model.
+The 1980 ARPANET collapse happened decades before anyone coined the term "SLO." But the pattern it revealed is timeless: resilience mechanisms can amplify failures instead of containing them. Garbage collection chokes on corrupted data. Error detection gaps let problems metastasize. The very systems designed to protect you become weapons.
+
+Your SLOs assume you can measure what matters. They assume your instrumentation sees the actual failure mode. They assume the thing that kills you is in the model. The 1980 ARPANET collapse proved otherwise.
+
+This was a Black Swan, genuinely unprecedented, the first of its kind. But watch what happens next: it triggers a cascade that spreads through positive feedback loops. The Black Swan morphs into a Black Jellyfish. We'll explore that transformation later, because it's the pattern that should terrify you.
 
 #### Here's what you can do:
 
@@ -1150,7 +1155,7 @@ class SLOFailure:
 
 ##### What This Means for You
 
-The 2008 financial crisis is history. But the pattern it revealed isn't. Black swan events don't announce themselves. They cascade. A predictable economic crisis created unpredictable infrastructure impacts. Your SLOs and capacity planning models assume continuity. Black swans break continuity.
+The 2008 financial crisis is history. But the pattern it revealed isn't. Black swan events don't ever announce themselves. They cascade. A predictable economic crisis created unpredictable infrastructure impacts. Your SLOs and capacity planning models assume continuity. Black swans break continuity.
 
 ####  Here's what you can do:
 
@@ -1202,7 +1207,7 @@ Your job isn't to predict the unpredictable. It's to build systems resilient eno
 #### COVID-19's Infrastructure Impact: When the Internet Didn't Collapse
 
 **Date**: March 2020 onwards  
-**Impact**: Global simultaneous shift to digital services
+**Impact**: Global simultaneous shift to digital services.  
 **Duration**: Evolutionary event
 
 In March 2020, entire countries went into lockdown within days of each other. The world shifted to digital services simultaneously. Global internet traffic increased by 25-30% in a matter of weeks. Video conferencing usage exploded. Streaming traffic surged. VPN usage jumped by 49%. Online gaming increased by 115%.
@@ -1259,6 +1264,7 @@ class CovidInfrastructureAnalysis:
 
 Here's what makes this event fundamentally different from the 1980 ARPANET collapse and the 1988 Morris Worm: the Internet didn't collapse. It demonstrated remarkable resilience. Let's compare:
 {::pagebreak /}
+
 **1980 ARPANET Collapse: Single Point of Failure**
 
 In 1980, a hardware malfunction in IMP29 caused a network-wide cascade failure. Corrupted status messages propagated exponentially. The garbage collection algorithm, designed to keep the network clean, amplified the failure. The entire ARPANET went dark for nearly four hours. Every node. Every connection. Manual node-by-node restart required.
@@ -2049,7 +2055,7 @@ Because in production, there's no such thing as "users shouldn't do that." There
 
 ### Organizational Preparation: Building Antifragile Teams
 
-If technical systems can't predict Black Swans, can organizations be better prepared? Yes, but not through better planning. Through better adaptation capabilities. We’re not going to talk about this here beyound the code receipes as there is a whole section devoted to Incident Response later in the book.
+If technical systems can't predict Black Swans, can organizations be better prepared? Yes, but not through better planning. Through better adaptation capabilities. We’re not going to talk about this here beyond the code recipes as there is a whole section devoted to Incident Response later in the book.
 
 
 #### The Incident Response Mindset
@@ -2165,9 +2171,9 @@ class BlackSwanTraining:
         }
 ```
 
-The Apollo 13 mission is a great example of crisis response under extreme uncertainty. They didn't have a runbook for an oxygen tank explosion in deep space. What they had was a team trained to think, not just follow procedures. They had deep system knowledge that let them understand how to jury-rig a solution. They had practiced responding to novel scenarios, even if they hadn't practiced this specific one. Most importantly, they had a culture where "failure is not an option" meant finding a way, not following a script.
+The Apollo 13 mission is a great example of crisis response under extreme uncertainty. They didn't have a runbook for an oxygen tank explosion in deep space. What they had was a team trained to think, not just follow procedures. They had deep system knowledge that let them understand how to juryrig a solution. They had practiced responding to novel scenarios, even if they hadn't practiced this specific one. Most importantly, they had a culture where "failure is not an option" meant finding a way, not following a script.
 
-That's what adaptability training builds: teams that can think their way through problems they've never seen before. Novel scenario drills force teams to respond without runbooks. Cross-training builds the broad understanding that lets engineers see connections others miss. Tabletop exercises practice decision-making under uncertainty. Blameless learning creates the psychological safety to admit ignorance and learn rapidly.
+That's what adaptability training builds: teams that can think their way through problems they've never seen before. Novel scenario drills force teams to respond without runbooks. Crosstraining builds the broad understanding that lets engineers see connections others miss. Tabletop exercises practice decision-making under uncertainty. Blameless learning creates the psychological safety to admit ignorance and learn rapidly.
 
 The goal isn't to predict the next Black Swan. It's to build teams that can handle whatever Black Swan arrives.
 
