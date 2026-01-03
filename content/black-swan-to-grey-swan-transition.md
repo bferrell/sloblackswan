@@ -154,7 +154,8 @@ def effective_availability_with_grey_swans(self):
     grey_swan_downtime_hours = 8  # 8 hours when it happens
     
     hours_per_year = 24 * 365
-    expected_grey_swan_downtime = grey_swan_probability_per_year * grey_swan_downtime_hours
+    expected_grey_swan_downtime = (grey_swan_probability_per_year * 
+                                   grey_swan_downtime_hours)
     normal_downtime = hours_per_year * (1 - normal_availability)
     
     total_expected_downtime = normal_downtime + expected_grey_swan_downtime

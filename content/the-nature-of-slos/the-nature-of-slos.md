@@ -314,11 +314,15 @@ Bucketing applies different SLO targets to different classifications of requests
 class BucketedSLO:
     def __init__(self):
         self.buckets = {
-            'premium_tier': {'availability_target': 99.99, 'latency_p99': 100},
-            'standard_tier': {'availability_target': 99.9, 'latency_p99': 200},
+            'premium_tier': {'availability_target': 99.99, 
+                             'latency_p99': 100},
+            'standard_tier': {'availability_target': 99.9, 
+                              'latency_p99': 200},
             'free_tier': {'availability_target': 99.0, 'latency_p99': 500},
-            'interactive': {'availability_target': 99.95, 'latency_p95': 150},
-            'batch_processing': {'availability_target': 99.5, 'latency_p95': 5000}
+            'interactive': {'availability_target': 99.95, 
+                            'latency_p95': 150},
+            'batch_processing': {'availability_target': 99.5, 
+                                 'latency_p95': 5000}
         }
     
     def classify_request(self, request):
@@ -374,9 +378,12 @@ class PercentileThreshold:
         sorted_measurements = sorted(self.measurements)
         return {
             'p50': sorted_measurements[len(sorted_measurements) // 2],
-            'p95': sorted_measurements[int(len(sorted_measurements) * 0.95)],
-            'p99': sorted_measurements[int(len(sorted_measurements) * 0.99)],
-            'p99_9': sorted_measurements[int(len(sorted_measurements) * 0.999)]
+            'p95': sorted_measurements[int(len(sorted_measurements) * 
+                                           0.95)],
+            'p99': sorted_measurements[int(len(sorted_measurements) * 
+                                           0.99)],
+            'p99_9': sorted_measurements[int(len(sorted_measurements) * 
+                                             0.999)]
         }
     
     def evaluate_slo(self, window_measurements):
@@ -406,7 +413,8 @@ Percentile-based SLOs ensure your worst-case users (the tail of the distribution
 Before diving into multi-window complexity, let's understand single burn rate alerting in its simplest form. This foundation helps explain why multi-window approaches are needed.
 
 ```python
-def calculate_burn_rate_simple(errors_in_window, error_budget_allowed_in_window):
+def calculate_burn_rate_simple(errors_in_window, 
+                               error_budget_allowed_in_window):
     """
     Calculate burn rate for a single time window.
     A burn rate of 1.0 means we're consuming our budget exactly as planned.
@@ -419,7 +427,8 @@ def calculate_burn_rate_simple(errors_in_window, error_budget_allowed_in_window)
 def should_alert_single_window(burn_rate, window_duration):
     """
     Simple single-window alerting: alert if burn rate exceeds threshold.
-    Problem: doesn't distinguish between brief spikes and sustained degradation.
+    Problem: doesn't distinguish between brief spikes and sustained 
+    degradation.
     """
     threshold = 10  # Alert if burning 10x faster than sustainable
     return burn_rate > threshold
@@ -429,7 +438,8 @@ error_budget_28_days = 0.001 * 28 * 24 * 60  # 40.32 minutes allowed errors
 errors_in_last_hour = 15  # minutes of errors
 error_budget_1_hour = 40.32 / (28 * 24)  # About 0.06 minutes
 
-burn_rate = calculate_burn_rate_simple(errors_in_last_hour, error_budget_1_hour)
+burn_rate = calculate_burn_rate_simple(errors_in_last_hour, 
+                                       error_budget_1_hour)
 # burn_rate = 15 / 0.06 = 250
 
 alert = should_alert_single_window(burn_rate, '1h')
@@ -444,7 +454,8 @@ The problem with single-window alerting is that it doesn't account for different
 This is where sophisticated SLO alerting lives. By using multiple time windows with different thresholds, we can detect both fast-burning incidents and slow-burning degradation.
 
 ```python
-def calculate_burn_rate(error_budget_remaining, time_remaining, total_window):
+def calculate_burn_rate(error_budget_remaining, time_remaining, 
+                        total_window):
     """
     Calculate how fast we're consuming our error budget.
     A burn rate of 1.0 means we're on track to exactly consume 
