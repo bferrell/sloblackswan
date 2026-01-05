@@ -4,37 +4,45 @@ This revelation required a workflow as unique as the project itself. Fundamental
 
 Most of the research, the tables, the graphs, have been created under Cursor 2.0. I developed a platform specifically to author this book. Actually, I didn't just develop it, I developed it pair-programming style, with Cursor AI itself. The workflow is as follows:
 
-1. **Scrivener - Initial Writing & Organization**
+**Scrivener - Initial Writing & Organization**
+
    - Basic writing and idea development
    - Document structure setup
    - Contains all research content and images
    - Final "source of truth" for traditional publishing
 
-2. **Scrivener Compile → Markdown → PDF**
+**Scrivener Compile → Markdown → PDF**
+
    - Scrivener's compile feature creates a master markdown file
    - Piped into Marked 2 where it can be rendered into an appropriate PDF
-3. **Physical Review & Red Ink Editing**
+
+**Physical Review & Red Ink Editing**
+
    - Read and review the PDF
    - Often make physical copies for red ink editing
-4. **Scrivener Update & Cursor Validation**
+
+**Scrivener Update & Cursor Validation**
+
    - Update the Scrivener source based on review
    - Grab sections to put into Cursor
    - Cursor agents perform technical validation of claims
    - Validate soundness of code snippets involving actual computations or calculations
    - Track down any hallucinations that might show up
 
-5. **Iterations in Cursor**
+**Iterations in Cursor**
+
    - I developed some scaffolding with Cursor, tailored to the production of this book
    - I stopped updating Scrivener so much and just made changes using the scaffolding 
    - [SLOBLACKSWAN-Cursor](https://github.com/l0r3zz/sloblackswan-cursor) became the primary tool
 
-6. **Create and push a PR to github**
+**Create and push a PR to github**
+
    - Any changes made in a forked source are rolled into a PR and merged into *main*
    - Automated a github workflow to automatically produce an md file, pdf and update the website
    - I evaluate any PRs and make a decision on whether to merge as is, "squash",or "cherry pick" commits
    - changes are merged back into the Scrivener source of truth as checkpoints
 
-7. **Iteration**
+**Iteration**
    - Repeat the cycle, growing the work organically
 
 The following diagram better illustrates this workflow:

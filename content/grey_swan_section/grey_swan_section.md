@@ -104,6 +104,7 @@ Here's the math that breaks human intuition:
 A 2% annual probability sounds negligible. "Only 2% chance per year? That's basically never."
 
 But run the numbers over time:
+
 - 1 year: 2% chance
 - 5 years: 10% chance (1 in 10)
 - 10 years: 18% chance (almost 1 in 5)
@@ -135,6 +136,7 @@ Your microservices architecture just turned a "rare" 2% event into an "almost ce
 **The Sigma Distance Deception:**
 
 Events at 3-5 standard deviations out sound impossibly rare:
+
 - 3σ: 0.3% probability (1 in 333)
 - 4σ: 0.006% probability (1 in 15,787)  
 - 5σ: 0.00006% probability (1 in 1.7 million)
@@ -144,6 +146,7 @@ But these assume normal distributions. Real-world systems have fat tails. That "
 The 2008 financial crisis was estimated as a 25-sigma event by models using normal distributions. But it happened. Your models don't dictate reality.
 
 This is where Grey Swans exploit human psychology:
+
 1. **Small percentages sound safe** - 2% feels like "basically zero" even when it's not
 2. **Recent history dominates** - "Hasn't happened in 5 years" feels like "won't happen"
 3. **Preparation costs are visible and immediate** - $1M now to prevent 2% risk
@@ -229,28 +232,35 @@ Not every incident is a Grey Swan. Here's how to tell what you're actually deali
 Ask these questions in order. If you answer "yes" to all six, you have a Grey Swan:
 
 **1. Could you have predicted this event using historical data and statistics?**
+
 - YES → Continue to question 2
 - NO → This is a Black Swan (genuinely unprecedented)
 
 **2. Was the probability low but non-zero (typically 1-10% annually)?**
+
+
 - YES → Continue to question 3
 - NO, much higher → This is a Grey Rhino (obvious threat you ignored)
 - NO, effectively zero → This is a Black Swan
 
 **3. Did experts or data warn this was possible before it happened?**
+
 - YES → Continue to question 4
 - NO → This is a Black Swan
 
 **4. Was the event dismissed as "too unlikely" rather than "impossible"?**
+
 - YES → Continue to question 5
 - NO, it was discussed and prepared for → This was a White Swan (expected)
 - NO, discussion was taboo → This is an Elephant in the Room
 
 **5. Did the impact far exceed normal operational parameters?**
+
 - YES → Continue to question 6
 - NO → This is normal operations, not a Grey Swan
 
 **6. Does the event feel "obvious in hindsight" even though it surprised you?**
+
 - YES → This is a Grey Swan
 - NO, still genuinely surprising → Might be a Black Swan or Black Jellyfish
 
@@ -321,18 +331,21 @@ The output should make you pause. That "unlikely" 2% component risk becomes a 64
 #### Warning Signs You're Misclassifying
 
 **You're calling it a Grey Swan but it's actually a Grey Rhino if:**
+
 - The probability was high (>10% annually)
 - People actively avoided discussing it
 - Preparations were rejected for political, not statistical reasons
 - "Everyone knew" but nobody acted
 
 **You're calling it a Grey Swan but it's actually a Black Swan if:**
+
 - No historical precedent existed anywhere
 - Experts didn't warn about this category of event
 - The failure mode was genuinely novel
 - Even after the fact, it's hard to explain how you could have predicted it
 
 **You're calling it a Grey Swan but it's actually normal operations if:**
+
 - This happens every few months
 - You have runbooks for it
 - It's within expected variation

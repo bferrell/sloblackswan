@@ -95,11 +95,13 @@ SLOs are your internal targets. They're what your engineering team commits to ac
 An SLO answers the question: "What does good service look like for this system?"
 
 Typical SLO structure:
+
 - **Metric**: What you're measuring (latency, availability, error rate)
 - **Target**: The threshold you're aiming for (99.9%, 95th percentile < 200ms)
 - **Window**: The time period over which you measure (28 days, 1 hour, etc.)
 
 Examples:
+
 - "99.9% of requests will return successfully over a 28-day window"
 - "95% of API requests will complete in under 200ms over a 1-hour window"
 - "Error rate will remain below 0.1% over a 24-hour window"
@@ -131,6 +133,7 @@ Our SLOs should trigger before we violate our SLA.
 Here's where SLOs get really powerful. Once you set an SLO, you automatically create its inverse: the error budget.
 
 If your SLO says 99.9% of requests should succeed, your error budget is the remaining 0.1% that's allowed to fail. This is your budget for unreliability. You can spend it on:
+
 - Risky deployments
 - Aggressive (chaos) experiments
 - Planned maintenance
@@ -151,11 +154,13 @@ Now here's the thing: 40 minutes sounds like a lot, but it really isn't. It's ju
 Error budgets fundamentally change the conversation between product teams and SRE teams.
 
 Without error budgets, the conversation sounds like this:
+
 - **Product**: "We need to ship this feature now!"
 - **SRE**: "But we need to focus on reliability!"
 - **Result**: Political battle about priorities
 
 With error budgets, the conversation becomes:
+
 - **Product**: "Can we ship this risky feature?"
 - **SRE**: "Have we spent our error budget this month?"
 - If yes: "We need to focus on reliability until we rebuild our budget"
@@ -169,6 +174,7 @@ This is revolutionary because it makes reliability and innovation explicit trade
 Smart organizations create policies around error budgets:
 
 **When you have error budget:**
+
 - Ship features
 - Run experiments
 - Take calculated risks
@@ -176,6 +182,7 @@ Smart organizations create policies around error budgets:
 - Try new technologies
 
 **When you're out of error budget:**
+
 - Feature freeze (or at least slow down)
 - Focus on reliability improvements
 - Pay down technical debt
@@ -188,23 +195,27 @@ The policy should be agreed upon in advance and enforced consistently. When you 
 
 Here's how this works in practice:
 
-1. **Start of measurement period** (beginning of month/quarter/28-day window):
+**Start of measurement period** (beginning of month/quarter/28-day window):
+
    - Error budget = 100%
    - All SLOs reset to 0% error
 
-2. **During the period**:
+**During the period**:
+
    - Track SLI performance continuously
    - Every violation consumes a bit of error budget
    - Running total shows current budget remaining
 
-3. **Budget consumption**:
+**Budget consumption**:
+
    - 10% used? No problem, keep shipping
    - 50% used? Worth discussing in team meetings
    - 75% used? Time to be cautious about new changes
    - 90% used? Focus on reliability improvements
    - 100% used? Feature freeze, all hands on reliability
 
-4. **End of period**:
+**End of period**:
+
    - Budget resets for next window
    - But patterns matter: consistently burning through budget indicates systemic issues
 
@@ -328,7 +339,6 @@ class BucketedSLO:
     def classify_request(self, request):
         """
         Classify incoming request into appropriate bucket.
-        This determines which SLO targets apply.
         """
         if request.user_tier == 'premium':
             return 'premium_tier'
@@ -346,7 +356,6 @@ class BucketedSLO:
         """
         bucket = self.classify_request(request)
         target = self.buckets[bucket]
-        
         percentile_key = ( 'latency_p99' if 'latency_p99' in target
             else 'latency_p95' )
         latency_ok = response_latency <= target[percentile_key]
@@ -536,6 +545,7 @@ class MultiWindowAlertingEngine:
 ```
 
 This multi-window approach prevents two common problems:
+
 1. **Alerting too late**: A brief spike might not trigger the 1-hour window, but a gradual degradation will eventually trigger the 72-hour window.
 2. **Alert fatigue**: A single blip across many systems doesn't trigger page-worthy alerts, but a sustained trend does.
 
@@ -612,6 +622,7 @@ Now we come to the core issue: everything we've discussed so far works beautiful
 But remember Taleb's distinction: SLOs assume the future will look like the past. They're built on historical data. They expect normal distributions. They quantify known risks.
 
 **What SLOs Can Do:**
+
 - Measure normal system behavior
 - Track known failure modes
 - Guide capacity planning
@@ -619,6 +630,7 @@ But remember Taleb's distinction: SLOs assume the future will look like the past
 - Provide early warning for degrading systems
 
 **What SLOs Can't Do:**
+
 - Predict unprecedented events
 - Protect against unknown failure modes
 - Account for systemic cascade risks
@@ -636,6 +648,7 @@ Remember the Turkey Problem? Every day that your SLOs are green, every week with
 Your dashboards say everything's fine. Your error budget is healthy. Your percentiles are beautiful. And then something completely outside your model destroys everything, and you realize that "fine" was just "fine within the narrow band of scenarios we thought to measure."
 
 This doesn't mean SLOs are bad. They're essential for day-to-day operations. But they need to be complemented with:
+
 - Chaos engineering that tests beyond known scenarios
 - Architecture that assumes components will fail in novel ways
 - Organizations that maintain healthy paranoia even during success
