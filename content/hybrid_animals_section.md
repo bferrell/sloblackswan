@@ -207,6 +207,7 @@ This is incredibly common in SRE. A new customer, a traffic spike, a viral featu
 On October 10, 2025, President Trump announced a substantial increase in tariffs on Chinese exports to the U.S., raising them to 100%, and imposed export controls on critical software in retaliation for China's restrictions on rare earth mineral exports. The announcement sent shockwaves through global financial markets.
 
 **Market Response**:
+
 - Bitcoin dropped from all-time high of $126,000 (October 8) to low of $103,300 (October 10) - an 18% decline
 - Ethereum declined 5.8% to $3,637 (reaching lows of $3,436)
 - S&P 500 dropped over 2%
@@ -217,6 +218,7 @@ On October 10, 2025, President Trump announced a substantial increase in tariffs
 The crypto market crash unfolded over several hours as exchange infrastructure buckled under unprecedented trading volume and cascading system failures. While the political trigger was clear, the infrastructure failures that followed revealed a deeper pattern of hybrid risks.
 
 **The Leverage Cascade**:
+
 - Over $19.13 billion in leveraged positions liquidated within 24 hours
 - Real losses across the ecosystem potentially exceeding $50 billion
 - Market had accumulated speculative derivative exposure of nearly 7% of total capitalization (nearly doubling since May 2025)
@@ -352,6 +354,7 @@ class BinanceCapacityRhino:
 Everyone in crypto knew Binance had capacity issues. Traders joked about it. Engineers at other exchanges knew about it. Binance's own team knew about it. It was discussed openly on Twitter, Reddit, and in trading communities.
 
 But it was never fixed. The rhino was visible, charging, and ignored because:
+
 - Fixing it required downtime (lost revenue)
 - It hadn't caused a catastrophic failure yet (optimism bias)
 - Competitors had similar issues (diffusion of responsibility)
@@ -429,6 +432,7 @@ class CryptoCascadeJellyfish:
 ```
 
 This is textbook Jellyfish behavior:
+
 - **Known phenomenon**: Exchange capacity limits during volatility
 - **Rapid escalation**: 2 hours from Binance issues to market crisis
 - **Positive feedback**: Each exchange failure increased load on survivors
@@ -552,6 +556,7 @@ Binance alone compensated users $283 million for system failures, specifically f
 Here's the critical insight: the October 10 crash wasn't just multiple risk types occurring simultaneously. It was multiple risk types **amplifying each other**.
 
 If each risk type had occurred alone, the impacts would have been manageable:
+
 - **Grey Swan tweet alone:** 5-7% Bitcoin drop, 30 minutes, recovery within 2 hours (normal market reaction to policy uncertainty)
 - **Grey Rhino capacity alone:** 2-3% drop, 1 hour, recovery once exchange restored (temporary liquidity crunch)
 - **Black Jellyfish cascade alone:** 8-10% drop, 2-3 hours, recovery once exchanges coordinated (technical failure causing liquidations)
@@ -617,6 +622,7 @@ On October 20, 2025, a major global outage of Amazon Web Services began in the U
 **Root Cause**: A critical fault in DynamoDB's DNS management system where two automated components—DNS Planner and DNS Enactor—attempted to update the same DNS entry simultaneously. This coordination glitch deleted valid DNS records, resulting in an empty DNS record for DynamoDB's regional endpoint. This was a "latent defect" in automated DNS management that existed but hadn't been triggered until this moment.
 
 **Timeline** (T+0 = 07:00 UTC / 3:00 AM EDT):
+
 - **T+0 minutes**: DNS race condition creates empty DNS record for DynamoDB endpoint
 - **T+0 to T+5 minutes**: DynamoDB API becomes unreachable, error rates spike
 - **T+5 to T+30 minutes**: Cascade spreads through EC2 instance launches (via Droplet Workflow Manager), Network Load Balancers, and dependent services
@@ -1439,6 +1445,7 @@ As we've seen in the AWS outage case study (and as would be true for the crypto 
 The fundamental issue is that SLOs measure component health, while hybrid events are systemic failures. It's like trying to predict weather by measuring the temperature of individual air molecules—you're measuring real things, but you're missing the emergent behavior.
 
 What actually helps detect and prevent hybrid risks:
+
 - **Dependency mapping**: Understand how services connect (see the Black Jellyfish section)
 - **Capacity planning**: Monitor for Grey Rhinos before they charge (see the Grey Rhino section)
 - **Chaos engineering**: Test combinations, not just individual failures
@@ -1865,73 +1872,85 @@ class HybridRiskMindset:
 
 **For Risk Assessment**:
 
-1. **Never assess risks in isolation**
+**Never assess risks in isolation**
+
    - Always ask: "What else could this interact with?"
    - Map potential combinations explicitly
    - Prioritize risks that could trigger stampedes
 
-2. **Look for your elephants during stress**
+**Look for your elephants during stress**
+
    - Stress reveals organizational dysfunction
    - Traffic spikes, incidents, launches expose elephants
    - Use these moments to address what was hidden
 
-3. **Map your jellyfish pathways**
+**Map your jellyfish pathways**
+
    - Document dependencies, including hidden ones
    - Identify potential cascade chains
    - Test cascade scenarios in game days
 
-4. **Assume interaction amplification**
+**Assume interaction amplification**
+
    - Two risks together ≠ sum of individual impacts
    - Plan for super-linear effects
    - Build dampening, not amplification
 
 **For System Design**:
 
-1. **Design for interaction resistance**
+**Design for interaction resistance**
+
    - Loose coupling limits cascade spread
    - Isolation contains blast radius
    - Async breaks synchronous failure chains
 
-2. **Build circuit breakers everywhere**
+**Build circuit breakers everywhere**
+
    - Between all external dependencies
    - Between internal service boundaries
    - In retry logic, rate limiting, load shedding
 
-3. **Create graceful degradation paths**
+**Create graceful degradation paths**
+
    - Every dependency needs a fallback
    - Degrade functionality before failing completely
    - Test degradation modes regularly
 
 **For Incident Response**:
 
-1. **Recognize stampede patterns**
+**Recognize stampede patterns**
+
    - Multiple teams paged = possible stampede
    - Cascading alerts = jellyfish in motion
    - Unexpected correlations = hidden interactions
 
-2. **Don't treat as independent incidents**
+**Don't treat as independent incidents**
+
    - Look for the trigger that revealed multiple risks
    - Address interaction effects, not just symptoms
    - Prioritize by dependency order
 
-3. **Use post-incident to reveal elephants**
+**Use post-incident to reveal elephants**
+
    - "What organizational issues did this expose?"
    - "What had we been ignoring?"
    - "What stress made this visible?"
 
 **For Organizational Culture**:
 
-1. **Make complexity discussable**
+**Make complexity discussable**
    - Reward people who identify risk interactions
    - Don't force simple narratives on complex events
    - Train incident commanders in systems thinking
 
-2. **Use stampedes as elephant revelation**
+**Use stampedes as elephant revelation**
+
    - Crises make elephants visible
    - Capitalize on visibility to address them
    - Don't waste the crisis
 
-3. **Practice multi-risk scenarios**
+**Practice multi-risk scenarios**
+
    - Game days with combined failures
    - Stress tests that reveal hidden risks
    - Learn your stampede triggers safely
