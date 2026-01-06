@@ -8,7 +8,7 @@ There's a particular kind of organizational dysfunction that's more dangerous th
 
 This is the elephant in the room.
 
-Unlike grey rhinos, which are external threats we choose to ignore, elephants in the room are internal dysfunctions we collectively pretend don't exist. The grey rhino is a capacity problem you won't fix. The elephant in the room is the manager who's incompetent, the team member who's toxic, the architectural decision that was political rather than technical, the reorganization that everyone knows is failing, or the product strategy that makes no sense.
+Unlike Grey Rhinos, which are external threats we choose to ignore, elephants in the room are internal dysfunctions we collectively pretend don't exist. The Grey Rhino is a capacity problem you won't fix. The elephant in the room is the manager who's incompetent, the team member who's toxic, the architectural decision that was political rather than technical, the reorganization that everyone knows is failing, or the product strategy that makes no sense.
 
 The metaphor is perfect: an elephant is impossible to miss. It takes up enormous space. It affects everything around it. And yet, through collective social agreement, everyone acts as if it isn't there. We route around it. We accommodate it. We develop elaborate workarounds. But we don't name it.
 
@@ -635,7 +635,7 @@ This is why SLO-driven organizations can still have catastrophic cultural failur
 
 ### What Actually Works: Addressing Elephants
 
-Unlike grey rhinos, where the challenge is organizational prioritization, elephants require psychological safety and courage. Here's what actually works:
+Unlike Grey Rhinos, where the challenge is organizational prioritization, elephants require psychological safety and courage. Here's what actually works:
 
 #### 1. Psychological Safety as Foundation
 

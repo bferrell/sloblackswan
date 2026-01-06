@@ -1,12 +1,12 @@
 ## The Historical Journey of Black Swans
 
-The black swan metaphor has a rich history stretching back to ancient Rome. Juvenal's "Satire VI," written around 100 CE, uses "rara avis in terris nigroque simillima cygno" ("a rare bird in the lands, and very much like a black swan") to describe something presumed impossible. This metaphor persisted through medieval Europe and became a common expression in London by the 1500s.
+The Black Swan metaphor has a rich history stretching back to ancient Rome. Juvenal's "Satire VI," written around 100 CE, uses "rara avis in terris nigroque simillima cygno" ("a rare bird in the lands, and very much like a Black Swan") to describe something presumed impossible. This metaphor persisted through medieval Europe and became a common expression in London by the 1500s.
 
-Before European exploration of Australia, Western philosophers used "black swan" as shorthand for logical impossibility. The reasoning seemed airtight: all observed swans were white, therefore all swans must be white. Simple induction from countless observations.
+Before European exploration of Australia, Western philosophers used "Black Swan" as shorthand for logical impossibility. The reasoning seemed airtight: all observed swans were white, therefore all swans must be white. Simple induction from countless observations.
 
-Then in 1697, Dutch explorer Willem de Vlamingh discovered black swans in Western Australia, and suddenly centuries of confident certainty evaporated. The discovery didn't just add a new bird to zoology textbooks. It fundamentally challenged how we think about knowledge and prediction. How many other "impossibilities" were simply things we hadn't observed yet?
+Then in 1697, Dutch explorer Willem de Vlamingh discovered Black Swans in Western Australia, and suddenly centuries of confident certainty evaporated. The discovery didn't just add a new bird to zoology textbooks. It fundamentally challenged how we think about knowledge and prediction. How many other "impossibilities" were simply things we hadn't observed yet?
 
-When philosopher John Stuart Mill later formalized the problem of induction, he used the black swan as his prime example of how universal statements can be demolished by a single counterexample. No matter how many white swans you've seen, you can't prove that all swans are white. But one black swan proves that not all swans are white.
+When philosopher John Stuart Mill later formalized the problem of induction, he used the Black Swan as his prime example of how universal statements can be demolished by a single counterexample. No matter how many white swans you've seen, you can't prove that all swans are white. But one Black Swan proves that not all swans are white.
 
 This is the epistemological knife that cuts at the heart of SRE practice: our systems have been up for 1,000 days, and every day confirms that our architecture is sound, our monitoring is comprehensive, and our understanding is complete. Until the day it isn't.
 

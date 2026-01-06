@@ -1,6 +1,6 @@
 ## The Black Swan: The Truly Unpredictable
 
-![][black-swan]
+![][Black Swan]
 
 We've established what Black Swans are in theory. Now let's explore what they mean in practice for infrastructure reliability, why your SLOs fundamentally can't catch them, and what you can actually do about events that are, by definition, impossible to predict.
 
@@ -651,13 +651,13 @@ The ARPANET collapse was a positive feedback loop. Corrupted messages caused mor
 
 **5. Accept That Some Failure Modes Aren't in the Model**
 
-This is the hardest lesson. Some failure modes genuinely can't be anticipated. The ARPANET collapse revealed a failure mode that nobody had modeled. Your SLOs can't catch every black swan. But you can build systems that fail gracefully. You can build monitoring that detects anomalies. You can build recovery mechanisms that work even when the failure mode is unexpected.
+This is the hardest lesson. Some failure modes genuinely can't be anticipated. The ARPANET collapse revealed a failure mode that nobody had modeled. Your SLOs can't catch every Black Swan. But you can build systems that fail gracefully. You can build monitoring that detects anomalies. You can build recovery mechanisms that work even when the failure mode is unexpected.
 
 #### The Lesson
 
 The 1980 ARPANET collapse taught network engineers a brutal lesson: resilience mechanisms can amplify failures. The garbage collection algorithm designed to keep the network clean actually made the failure worse. The routing mechanisms designed to maintain connectivity actually spread the corruption faster. The error detection that existed wasn't comprehensive enough.
 
-Before this, network engineers assumed resilience would only help. After this, they understood that resilience mechanisms needed to be designed with failure modes in mind. The failure mode wasn't in any model. The metrics that mattered weren't being measured. And that's exactly why it was a black swan.
+Before this, network engineers assumed resilience would only help. After this, they understood that resilience mechanisms needed to be designed with failure modes in mind. The failure mode wasn't in any model. The metrics that mattered weren't being measured. And that's exactly why it was a Black Swan.
 
 Your job isn't to predict every failure mode. It's to build systems where resilience mechanisms are tested against failure, where error detection is comprehensive, and where monitoring covers both outcomes and the mechanisms that maintain them. Because sometimes, the mechanisms designed to make systems resilient can become weapons against themselves.
 
@@ -671,7 +671,7 @@ On November 2, 1988, a 23-year-old graduate student at Cornell University releas
 
 This wasn't just a network outage. It was the first major internet worm. More importantly, it was the first "0-day" internet security event -- an attack that exploited vulnerabilities faster than humans could respond, before patches could be developed, before incident response procedures existed. The category didn't exist before. Self-replicating programs weren't in the threat model. Most system administrators didn't think this was possible.
 
-But here's what made it a black swan for SRE teams: your availability SLOs measured uptime. And by those metrics, systems were "up." But they weren't usable. They were compromised. The metric you needed didn't exist yet.
+But here's what made it a Black Swan for SRE teams: your availability SLOs measured uptime. And by those metrics, systems were "up." But they weren't usable. They were compromised. The metric you needed didn't exist yet.
 
 #### Why It Was a Black Swan
 
@@ -902,7 +902,7 @@ class SLOFailure:
 
 Network monitoring focused on performance and availability. It didn't include security-focused metrics. It didn't include anomaly detection. It didn't include the ability to detect malicious network activity. Systems could be compromised, spreading malware across the network, and availability metrics would show everything as normal.
 
-This wasn't downtime in any traditional sense. Systems were "up" but compromised. The metric you needed didn't exist yet. And that's exactly why it was a black swan.
+This wasn't downtime in any traditional sense. Systems were "up" but compromised. The metric you needed didn't exist yet. And that's exactly why it was a Black Swan.
 
 #### The Birth of CERT: Coordinated Response
 
@@ -940,7 +940,7 @@ def cert_creation():
 
 CERT didn't just coordinate response to the Morris Worm. It established a model for how the internet community would respond to future incidents. It created a central point of contact. It developed incident response procedures. It established communication channels. It transformed incident response from ad hoc to systematic.
 
-The creation of CERT was a direct response to a black swan event. The internet community recognized that it needed coordinated response capabilities. It needed a central point of contact. It needed incident response procedures. The Morris Worm revealed these needs, and CERT was created to address them.
+The creation of CERT was a direct response to a Black Swan event. The internet community recognized that it needed coordinated response capabilities. It needed a central point of contact. It needed incident response procedures. The Morris Worm revealed these needs, and CERT was created to address them.
 
 #### The Transformation: Cybersecurity as We Know It
 
@@ -1047,7 +1047,7 @@ The Morris Worm's replication flaw transformed it from a potentially harmless ex
 
 **6. Accept That Some Threats Aren't in the Model**
 
-This is the hardest lesson. Some threats genuinely can't be anticipated. The Morris Worm revealed a threat that wasn't in the model. Your SLOs can't catch every black swan. But you can build systems that detect anomalies. You can build monitoring that identifies unexpected behavior. You can build incident response capabilities that work even when the threat is unexpected.
+This is the hardest lesson. Some threats genuinely can't be anticipated. The Morris Worm revealed a threat that wasn't in the model. Your SLOs can't catch every Black Swan. But you can build systems that detect anomalies. You can build monitoring that identifies unexpected behavior. You can build incident response capabilities that work even when the threat is unexpected.
 
 #### The Lesson
 
@@ -1055,7 +1055,7 @@ The 1988 Morris Worm taught the internet community a brutal lesson: availability
 
 The Morris Worm was the first major internet worm. It was the first "0-day" internet security event. It created cybersecurity as we know it. It created CERT. It transformed network monitoring. It accelerated security patching. It established incident response as a discipline.
 
-But most critically: it revealed that availability SLOs measure uptime, not integrity. Systems were "up" but compromised. The metric needed to detect compromise didn't exist yet. And that's exactly why it was a black swan.
+But most critically: it revealed that availability SLOs measure uptime, not integrity. Systems were "up" but compromised. The metric needed to detect compromise didn't exist yet. And that's exactly why it was a Black Swan.
 
 Your job isn't to predict every threat. It's to build systems that can detect anomalies, respond to incidents, and measure integrity as well as availability. Because sometimes, systems are "up" but compromised. And when they are, availability metrics will lie to you.
 
@@ -1591,7 +1591,7 @@ The pandemic itself was a Grey Swan -- predictable, warned about for decades. Bu
 
 The difference from 1980 and 1988? Architecture. Distributed rather than centralized. Elastic rather than fixed. Coordinated rather than ad hoc. The mechanisms that failed in 1980 and 1988 were absent or improved by 2020. And when unprecedented load hit, those mechanisms worked.
 
-Your job isn't just to prepare for black swans. It's to build infrastructure that can adapt when black swans arrive. Because sometimes, Grey Swans have Black Swan-like infrastructure effects. And when they do, your infrastructure needs to adapt rather than collapse. That's the lesson of 2020: resilience isn't about preventing failures. It's about adapting when load is unprecedented.
+Your job isn't just to prepare for Black Swans. It's to build infrastructure that can adapt when Black Swans arrive. Because sometimes, Grey Swans have Black Swan-like infrastructure effects. And when they do, your infrastructure needs to adapt rather than collapse. That's the lesson of 2020: resilience isn't about preventing failures. It's about adapting when load is unprecedented.
 {::pagebreak /}
 
 ### Why SLOs Fundamentally Cannot Catch Black Swans
@@ -2965,4 +2965,4 @@ That's what the rest of this essay explores - the other animals in our bestiary,
 But the Black Swan teaches the deepest lesson: **Build systems that can survive your own ignorance.**
 
 
-[black-swan]: black-swan.png
+[Black Swan]: Black Swan.png

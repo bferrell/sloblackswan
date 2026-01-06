@@ -8,9 +8,9 @@ But here's the uncomfortable truth we need to confront before we close: this bes
 
 For centuries, Europeans "knew" that all swans were white. The statement "all swans are white" wasn't a hypothesis; it was an observed fact, confirmed by thousands of sightings across hundreds of years. Philosophers used it as an example of certain knowledge derived from empirical observation.
 
-Then Dutch explorer Willem de Vlamingh reached Western Australia in 1697 and found black swans. Suddenly, centuries of certainty evaporated. The "fact" was revealed as a limitation of experience, not a truth about reality.
+Then Dutch explorer Willem de Vlamingh reached Western Australia in 1697 and found Black Swans. Suddenly, centuries of certainty evaporated. The "fact" was revealed as a limitation of experience, not a truth about reality.
 
-The lesson isn't just that black swans exist. It's that our taxonomies are always incomplete. Our categories describe what we've encountered, not what exists. The bestiary we've built, Black Swans, Grey Swans, Grey Rhinos, Elephants, and Black Jellyfish, represents our current understanding of risks that SLOs can't catch. It's a useful framework. It's not exhaustive.
+The lesson isn't just that Black Swans exist. It's that our taxonomies are always incomplete. Our categories describe what we've encountered, not what exists. The bestiary we've built, Black Swans, Grey Swans, Grey Rhinos, Elephants, and Black Jellyfish, represents our current understanding of risks that SLOs can't catch. It's a useful framework. It's not exhaustive.
 
 There are almost certainly other animals lurking at the edges of Mediocristan that we haven't encountered yet. There are creatures co-inhabiting Extremistan alongside Black Swans that we can't even conceive of until we meet them. Our five-animal taxonomy is better than no taxonomy, but it's hubris to think we've cataloged everything that can go wrong in complex systems.
 
@@ -990,7 +990,7 @@ But remember: this bestiary, like the assumption that all swans were white, refl
 
 There are almost certainly other animals at the edges of Mediocristan that we haven't encountered. There are creatures inhabiting Extremistan that we can't conceive of until we meet them. There are interaction effects and emergent phenomena that our current frameworks don't capture.
 
-The Dutch explorers didn't know black swans existed until they saw one. We don't know what new categories of risk await us in the complexity of modern distributed systems, AI-driven infrastructure, quantum computing, or whatever comes next.
+The Dutch explorers didn't know Black Swans existed until they saw one. We don't know what new categories of risk await us in the complexity of modern distributed systems, AI-driven infrastructure, quantum computing, or whatever comes next.
 
 This isn't counsel of despair. It's a call to epistemic humility and organizational adaptability.
 
@@ -1304,8 +1304,8 @@ Trivial (already visible)
 
 **Q2: Is this genuinely unprecedented or did we just not notice?**
 
-- Genuinely unprecedented (never happened anywhere, reshapes models) → **BLACK SWAN**
-- We could have known with better monitoring → **GREY SWAN**
+- Genuinely unprecedented (never happened anywhere, reshapes models) → **Black Swan**
+- We could have known with better monitoring → **Grey Swan**
 
 **Q3: Is this primarily about people/culture or technology?**
 
@@ -1315,7 +1315,7 @@ Trivial (already visible)
 **Q4: Could people discuss this openly before the incident?**
 
 - No, it was socially risky to name → **ELEPHANT IN THE ROOM**
-- Yes, we discussed it but didn't act → **GREY RHINO**
+- Yes, we discussed it but didn't act → **Grey Rhino**
 
 **Q5: Is it cascading/spreading rapidly?**
 
@@ -1324,8 +1324,8 @@ Trivial (already visible)
 
 **Q6: How long have we known about this?**
 
-- Months/years and we ignored it → **GREY RHINO**
-- Recent, complex, with subtle signals → **GREY SWAN**
+- Months/years and we ignored it → **Grey Rhino**
+- Recent, complex, with subtle signals → **Grey Swan**
 - Just happened, checking for patterns → **Monitor and assess**
 
 **RESULT:** Classification hypothesis. Now verify against detailed characteristics and classify Cynefin domain.
@@ -1334,7 +1334,7 @@ Trivial (already visible)
 {::pagebreak /}
 #### The Response Flowchart: "What Do I Do Right Now?"
 
-**BLACK SWAN Response:**
+**Black Swan Response:**
 
 1. Declare: "This is unprecedented"
 2. Classify: Cynefin Chaotic (act first) or Complex (experiment to learn)
@@ -1344,7 +1344,7 @@ Trivial (already visible)
 6. Stabilize → Understand → Adapt
 7. Postmortem: What assumptions broke? How do we build antifragility? What Cynefin domain? Right strategy?
 
-**GREY SWAN Response:**
+**Grey Swan Response:**
 
 1. Classify: Cynefin Complicated (analyze) or Complex (experiment)?
 2. Don't oversimplify the complexity
@@ -1355,7 +1355,7 @@ Trivial (already visible)
 7. Improve instrumentation for next time
 8. Reflect: Did we use the right Cynefin strategy?
 
-**GREY RHINO Response:**
+**Grey Rhino Response:**
 
 1. Acknowledge: "We knew about this"
 2. Classify: Cynefin Complicated (expert analysis can solve)

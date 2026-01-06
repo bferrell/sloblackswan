@@ -265,7 +265,7 @@ Ask these questions in order. If you answer "yes" to all six, you have a Grey Sw
 - NO, still genuinely surprising → Might be a Black Swan or Black Jellyfish
 
 
-![][grey-swan-test]
+![][Grey Swan-test]
 {::pagebreak /}
 #### Quick Reference: Risk Type Signatures
 
@@ -1725,4 +1725,4 @@ You can't catch a Black Swan with an SLO. But you absolutely can catch a Grey Sw
 
 [grey_swan]: grey_swan.png
 
-[grey-swan-test]: grey-swan-test.png
+[Grey Swan-test]: Grey Swan-test.png

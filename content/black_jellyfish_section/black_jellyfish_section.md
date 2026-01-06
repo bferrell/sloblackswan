@@ -17,7 +17,7 @@ In infrastructure and SRE contexts, black jellyfish represent cascading failures
 
 Not every cascade is a black jellyfish. The characteristics are specific:
 
-**Known Phenomenon**: Unlike black swans, black jellyfish arise from things we understand. We know about dependency chains. We know about positive feedback loops. We know about network effects. The individual components aren't mysterious.
+**Known Phenomenon**: Unlike Black Swans, black jellyfish arise from things we understand. We know about dependency chains. We know about positive feedback loops. We know about network effects. The individual components aren't mysterious.
 
 **Rapid Escalation**: The defining characteristic is speed. What starts small becomes massive quickly, often exponentially. The cascade accelerates rather than dampens.
 
@@ -409,7 +409,7 @@ What saves you from jellyfish:
 **Monitoring**: Watch for cascade patterns, not just failures
 **Practice**: Chaos engineering to find vulnerabilities before production does
 
-The next time a small issue cascades into a major outage, don't call it a black swan. It wasn't unpredictable. It was a black jellyfish: known components, unexpected amplification, rapid propagation through dependencies you should have mapped.
+The next time a small issue cascades into a major outage, don't call it a Black Swan. It wasn't unpredictable. It was a black jellyfish: known components, unexpected amplification, rapid propagation through dependencies you should have mapped.
 
 Map your dependencies.
 Break your feedback loops.
