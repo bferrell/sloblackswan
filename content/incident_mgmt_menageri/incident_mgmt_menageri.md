@@ -104,6 +104,7 @@ Google's severity definitions are customer-impact-focused:
 Note what's missing: server metrics. An incident isn't P0 because CPU is at 100%. It's P0 because customers can't use the service.
 
 This distinction matters for our bestiary:
+
 - A Black Swan might register as P0 within minutes
 - A Grey Rhino might never trip a severity threshold until it finally fails catastrophically
 - An Elephant in the Room creates chronic P3s that never escalate but destroy morale
@@ -119,6 +120,7 @@ ICS assumes:
 - Clear roles based on agency (fire department, police, EMS)
 
 IT incidents are:
+
 - Geographically distributed (global services, remote teams)
 - Virtual teams assembled ad-hoc
 - Role boundaries based on technical domain, not organizational chart
@@ -574,6 +576,7 @@ Most routine incidents (P3, P4) live in the Clear domain. They're the "known kno
 **The Expert Trap:**
 
 In Complicated domains, experts can become entrenched in their viewpoints. Multiple valid solutions exist, but experts may argue indefinitely about which is "best." The IC's job is to:
+
 - Gather expert opinions
 - Make a decision when experts disagree
 - Avoid analysis paralysis
@@ -1277,6 +1280,7 @@ Knight Capital Group was a major market maker, executing billions in trades dail
 - Algorithm started executing: buy high, sell low, repeat rapidly
 
 **T+0 to T+45 minutes: Uncontrolled Execution**
+
 - Algorithm executing millions of unintended trades
 - Each trade losing money
 - Positive feedback loop: more trades → bigger losses → more frantic trading
@@ -1350,6 +1354,7 @@ Knight Capital Group was a major market maker, executing billions in trades dail
 - Complex system made diagnosis difficult
 
 **Response coordination:**
+
 - Multiple teams involved (trading, technology, risk)
 - No clear incident commander
 - Decision to shut down took too long (cost increased exponentially with time)
