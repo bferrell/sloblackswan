@@ -300,7 +300,7 @@ If your cumulative 30-year probability exceeds 25%, this isn't an "unlikely" eve
 
 #### System-Level Amplification Check
 
-Here's where probability math becomes your enemy. You've probably sat in meetings where someone dismisses a risk with "it's only 2% per component" -- as if that makes it safe. But in modern distributed systems, that 2% compounds across dozens or hundreds of components, and over years of operation, those "unlikely" events become nearly certain.
+Here's where probability math becomes your enemy. You've probably sat in meetings where someone dismisses a risk with "it's only 2% per component," as if that makes it safe. But in modern distributed systems, that 2% compounds across dozens or hundreds of components, and over years of operation, those "unlikely" events become nearly certain.
 
 The problem is that we think about component-level risk in isolation. A 2% annual failure rate sounds manageable. But when you have 50 microservices, each with that 2% risk, the math changes dramatically. And when you consider that your system will run for years, not just one year, the cumulative probability becomes sobering.
 
@@ -328,7 +328,7 @@ print(will_this_actually_happen(0.02, 50, 10))
 # Output: 64% annual system risk, 99.7% over 10 years → Grey Swan!
 ```
 
-The output should make you pause. That "unlikely" 2% component risk becomes a 64% annual system risk, and over a decade of operation, it's 99.7% certain to happen. This isn't theoretical -- this is the math that explains why Grey Swans hit systems that "shouldn't" have problems. When you multiply low probabilities across many components and many years, unlikely becomes inevitable. The question isn't whether it will happen, but whether you'll be ready when it does.
+The output should make you pause. That "unlikely" 2% component risk becomes a 64% annual system risk, and over a decade of operation, it's 99.7% certain to happen. This isn't theoretical; this is the math that explains why Grey Swans hit systems that "shouldn't" have problems. When you multiply low probabilities across many components and many years, unlikely becomes inevitable. The question isn't whether it will happen, but whether you'll be ready when it does.
 
 #### Warning Signs You're Misclassifying
 
@@ -365,7 +365,7 @@ Let's examine three major Grey Swan events that demonstrate the LSLIRE character
 
 #### The 2008 Financial Crisis: Technology Infrastructure Impact
 
-The 2008 financial crisis is a perfect case study in how Grey Swans cascade across domains. The financial crisis itself had elements of both Grey Swan and Grey Rhino -- there were plenty of warnings about the housing bubble, derivative complexity, and leverage risks. But for technology infrastructure teams, the specific impacts were a pure Grey Swan with LSLIRE characteristics.
+The 2008 financial crisis is a perfect case study in how Grey Swans cascade across domains. The financial crisis itself had elements of both Grey Swan and Grey Rhino; there were plenty of warnings about the housing bubble, derivative complexity, and leverage risks. But for technology infrastructure teams, the specific impacts were a pure Grey Swan with LSLIRE characteristics.
 
 Most tech leaders saw the financial warnings but dismissed them as "not our problem." The housing market collapse? That's finance, not infrastructure. Credit freeze? That's banking, not our servers. But when the crisis hit, it didn't respect domain boundaries. Enterprise IT budgets froze overnight. VC funding evaporated. Startups that had been planning three-year growth trajectories suddenly had three months of runway.
 
@@ -489,7 +489,7 @@ Notice what's missing: anything technical. That's the trap. The primary signals 
         }
 ```
 
-The lesson here is uncomfortable: the crisis itself was a Grey Swan (predictable but dismissed), and the specific technology impacts were Grey Swan-adjacent. While you couldn't predict the exact manifestations -- nobody knew cloud adoption would accelerate so dramatically, or that SaaS models would prove so resilient -- you absolutely could have modeled "severe economic downturn" scenarios and their infrastructure implications. Most tech companies didn't.
+The lesson here is uncomfortable: the crisis itself was a Grey Swan (predictable but dismissed), and the specific technology impacts were Grey Swan-adjacent. While you couldn't predict the exact manifestations; nobody knew cloud adoption would accelerate so dramatically, or that SaaS models would prove so resilient; you absolutely could have modeled "severe economic downturn" scenarios and their infrastructure implications. Most tech companies didn't.
 
 This is the Grey Swan trap: we see the general risk but don't think through the second-order effects on our specific domain. We dismiss it because "that's not our problem" until suddenly it is. The 2008 crisis taught infrastructure teams that financial shocks become infrastructure shocks, and that preparation for economic downturns isn't just a finance department concern.
 
@@ -497,7 +497,7 @@ This is the Grey Swan trap: we see the general risk but don't think through the 
 
 If 2008 showed us how financial crises become infrastructure crises, the Google authentication outage showed us something more unnerving: in a platform ecosystem, a single shared dependency can take down "everything" without touching compute, storage, or networking at the edges.
 
-On December 14, 2020, Google's authentication system failed globally for roughly 45 minutes (about 03:47 to 04:32 PT). Services that required user login returned errors, including widely used products like Gmail and YouTube. This happened during the peak of COVID-era remote work and remote learning, when "can't log in" wasn't a minor annoyance -- it was a hard stop for school and work. [Google Cloud Status incident report - https://status.cloud.google.com/incident/zall/20013]
+On December 14, 2020, Google's authentication system failed globally for roughly 45 minutes (about 03:47 to 04:32 PT). Services that required user login returned errors, including widely used products like Gmail and YouTube. This happened during the peak of COVID-era remote work and remote learning, when "can't log in" wasn't a minor annoyance; it was a hard stop for school and work. [Google Cloud Status incident report - https://status.cloud.google.com/incident/zall/20013]
 
 The root cause was beautifully ironic in the way only real systems can be: an internal storage quota issue inside the authentication stack. The system that exists to say "yes" or "no" to everyone else couldn't reliably say "yes" because it couldn't reliably write to itself.
 
@@ -555,7 +555,7 @@ This is the kind of Grey Swan that looks trivial in a postmortem and impossible 
                 "quota_and_capacity_limits": {
                     "fact": ("Every stateful system has quota/capacity "
                              "limits somewhere"),
-                    "why_it_matters": ("Authentication is stateful -- it "
+                    "why_it_matters": ("Authentication is stateful; it "
                                        "must persist identity/account data"),
                     "failure_mode": ("Exhaustion prevents writes; write "
                                      "failures cascade into auth failures")
@@ -593,7 +593,7 @@ This is the kind of Grey Swan that looks trivial in a postmortem and impossible 
         }
 ```
 
-The lesson is the Grey Swan trap in miniature: the risk class was known and documented (quotas get hit; automation breaks). What wasn't adequately modeled was the coupling -- the way a small, internal constraint in the identity layer could convert into a platform-wide outage. Grey Swans do not require exotic root causes. They require ordinary failures in extraordinary leverage points.
+The lesson is the Grey Swan trap in miniature: the risk class was known and documented (quotas get hit; automation breaks). What wasn't adequately modeled was the coupling, the way a small, internal constraint in the identity layer could convert into a platform-wide outage. Grey Swans do not require exotic root causes. They require ordinary failures in extraordinary leverage points.
 
 #### The 2021 Semiconductor Supply Chain Collapse
 
@@ -753,17 +753,17 @@ Most infrastructure teams never put those bullets on the same slide. We treated 
         }
 ```
 
-The semiconductor shortage is perhaps the purest Grey Swan in our case studies because every single risk factor was documented and known. The combination wasn't even that surprising -- we knew chip supply was constrained, we knew demand was spiking, we knew just-in-time supply chains had no buffers. Yet most organizations were caught completely unprepared.
+The semiconductor shortage is perhaps the purest Grey Swan in our case studies because every single risk factor was documented and known. The combination wasn't even that surprising; we knew chip supply was constrained, we knew demand was spiking, we knew just-in-time supply chains had no buffers. Yet most organizations were caught completely unprepared.
 
 This is the Grey Swan paradox: having all the information doesn't guarantee you'll act on it. The shortage was visible to anyone who looked at the combination of factors, but most infrastructure teams didn't look. They assumed supply chains would work, that vendors would deliver, that capacity would be available. The math said otherwise, but the math was ignored until it was too late.
 {::pagebreak /}
 ### Why SLOs Miss Grey Swans (But Don't Have To)
 
-Here's where things get interesting, and where this book earns its title. Unlike Black Swans, which fundamentally can't be caught by SLOs because they're genuinely unpredictable, Grey Swans **could** be detected by SLOs if we used them correctly. The problem isn't the tool -- it's how we use it.
+Here's where things get interesting, and where this book earns its title. Unlike Black Swans, which fundamentally can't be caught by SLOs because they're genuinely unpredictable, Grey Swans **could** be detected by SLOs if we used them correctly. The problem isn't the tool; it's how we use it.
 
 Traditional SLO implementations are built on assumptions that work beautifully for normal operations but fail catastrophically for Grey Swans. We assume normal distributions when Grey Swans live in the fat tails. We assume independence when Grey Swans create correlated failures. We monitor short time windows when Grey Swan patterns emerge over quarters or years. We focus on internal metrics when Grey Swans are often triggered by external factors.
 
-The good news is that these aren't fundamental limitations of SLOs -- they're implementation choices. We can build SLOs that catch Grey Swans. We just have to acknowledge that the assumptions that make SLOs efficient for day-to-day operations are the same assumptions that make them blind to tail risks.
+The good news is that these aren't fundamental limitations of SLOs; they're implementation choices. We can build SLOs that catch Grey Swans. We just have to acknowledge that the assumptions that make SLOs efficient for day-to-day operations are the same assumptions that make them blind to tail risks.
 
 
 This section is dense on purpose, but it doesn't have to be a single monolith. Here's the mismatch in three chunks: assumptions, where error budgets break, and how to adapt.
@@ -974,7 +974,7 @@ If your error budget is an "all-weather" tool, Grey Swans are the hurricane that
         }
 ```
 
-The key insight here is both frustrating and empowering: SLOs can catch Grey Swans if you use them differently. The tool isn't broken -- we're just using it for the wrong job. To catch Grey Swans, you need to:
+The key insight here is both frustrating and empowering: SLOs can catch Grey Swans if you use them differently. The tool isn't broken; we're just using it for the wrong job. To catch Grey Swans, you need to:
 
 1. Monitor over long enough time windows to see slow trends (not just hours or days, but quarters and years)
 2. Include external factors in your SLI definitions (supply chain metrics, economic indicators, geopolitical conditions)
@@ -982,15 +982,15 @@ The key insight here is both frustrating and empowering: SLOs can catch Grey Swa
 4. Look for degradation patterns, not just absolute thresholds (trends matter more than snapshots)
 5. Test your SLOs against historical Grey Swan scenarios (would your monitoring have caught 2008? COVID? The chip shortage?)
 
-The frustrating part is that this requires more work and more sophistication than traditional SLO implementations. The empowering part is that it's possible -- you're not doomed to miss Grey Swans. You just have to build your SLOs with tail risks in mind, not just normal operations.
+The frustrating part is that this requires more work and more sophistication than traditional SLO implementations. The empowering part is that it's possible; you're not doomed to miss Grey Swans. You just have to build your SLOs with tail risks in mind, not just normal operations.
 {::pagebreak /}
 ### Detection Strategies: Catching the Warning Signs
 
-Grey Swans give warning signs -- that's what makes them Grey Swans instead of Black Swans. The challenge isn't that the signals don't exist; it's building systems that can detect weak signals at the edges of your probability distributions and having the organizational courage to act on them before they become strong signals.
+Grey Swans give warning signs; that's what makes them Grey Swans instead of Black Swans. The challenge isn't that the signals don't exist; it's building systems that can detect weak signals at the edges of your probability distributions and having the organizational courage to act on them before they become strong signals.
 
 Most organizations see the signals. They just don't believe them, or they don't have systems sophisticated enough to distinguish signal from noise. A 0.01% increase in error rate month-over-month looks like noise until you realize it's been accelerating for six months. A slight increase in component lead times looks like normal variation until you realize it's part of a broader supply chain trend.
 
-The key is building detection systems that amplify weak signals and aggregate them into actionable warnings. No single weak signal should trigger major action -- that way lies false alarm fatigue. But multiple signals clustering in time and space? That's when you need to pay attention.
+The key is building detection systems that amplify weak signals and aggregate them into actionable warnings. No single weak signal should trigger major action; that way lies false alarm fatigue. But multiple signals clustering in time and space? That's when you need to pay attention.
 
 #### Internal Weak Signal Detection
 
@@ -1041,7 +1041,7 @@ Here's the critical insight: no single weak signal should trigger major action. 
 
 The ensemble approach recognizes that Grey Swans don't announce themselves with a single dramatic metric. They show up as a pattern of weak signals across multiple dimensions. Maybe error rates are trending up slightly. Maybe capacity utilization is inching higher. Maybe external indicators are showing stress. Individually, each could be noise. Together, they're a pattern.
 
-This detector aggregates multiple weak signals into a stronger warning. It's not perfect -- you'll still have false positives -- but it's far better than waiting for a single metric to scream at you. By the time a single metric is screaming, the Grey Swan has already arrived.
+This detector aggregates multiple weak signals into a stronger warning. It's not perfect (you'll still have false positives), but it's far better than waiting for a single metric to scream at you. By the time a single metric is screaming, the Grey Swan has already arrived.
 
 
 ```python
@@ -1102,9 +1102,9 @@ The combination of signals should trigger action, even when each individual sign
 
 Understanding this progression is crucial because organizations that repeatedly dismiss Grey Swans often evolve them into Grey Rhinos through institutional inertia. This is one of the most dangerous transitions in our risk bestiary, and it happens more often than you'd think.
 
-Here's how it works: a Grey Swan is identified through statistical analysis. The probability is low -- maybe 2-5% annually. The organization evaluates preparation costs and decides, rationally, that the investment isn't justified. So far, this is normal risk management. But then something subtle happens: the dismissal becomes institutionalized. The risk assessment becomes perfunctory. People who raise concerns are marginalized. The Grey Swan discussion becomes taboo.
+Here's how it works: a Grey Swan is identified through statistical analysis. The probability is low, maybe 2-5% annually. The organization evaluates preparation costs and decides, rationally, that the investment isn't justified. So far, this is normal risk management. But then something subtle happens: the dismissal becomes institutionalized. The risk assessment becomes perfunctory. People who raise concerns are marginalized. The Grey Swan discussion becomes taboo.
 
-By the time the risk is charging straight at you, horn down, it's no longer a Grey Swan -- it's a Grey Rhino. Everyone can see it, but nobody will address it because addressing it has become culturally impossible. The risk hasn't changed, but the organizational response has shifted from "we've calculated it's unlikely" to "we don't discuss that here."
+By the time the risk is charging straight at you, horn down, it's no longer a Grey Swan; it's a Grey Rhino. Everyone can see it, but nobody will address it because addressing it has become culturally impossible. The risk hasn't changed, but the organizational response has shifted from "we've calculated it's unlikely" to "we don't discuss that here."
 
 This evolution makes risks more dangerous, not less. A Grey Swan you're monitoring is manageable. A Grey Rhino you're ignoring is catastrophic.
 
@@ -1291,13 +1291,13 @@ The scariest marker is when "this is unlikely" turns into "this is illegitimate 
         }
 ```
 
-This evolution from Grey Swan to Grey Rhino represents one of the most dangerous transitions in organizational risk management. When a predictable risk moves from "we've calculated it's unlikely" to "we don't discuss that here," you've made your organization more vulnerable, not less. The risk itself hasn't changed -- it's still the same probability, the same potential impact. But your ability to respond to it has been systematically degraded through institutional inertia and cultural dysfunction.
+This evolution from Grey Swan to Grey Rhino represents one of the most dangerous transitions in organizational risk management. When a predictable risk moves from "we've calculated it's unlikely" to "we don't discuss that here," you've made your organization more vulnerable, not less. The risk itself hasn't changed; it's still the same probability, the same potential impact. But your ability to respond to it has been systematically degraded through institutional inertia and cultural dysfunction.
 
 The warning signs are visible if you know what to look for: language shifts from probability to legitimacy ("unlikely" becomes "unrealistic"), risk discussions become perfunctory, budget requests stop being submitted, experts are marginalized. By the time you recognize these patterns, the evolution is often complete, and the Grey Rhino is charging.
 
 ### Preparation and Response Strategies
 
-Unlike Black Swans where preparation means building general antifragility (because you can't predict the specific event), Grey Swans allow for specific preparation because we can model them. We know what they look like, we can estimate probabilities, we can design targeted responses. The challenge isn't technical -- it's justifying the investment for "unlikely" events.
+Unlike Black Swans where preparation means building general antifragility (because you can't predict the specific event), Grey Swans allow for specific preparation because we can model them. We know what they look like, we can estimate probabilities, we can design targeted responses. The challenge isn't technical; it's justifying the investment for "unlikely" events.
 
 This is where most organizations fail. They see the Grey Swan coming, they understand the math, but they can't make the economic case for preparation. The probability is low, the preparation costs are high, and the ROI calculation doesn't work out over a short time horizon. So they don't prepare, and when the Grey Swan hits, they're caught unprepared despite having seen it coming.
 
@@ -1354,7 +1354,7 @@ Better prepared than competitors = market share gains when Grey Swan hits
 
 #### Quick Economic Assessment
 
-Sometimes you need a quick reality check: should we actually prepare for this Grey Swan, or are we being alarmist? This calculator helps you make that call by factoring in not just expected value, but also competitive advantage -- because when a Grey Swan hits, the organizations that prepared gain market share from those that didn't.
+Sometimes you need a quick reality check: should we actually prepare for this Grey Swan, or are we being alarmist? This calculator helps you make that call by factoring in not just expected value, but also competitive advantage, because when a Grey Swan hits, the organizations that prepared gain market share from those that didn't.
 
 The math is straightforward: calculate expected annual loss, add competitive advantage value (because being prepared when competitors aren't is worth something), and compare to preparation costs. The output tells you whether the ROI is strong, positive, marginal, or negative.
 
@@ -1576,7 +1576,7 @@ Month one is where you stop being "aware" and start being "prepared." This is th
 
 Grey Swans represent our last chance to prepare intelligently. They're the rare risks we can actually see coming if we're brave enough to look at the edges of our probability distributions and honest enough to admit what we see. Unlike Black Swans, which are genuinely unpredictable, Grey Swans give us a choice: prepare or dismiss.
 
-This final synthesis brings together everything we've learned about Grey Swans -- what makes them dangerous, what makes them manageable, and what you can actually do about them. It's the takeaway section, the "so what?" that transforms theory into practice.
+This final synthesis brings together everything we've learned about Grey Swans: what makes them dangerous, what makes them manageable, and what you can actually do about them. It's the takeaway section, the "so what?" that transforms theory into practice.
 
 The essential insight is uncomfortable but important: Grey Swans are more dangerous than Black Swans in some ways because we choose not to prepare for them. After a Black Swan, you can honestly say "nobody could have known." After a Grey Swan, you have to admit "we knew, but didn't act." That admission is harder, and it's why Grey Swans deserve more attention than they typically get.
 
@@ -1705,7 +1705,7 @@ This is deliberately written like a runbook, because in the real world, that's w
         """
 ```
 
-This synthesis captures the essential truth about Grey Swans: they're not statistical anomalies to be dismissed, but predictable risks that require preparation. The call to action isn't theoretical -- it's a concrete set of steps you can take starting Monday morning. Stop treating "unlikely" as "won't happen." Make your SLOs catch Grey Swans. Build organizational muscle for tail risks. Find dual-use preparations. Prevent evolution to Grey Rhinos.
+This synthesis captures the essential truth about Grey Swans: they're not statistical anomalies to be dismissed, but predictable risks that require preparation. The call to action isn't theoretical; it's a concrete set of steps you can take starting Monday morning. Stop treating "unlikely" as "won't happen." Make your SLOs catch Grey Swans. Build organizational muscle for tail risks. Find dual-use preparations. Prevent evolution to Grey Rhinos.
 
 Most importantly, remember the central truth: Grey Swans give you a choice. Black Swans don't. Use that choice wisely, because the organizations that prepare for Grey Swans gain competitive advantage when they hit, while those that dismiss them face the uncomfortable admission that "we knew, but didn't act."
 

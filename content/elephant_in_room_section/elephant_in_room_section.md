@@ -849,6 +849,6 @@ Elephants thrive in cultures where discomfort is avoided. Change the culture to 
 - Finding problems is as valuable as solving them
 - People who identify elephants get recognition
 - "Best elephant spotted" is a real award
-- Signal that this behavior is valued and safe -- no retaliation, no eye-rolling, no career penalty
+- Signal that this behavior is valued and safe; no retaliation, no eye-rolling, no career penalty
 
 [grey-elephant]: grey-elephant.png

@@ -7,9 +7,9 @@ In 2013, the Oskarshamn Nuclear Power Plant in Sweden was forced to shut down. N
 
 Millions of jellyfish, driven by rising ocean temperatures and favorable breeding conditions, formed a massive bloom that clogged the plant's cooling water intake pipes. A similar event happened at the Diablo Canyon nuclear plant in California. And at facilities in Japan, Israel, and Scotland. Small, soft, seemingly innocuous creatures brought down critical infrastructure by arriving in overwhelming numbers through pathways no one had seriously considered.
 
-This is the essence of the black jellyfish: a known phenomenon that we think we understand, that escalates rapidly through positive feedback loops and unexpected pathways, creating cascading failures across interconnected systems. The term was coined by futurist Ziauddin Sardar and John A. Sweeney in their 2015 paper "The Three Tomorrows" as part of their "menagerie of postnormal potentialities"—a framework for understanding risks in what they call "postnormal times," characterized by complexity, chaos, and contradiction.
+This is the essence of the black jellyfish: a known phenomenon that we think we understand, that escalates rapidly through positive feedback loops and unexpected pathways, creating cascading failures across interconnected systems. The term was coined by futurist Ziauddin Sardar and John A. Sweeney in their 2015 paper "The Three Tomorrows" as part of their "menagerie of postnormal potentialities": a framework for understanding risks in what they call "postnormal times," characterized by complexity, chaos, and contradiction.
 
-Sardar and Sweeney chose the jellyfish metaphor deliberately. Jellyfish blooms happen when thousands or millions of jellyfish suddenly cluster in an area, driven by ocean temperature changes, breeding cycles, and feedback loops that amplify their numbers exponentially. They're natural phenomena—known, observable, and scientifically documented. But the speed and scale at which they can appear, and the unexpected ways they can impact human systems, make them unpredictable in their consequences.
+Sardar and Sweeney chose the jellyfish metaphor deliberately. Jellyfish blooms happen when thousands or millions of jellyfish suddenly cluster in an area, driven by ocean temperature changes, breeding cycles, and feedback loops that amplify their numbers exponentially. They're natural phenomena: known, observable, and scientifically documented. But the speed and scale at which they can appear, and the unexpected ways they can impact human systems, make them unpredictable in their consequences.
 
 In infrastructure and SRE contexts, black jellyfish represent cascading failures: events where a small initial problem propagates through system dependencies, amplifying at each hop, spreading through unexpected pathways, until a localized issue becomes a systemic catastrophe. Distributed systems are jellyfish farms: connectivity plus automation plus retries create perfect conditions for blooms.
 
@@ -47,11 +47,11 @@ Cascades progress through five stages:
 
 1. **Initial failure** (often small): A single component degrades or fails
 2. **First-order dependencies fail**: Direct dependents of the failed component start failing
-3. **Second-order dependencies fail**: Dependents of dependents fail—now we're hitting things we didn't expect
+3. **Second-order dependencies fail**: Dependents of dependents fail; now we're hitting things we didn't expect
 4. **Hidden dependencies revealed**: Undocumented dependencies, circular dependencies, hidden coupling surfaces
 5. **Feedback loops activate**: Failed components put load on survivors, survivors fail under unexpected load, system enters positive feedback death spiral
 
-The key parameter is the feedback coefficient—this determines how much each failure amplifies the next. In healthy systems, this coefficient is negative (failures dampen). In black jellyfish events, it's positive (failures amplify).
+The key parameter is the feedback coefficient: this determines how much each failure amplifies the next. In healthy systems, this coefficient is negative (failures dampen). In black jellyfish events, it's positive (failures amplify).
 
 ```python
 class CascadeModel:
@@ -94,7 +94,7 @@ The key insight: in a black jellyfish cascade, the system's own structure become
 
 On October 20, 2025, a DNS race condition in DynamoDB's automated management system cascaded into a systemic failure affecting over 1,000 services and websites worldwide. This incident perfectly demonstrates the black jellyfish pattern: known components (DNS, DynamoDB), unexpected interactions (cascade paths, state inconsistencies), and rapid amplification (minutes to global failure).
 
-**Root Cause**: A critical fault in DynamoDB's DNS management system where two automated components—DNS Planner and DNS Enactor—attempted to update the same DNS entry simultaneously. This coordination glitch deleted valid DNS records, resulting in an empty DNS record for DynamoDB's regional endpoint. This was a "latent defect" in automated DNS management that existed but hadn't been triggered until this moment.
+**Root Cause**: A critical fault in DynamoDB's DNS management system where two automated components (DNS Planner and DNS Enactor) attempted to update the same DNS entry simultaneously. This coordination glitch deleted valid DNS records, resulting in an empty DNS record for DynamoDB's regional endpoint. This was a "latent defect" in automated DNS management that existed but hadn't been triggered until this moment.
 
 **The Cascade Timeline**:
 
@@ -118,7 +118,7 @@ On October 20, 2025, a DNS race condition in DynamoDB's automated management sys
 
 **Positive feedback**: Retry amplification (10-50x), cascade-cascade (failures creating more failures), monitoring blindness (CloudWatch depends on DynamoDB), state inconsistency accumulation (compounding over time), automation conflicts (automation fighting itself).
 
-**Rapid propagation**: Exponential growth—doubling every 15 minutes. From 5% error rate to 85% failure in 90 minutes.
+**Rapid propagation**: Exponential growth: doubling every 15 minutes. From 5% error rate to 85% failure in 90 minutes.
 
 **Extended recovery**: Even after DNS was restored, state reconciliation required careful manual intervention. Full recovery took over a day, not because of the initial DNS fault, but because of the accumulated state inconsistencies and automation conflicts that the cascade created.
 
@@ -146,15 +146,15 @@ This is why organizations with excellent SLO compliance still experience catastr
 
 Before diving into detection, let's examine the patterns that regularly sting infrastructure teams:
 
-**Dependency Chain Cascade**: Service A depends on B, which depends on C, which subtly depends on A (circular). A small degradation creates a feedback loop that amplifies until the entire chain fails. *Example*: Three services with circular dependency—a 10% latency increase becomes total system failure in three minutes.
+**Dependency Chain Cascade**: Service A depends on B, which depends on C, which subtly depends on A (circular). A small degradation creates a feedback loop that amplifies until the entire chain fails. *Example*: Three services with circular dependency: a 10% latency increase becomes total system failure in three minutes.
 
 **Thundering Herd Cascade**: A shared resource becomes temporarily unavailable. All clients simultaneously retry. The resource comes back but is immediately overwhelmed by the retry storm. It falls over again. The cycle repeats, creating a stable failure state. *Example*: Cache goes offline briefly, database gets overwhelmed by cache misses, retry logic multiplies load 3x, database never recovers.
 
 **Resource Exhaustion Cascade**: A slow resource leak gradually degrades performance. Other components compensate by keeping connections open longer, buffering more data, spawning more threads. This compensation exhausts their resources too. The leak propagates like poison. *Example*: Memory leak in database connection pool (100MB/hour) goes unnoticed for 16 hours, then cascade accelerates as components compensate, leading to OOM crashes across the stack.
 
-**Consensus Cascade**: Systems using distributed consensus (Raft, Paxos, ZooKeeper) lose quorum. All services depending on consensus fail simultaneously. The cascade isn't sequential—it's synchronized. *Example*: ZooKeeper cluster loses quorum due to network partition, service discovery, config management, leader election, and distributed locking all fail at roughly the same time.
+**Consensus Cascade**: Systems using distributed consensus (Raft, Paxos, ZooKeeper) lose quorum. All services depending on consensus fail simultaneously. The cascade isn't sequential; it's synchronized. *Example*: ZooKeeper cluster loses quorum due to network partition, service discovery, config management, leader election, and distributed locking all fail at roughly the same time.
 
-Each pattern demonstrates the jellyfish characteristics: known components, unexpected interactions, rapid escalation, positive feedback. Component SLOs stay green until the cascade hits—then they all turn red simultaneously.
+Each pattern demonstrates the jellyfish characteristics: known components, unexpected interactions, rapid escalation, positive feedback. Component SLOs stay green until the cascade hits, then they all turn red simultaneously.
 
 ### Detection Strategies
 
@@ -166,7 +166,7 @@ Cascades accelerate. Look for exponential growth in error rates, not just high e
 
 **What to measure**: Error rate acceleration (rate of change of rate of change), not just error rate itself.
 
-**Alert threshold**: If the last three acceleration measurements are all positive, you have exponential growth—intervene immediately.
+**Alert threshold**: If the last three acceleration measurements are all positive, you have exponential growth; intervene immediately.
 
 ```python
 def detect_cascade_pattern(metrics_history):
@@ -350,7 +350,7 @@ Test your resilience to cascades before they happen in production. Chaos enginee
 
 ### Organizational Factors
 
-Cascade prevention isn't just technical—it's organizational. Retry storms are often a product decision, not an engineering decision. Circuit breakers require organizational buy-in to fail fast. Dependency mapping requires cross-team coordination.
+Cascade prevention isn't just technical; it's organizational. Retry storms are often a product decision, not an engineering decision. Circuit breakers require organizational buy-in to fail fast. Dependency mapping requires cross-team coordination.
 
 **Ownership boundaries**: Who owns the dependency graph? Who owns cascade risk? Unclear ownership means cascades fall through the cracks.
 
@@ -390,7 +390,7 @@ Cascade prevention isn't just technical—it's organizational. Retry storms are 
 
 ### Conclusion: The Jellyfish Always Finds the Pipes
 
-Black jellyfish events teach us that the most dangerous failures aren't the ones we can't predict—they're the ones that arise from what we think we understand.
+Black jellyfish events teach us that the most dangerous failures aren't the ones we can't predict; they're the ones that arise from what we think we understand.
 
 We understand dependencies. We know services call other services. We document our architecture. We draw diagrams.
 

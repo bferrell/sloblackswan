@@ -116,7 +116,7 @@ Organizations invest heavily in existing systems. People build careers around ma
 
 "We've invested five years in this architecture. We can't just throw it away."
 
-Never mind that the architecture is fundamentally unsuited for current scale, or that the sunk costs are precisely that—sunk—and irrelevant to forward-looking decisions. We conflate investment already made with value yet to be delivered.
+Never mind that the architecture is fundamentally unsuited for current scale, or that the sunk costs are precisely that, sunk, and irrelevant to forward-looking decisions. We conflate investment already made with value yet to be delivered.
 
 #### Diffusion of Responsibility
 
@@ -166,7 +166,7 @@ class SLOMonitoring:
         # Answer: Not in SLO monitoring
 ```
 
-This is fundamentally different from Grey Swans, where careful instrumentation and monitoring can detect early warning signals. With Grey Rhinos, you don't need detection—you already know. What you need is the organizational will to act.
+This is fundamentally different from Grey Swans, where careful instrumentation and monitoring can detect early warning signals. With Grey Rhinos, you don't need detection; you already know. What you need is the organizational will to act.
 {::pagebreak /}
 ### Case Study: The COVID-19 Pandemic as a Global Grey Rhino
 
@@ -252,7 +252,7 @@ The reasons mirror exactly what we see in technical organizations:
 - Rationalization: Unused capacity is wasteful
 - Political challenge: Efficiency metrics punish slack resources
 
-The result: When COVID-19 arrived, it found healthcare systems without adequate PPE, without ventilator capacity, without testing infrastructure, without contact tracing capabilities—despite decades of warnings that exactly this would be needed.
+The result: When COVID-19 arrived, it found healthcare systems without adequate PPE, without ventilator capacity, without testing infrastructure, without contact tracing capabilities, despite decades of warnings that exactly this would be needed.
 
 #### Lessons for Infrastructure and SRE
 

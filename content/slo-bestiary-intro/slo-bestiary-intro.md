@@ -93,7 +93,7 @@ Black Swans remind us that our models are always incomplete. They force intellec
 
 But here's the critical insight: most events that get labeled "Black Swans" in SRE incident reviews aren't actually Black Swans. They're Grey Swans that we didn't want to think about, or Grey Rhinos we chose to ignore, or Black Jellyfish we thought we understood.
 
-Apollo 13 is a classic example of that mislabeling. It was a catastrophic, high-uncertainty failure--but still within known physics and engineering failure modes, and it was resolved through deep system knowledge, practiced contingency thinking, and excellent incident command. It's a masterclass in crisis response, not "no-model-possible" unpredictability.
+Apollo 13 is a classic example of that mislabeling. It was a catastrophic, high-uncertainty failure, but still within known physics and engineering failure modes, and it was resolved through deep system knowledge, practiced contingency thinking, and excellent incident command. It's a masterclass in crisis response, not "no-model-possible" unpredictability.
 
 True Black Swans are rare. That's what makes them Black Swans.
 

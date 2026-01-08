@@ -2,7 +2,7 @@
 
 ## Preface
 
-Originally, I had intended this to be an essay, a blog post. I first conceived this work in 2019 when I was the CRE lead at Blameless. Delving deep into SLO implementations, I realized that creating good SLOs was not obvious or trivial. Indeed, just because you have SLOs, they can't predict the unpredictable—something so catastrophic that you just don't have indicators to know that it's coming.
+Originally, I had intended this to be an essay, a blog post. I first conceived this work in 2019 when I was the CRE lead at Blameless. Delving deep into SLO implementations, I realized that creating good SLOs was not obvious or trivial. Indeed, just because you have SLOs, they can't predict the unpredictable: something so catastrophic that you just don't have indicators to know that it's coming.
 
 Then came 2020 and the world was hit with a massive Grey Swan (it wasn't actually a Black Swan, but we'll get into why it wasn't in a bit). I had jotted down some notes at the time, but things were indeed chaotic, and I was just too busy to really formulate this into anything substantial.
 

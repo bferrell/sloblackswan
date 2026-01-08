@@ -4,17 +4,17 @@
 
 ### The Origins: From Emergency Rooms to War Rooms
 
-Here's a dirty secret about incident management: we didn't invent it. We borrowed it from people who deal with actual emergencies -- the kind where buildings collapse, chemicals spill, and helicopters need to land in the right place at the right time.
+Here's a dirty secret about incident management: we didn't invent it. We borrowed it from people who deal with actual emergencies, the kind where buildings collapse, chemicals spill, and helicopters need to land in the right place at the right time.
 
-In the 1970s, California's emergency responders had a problem. When multiple agencies showed up to the same disaster -- fire departments, police, hazmat teams, EMS -- chaos ensued. Everyone had their own radio frequency. Everyone had their own chain of command. Everyone thought they were in charge. Coordination wasn't just difficult; it was nearly impossible.
+In the 1970s, California's emergency responders had a problem. When multiple agencies showed up to the same disaster: fire departments, police, hazmat teams, EMS, chaos ensued. Everyone had their own radio frequency. Everyone had their own chain of command. Everyone thought they were in charge. Coordination wasn't just difficult; it was nearly impossible.
 
-The solution was the Incident Command System (ICS), developed through FIRESCOPE (Firefighting Resources of California Organized for Potential Emergencies). The insight was elegant: the problem wasn't firefighting or hazmat response or search and rescue. The problem was *human coordination under stress*. Different agencies, different expertise, different vocabularies -- and somehow they all had to work together when everything was on fire (sometimes literally).
+The solution was the Incident Command System (ICS), developed through FIRESCOPE (Firefighting Resources of California Organized for Potential Emergencies). The insight was elegant: the problem wasn't firefighting or hazmat response or search and rescue. The problem was *human coordination under stress*. Different agencies, different expertise, different vocabularies, and somehow they all had to work together when everything was on fire (sometimes literally).
 
 ICS gave them common terminology, clear authority structures, and scalable organization. It worked so well that by the 1990s it became the national standard for emergency response. FEMA adopted it. The military studied it. Hospital emergency rooms implemented versions of it.
 
 And then, sometime around the late 1990s, IT folks started having the same realization.
 
-Remember what incident response looked like in the early days of internet infrastructure? Your database crashes at 2 AM. Whoever answers the pager becomes the de facto "incident commander" -- not because they're qualified, but because they picked up the phone. Information scatters across email threads, IRC channels, and voicemails. Three different people make conflicting decisions about whether to failover. Recovery takes four hours instead of forty minutes because nobody knows who's doing what.
+Remember what incident response looked like in the early days of internet infrastructure? Your database crashes at 2 AM. Whoever answers the pager becomes the de facto "incident commander," not because they're qualified, but because they picked up the phone. Information scatters across email threads, IRC channels, and voicemails. Three different people make conflicting decisions about whether to failover. Recovery takes four hours instead of forty minutes because nobody knows who's doing what.
 
 The parallels to pre-ICS emergency response were obvious:
 
@@ -26,7 +26,7 @@ The parallels to pre-ICS emergency response were obvious:
 
 ITIL tried to codify this for enterprise IT in the 1980s. The DevOps movement brought it to software teams in the 2000s. But the real transformation happened when Ben Treynor Sloss built something new at Google.
 
-In 2003, Treynor founded what would become Site Reliability Engineering -- famously described as "what happens when you ask a software engineer to design an operations team." His team didn't just adopt ICS; they reimagined it for distributed systems and software engineers. They took principles designed for coordinating fire trucks and helicopters and adapted them for coordinating microservices and on-call rotations. The result became the foundation for modern tech incident management, codified in the 2016 Google SRE book that changed the industry.
+In 2003, Treynor founded what would become Site Reliability Engineering, famously described as "what happens when you ask a software engineer to design an operations team." His team didn't just adopt ICS; they reimagined it for distributed systems and software engineers. They took principles designed for coordinating fire trucks and helicopters and adapted them for coordinating microservices and on-call rotations. The result became the foundation for modern tech incident management, codified in the 2016 Google SRE book that changed the industry.
 {::pagebreak /}
 ### The Google Model: SRE and the Incident Management Revolution
 
@@ -181,7 +181,7 @@ Common failure mode: **They become a stenographer for Slack spam instead of a cu
 
 The Incident Commander runs the room. The Technical Lead runs the work. That separation is the whole point. The IC is optimizing for coordination and decision-making under uncertainty; the Technical Lead is optimizing for "how do we stop the bleeding without making it worse?"
 
-The Technical Lead manages the technical strategy: containment, mitigation, recovery, and validation. They direct the SMEs, choose which hypotheses to pursue, and keep the team from turning twelve unrelated fixes into performance art. They also do something subtle but critical: they keep the response shaped like a funnel -- wide exploration early, narrow focus once evidence shows up.
+The Technical Lead manages the technical strategy: containment, mitigation, recovery, and validation. They direct the SMEs, choose which hypotheses to pursue, and keep the team from turning twelve unrelated fixes into performance art. They also do something subtle but critical: they keep the response shaped like a funnel: wide exploration early, narrow focus once evidence shows up.
 
 Key responsibilities:
 
