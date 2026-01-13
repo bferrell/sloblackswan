@@ -1,4 +1,4 @@
-## The Nature of SLOs
+-## The Nature of SLOs
 Before we dive into why SLOs can't catch Black Swans, we need to establish exactly what SLOs are, where they came from, and why they work so well for normal operations. If you're already deep into SRE practice, some of this will be review. But bear with me, because understanding the foundations helps us see the limitations.  Suffice it to say, that while I have successfully implemented a few SLI/SLOs in my time, I don't consider myself a master of the craft, just a practitioner. This is a short review, If you want to get the theory and practice of someone I consider a Master, check out Alex Hidalgo's excellent book 
 [Implementing Service Level Objectives](https://www.alex-hidalgo.com/the-slo-book)
 ### The Telecom Roots: Where the "Nines" Came From
@@ -267,7 +267,7 @@ slos:
     alert_threshold: 10%
 ```
 This is a snippet of YAML code that defines two SLOs: availability and latency. For the payment-processor service. There are Two SLOs described here:
-1. Availability at 99.5%
+1. Availability at 99.95%
 2. Latency at 95%, commonly referred to as p95
 
 For Availability, we target 3.5 nines. This gives us a comfortable target of 43 seconds of downtime per day. Probably just fine for a dating site.
@@ -702,6 +702,9 @@ Because if SLOs are our map of the territory, these animals are the reminder tha
 This isn't a failure of SLOs. It's a limitation of the paradigm. You can't measure what you haven't seen. You can't set objectives for scenarios you haven't imagined. You can't budget for errors you don't know exist.
 
 #### Further Reading
+Beyer, Betsy, et al., editors. Site Reliability Engineering: How Google Runs Production Systems. O'Reilly Media, 2016.
+
+Rosenthal, Casey, et al. Chaos Engineering: Building Confidence in System Behavior through Experiments. O’Reilly Media, n.d.
 
 Hidalgo, Alex. Implementing Service Level Objectives. O'Reilly Media, 5 Aug. 2020.
 
