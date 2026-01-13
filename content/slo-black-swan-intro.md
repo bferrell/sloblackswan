@@ -22,7 +22,7 @@ Here's the thing: the landscape of risk is more subtle and more dangerous than a
 
 ### The Bestiary: Five Animals, Five Types of Risk
 
-This book explores five distinct categories of risk in modern systems reliability, each represented by an animal that captures its essential nature:
+This book explores five distinct categories of risk in modern systems reliability, each represented by an animal, a totem animal if you wish, that captures its essential nature:
 
 **The Black Swan: The Truly Unpredictable**  
 Nassim Nicholas Taleb's famous metaphor, developed across his books *The Black Swan* and *Antifragile*, represents events that lie completely outside our historical experience and statistical models. These are the genuine unknown unknowns: catastrophic, transformative, and only "obvious" in hindsight. Taleb's work challenges how we think about prediction, preparation, and the very nature of knowledge in complex systems. Black Swans are rare, but when they strike, they redefine everything we thought we knew. We'll be drawing heavily from Taleb's frameworks throughout this book because his insights map remarkably well to the challenges of modern infrastructure reliability.
@@ -93,3 +93,5 @@ Let's begin.
 ---
 
 *"The Black Swan is what you see when you weren't looking for it. The Grey Rhino is what you didn't act on when you should have. The Elephant is what you knew but couldn't say. The Black Jellyfish is what you thought you understood but didn't. And your SLOs? They're what you measured in between."*
+
+*Geoff White*
