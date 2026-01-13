@@ -1,12 +1,12 @@
 ## The Historical Journey of Black Swans
 
-The Black Swan metaphor has a rich history stretching back to ancient Rome. Juvenal's "Satire VI," written around 100 CE, uses "rara avis in terris nigroque simillima cygno" ("a rare bird in the lands, and very much like a Black Swan") to describe something presumed impossible. This metaphor persisted through medieval Europe and became a common expression in London by the 1500s.
+The Black Swan metaphor has a rich history stretching back to ancient Rome. Juvenal's "Satire VI," written around 100 CE, uses "rara avis in terris nigroque simillima cygno" ("a rare bird in the lands, and very much like a Black Swan") to describe something presumed impossible. This metaphor persisted through medieval Europe and became a common expression  by the late 1500s (at least), it appears in English usage. [^1][^2]
 
-Before European exploration of Australia, Western philosophers used "Black Swan" as shorthand for logical impossibility. The reasoning seemed airtight: all observed swans were white, therefore all swans must be white. Simple induction from countless observations.
+Before European exploration of Australia, Western philosophers used "Black Swan" as shorthand for logical impossibility. The reasoning seemed airtight: all observed swans were white, therefore all swans must be white. Simple induction from countless observations. 
 
-Then in 1697, Dutch explorer Willem de Vlamingh discovered Black Swans in Western Australia, and suddenly centuries of confident certainty evaporated. The discovery didn't just add a new bird to zoology textbooks. It fundamentally challenged how we think about knowledge and prediction. How many other "impossibilities" were simply things we hadn't observed yet?
+Then in 1697, Dutch explorer Willem de Vlamingh discovered Black Swans in Western Australia, and suddenly centuries of confident certainty evaporated. [^3] The discovery didn't just add a new bird to zoology textbooks. It fundamentally challenged how we think about knowledge and prediction. How many other "impossibilities" were simply things we hadn't observed yet?
 
-When philosopher John Stuart Mill later formalized the problem of induction, he used the Black Swan as his prime example of how universal statements can be demolished by a single counterexample. No matter how many white swans you've seen, you can't prove that all swans are white. But one Black Swan proves that not all swans are white.
+When philosopher Hume articulated the problem of induction; The philosopher Popper popularized the swan counterexample as a crisp illustration of falsification; Taleb later repurposed ‘black swan’ for extreme, model-breaking events. No matter how many white swans you've seen, you can't prove that all swans are white. But one Black Swan proves that not all swans are white.
 
 This is the epistemological knife that cuts at the heart of SRE practice: our systems have been up for 1,000 days, and every day confirms that our architecture is sound, our monitoring is comprehensive, and our understanding is complete. Until the day it isn't.
 
@@ -59,7 +59,9 @@ For SRE, antifragility means:
 - Architectures that become more robust precisely because they've been stressed
 - Teams that get better at handling the unexpected by regularly experiencing the unexpected
 
-This is why companies like Netflix built Chaos Monkey. Not just to test resilience, but to create antifragility. Every random failure in production makes the system stronger because it forces teams to handle the unexpected. The system benefits from disorder.
+This is why companies like Netflix built Chaos Monkey. To test resilience, via failure-injection. Every random failure in production makes the system stronger because it forces teams to handle the unexpected. The system benefits from disorder. Chaos engineering can be read as an antifragile practice in Taleb’s sense.
+
+SLOs manage *experienced* reliability (including tail percentiles) but don’t enumerate novel failure modes; you still need design reviews, chaos experiments, DR, security engineering, and dependency risk management.
 
 Taleb argues that you can't predict Black Swans (by definition), so trying to prevent them is futile. Instead, you should position yourself to benefit from them, or at least survive them. In SRE terms: you can't predict the next catastrophic failure mode, so build systems and organizations that can handle failures you haven't imagined yet.
 
@@ -71,7 +73,7 @@ Let's look at three of Taleb's concepts that directly challenge how we think abo
 
 "Ludic" comes from the Latin word for play or game. The Ludic Fallacy is mistaking the well-defined randomness of games and models for the messy, unbounded randomness of real life.
 
-In a casino, you know the odds. Roulette has 38 slots. The rules are fixed. The probability distribution is well-defined. You can model this. You can calculate expected values. Your statistical tools work perfectly.
+In an american casino, you know the odds. Roulette has 38 slots. The rules are fixed. The probability distribution is well-defined. You can model this. You can calculate expected values. Your statistical tools work perfectly.
 
 But the real world isn't a casino. It's messier, stranger, and full of unknown unknowns. Mathematical models like our SLOs are based on oversimplified, platonic versions of reality. Real-world randomness is far wilder than our statistical models suggest.
 
@@ -125,7 +127,7 @@ Taleb introduces two domains where randomness operates fundamentally differently
 This is the realm of normal distributions, bounded variation, and predictable randomness. Most things here cluster around the average, and extremes are rare and bounded. 
 
 Characteristics:
-- Normal (Gaussian) distributions apply
+- Normal (Gaussian) distributions apply (mostly)
 - Sample averages are representative
 - Single events don't matter that much
 - The past is a good guide to the future
@@ -134,7 +136,7 @@ Characteristics:
 SRE examples:
 - Server response times under normal load
 - Memory utilization in steady state
-- Network latency in stable conditions
+- Network latency in stable conditions (often heavy-tailed distrobution)
 - Request rates during typical traffic patterns
 
 In Mediocristan, your SLOs are powerful tools. Historical data guides you well. Your percentile calculations mean something. Your error budgets make sense.
@@ -173,10 +175,18 @@ The answer isn't to abandon SLOs. It's to recognize that SLOs are tools for mana
 - SLOs for the predictable day-to-day reliability work
 - Antifragility for the unpredictable disasters that will eventually arrive
 
+Some ‘tails’ are statistically expected; Black Swans are the category break new modes, new couplings, new adversaries.
+
 The rest of this book explores how to do both. How to use SLOs for what they're good at while preparing for the Black Swans they can't catch.
 
 Because the turkey's mistake wasn't gathering data or tracking trends. The turkey's mistake was believing that data and trends were enough.
 
+#### References
+[1] https://www.britannica.com/topic/black-swan-event
+
+[2] https://quod.lib.umich.edu/e/eebo/a20794.0001.001
+
+[3] https://www.britannica.com/place/Swan-River-Australia
 #### Further Reading
 Nassim Taleb, and David Chandler. The Black Swan. W.F. Howes, 2007.
 
