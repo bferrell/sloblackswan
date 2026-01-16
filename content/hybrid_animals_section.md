@@ -208,8 +208,8 @@ On October 10, 2025, President Trump announced a substantial increase in tariffs
 
 **Market Response**:
 
-- Bitcoin dropped from all-time high of $126,000 (October 8) to low of $103,300 (October 10) - an 18% decline
-- Ethereum declined 5.8% to $3,637 (reaching lows of $3,436)
+- Bitcoin dropped from over $120,000 (October 8) to low of $103,300 (October 10) - an 18% decline
+- Ethereum declined approximately 11% to around $3,878 (reaching lows of $3,436)
 - S&P 500 dropped over 2%
 - Total crypto market capitalization dropped nearly $1 trillion within approximately one hour
 - Multiple cryptocurrency exchanges experienced system degradation
@@ -568,7 +568,7 @@ But the actual impact showed amplification in ways the linear model missed:
 
 ```python
 actual_impact = {
-    'bitcoin_drop': ('Bitcoin dropped from $126,000 to $103,300 '
+    'bitcoin_drop': ('Bitcoin dropped from over $120,000 to $103,300 '
                      '(18% decline)'),
     'market_cap_drop': ('Nearly $1 trillion in one hour '
                         '(2x the predicted $500B)'),
@@ -633,7 +633,7 @@ On October 20, 2025, a major global outage of Amazon Web Services began in the U
 
 **Affected Services**: Alexa, Ring, Reddit, Snapchat, Wordle, Zoom, Lloyds Bank, Robinhood, Roblox, Fortnite, PlayStation Network, Steam, AT&T, T-Mobile, Disney+, Perplexity (AI services), and 1,000+ more. The outage demonstrated the fragility of cloud-dependent systems when core infrastructure fails and how state management issues can extend recovery far beyond the initial fault.
 
-Total impact: 15+ hours of degradation affecting 1,000+ services globally. Financial losses estimated at approximately $75 million per hour during peak impact, with potential total losses up to $581 million (CyberCube, 2025). The broader economic impact, including lost productivity and halted business operations, may reach into the hundreds of billions of dollars (Forbes, 2025).
+Total impact: 15+ hours of degradation affecting 1,000+ services globally. Financial losses estimated at approximately $75 million per hour during peak impact, with potential total losses up to $581 million (CyberCube, 2025). The broader economic impact, including lost productivity and halted business operations, may reach into the hundreds of billions of dollars according to industry analysts.
 
 #### The Multi-Animal Analysis
 
@@ -1738,8 +1738,10 @@ class FinancialCrisisStampede:
                 'elephants': 'Leverage, derivatives, regulatory capture',
                 'jellyfish': 'Credit cascade, contagion',
                 'swans': 'Extent of correlation, speed of cascade',
-                'impact': ('Global recession, $10+ trillion wealth loss '
-                           '(Federal Reserve, IMF, 2008-2009)')
+                'impact': ('Global recession, U.S. households lost '
+                           'approximately $17 trillion, while global '
+                           'wealth destruction reached $50 trillion '
+                           '(IMF, 2010)')
             }
         }
         
@@ -1762,9 +1764,10 @@ class FinancialCrisisStampede:
             'classification': 'SUPER-STAMPEDE',
             'animals_involved': 6,
             'interaction_type': 'Every risk type amplifying every other',
-            'damage': ('$10+ trillion wealth loss, global recession, '
-                       'millions unemployed '
-                       '(Federal Reserve, IMF, 2008-2009)'),
+            'damage': ('U.S. households lost approximately $17 trillion, '
+                       'while global wealth destruction reached $50 trillion, '
+                       'global recession, millions unemployed '
+                       '(IMF, 2010)'),
             'lesson': 'Hybrid events at scale can break civilization',
             'what_didnt_help': ('SLO-equivalent metrics (VaR models) '
                                 'all green until cascade'),

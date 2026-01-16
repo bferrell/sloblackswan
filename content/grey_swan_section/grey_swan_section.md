@@ -10,8 +10,7 @@ Grey Swans occupy the most treacherous middle ground in our risk landscape. They
 
 Grey Swans are what we call Large Scale, Large Impact, Rare Events. Let's unpack what makes them distinct and dangerous:
 
-This code block represents the Large Scale, Large Impact, Rare Event (LSLIRE) attributes of Grey Swans. It provides a statistical positioning helper for identifying how far an event sits on the tail, and documents why the combination of scale, impact, and rarity requires distinct operational considerations.
-
+The LSLIRE framework captures these characteristics and provides a statistical positioning helper for identifying how far an event sits on the tail. It documents why the combination of scale, impact, and rarity requires distinct operational considerations.
 
 Instead of one giant slab of pseudo-code, let's take this in two bites: first the definition and the tail-position classifier, then why the LSLIRE combination is operationally nasty.
 
@@ -103,7 +102,7 @@ Here's the math that breaks human intuition:
 **The Cumulative Probability Trap:**
 A 2% annual probability sounds negligible. "Only 2% chance per year? That's basically never."
 
-But run the numbers over time:
+But run the numbers over time (calculated as 1 - (1-p)^n where p is annual probability and n is years):
 
 - 1 year: 2% chance
 - 5 years: 10% chance (1 in 10)
@@ -121,17 +120,24 @@ def system_probability(component_prob, num_components):
     """Probability that at least one component fails."""
     return 1 - (1 - component_prob) ** num_components
 # Each microservice has 2% annual chance of a rare failure mode
+# NOTE: This calculation assumes independent failures,
+# which rarely holds in practice. Real systems have correlation
+# effects that can amplify or reduce these probabilities.
 print(f"50 services:  {system_probability(0.02, 50):.0%} "
       f"annual probability")
 print(f"100 services: {system_probability(0.02, 100):.0%} "
       f"annual probability")
 
 # Output:
-# 50 services:  64% annual probability
-# 100 services: 87% annual probability
+# 50 services:  64% annual probability (assuming independence)
+# 100 services: 87% annual probability (assuming independence)
 ```
 
 Your microservices architecture just turned a "rare" 2% event into an "almost certain" 87% event. Welcome to Grey Swan territory.
+
+**Important caveat:** This calculation assumes independent failures, which rarely holds in practice. When components share dependencies, infrastructure, or external triggers (like a cloud region outage), failures become correlated.
+
+Correlation effects change the math significantly. Correlation can either amplify risk (if failures cascade across shared infrastructure) or reduce it (if redundancy helps when failures are isolated), but the independence assumption breaks down. In real distributed systems, correlation effects mean your actual system-level probability may differ from these calculations - potentially making the Grey Swan even more likely if failures tend to cascade.
 
 **The Sigma Distance Deception:**
 
@@ -143,7 +149,9 @@ Events at 3-5 standard deviations out sound impossibly rare:
 
 But these assume normal distributions. Real-world systems have fat tails. That "5-sigma event" happens far more often than the math suggests because your distribution isn't actually normal.
 
-The 2008 financial crisis was estimated as a 25-sigma event by models using normal distributions. But it happened. Your models don't dictate reality.
+Fat-tailed distributions (like power-law or Student's t distributions) have higher probability in their tails than the normal distribution predicts. Where a normal distribution would assign near-zero probability to extreme events, fat-tailed distributions assign significantly higher probability. This is why 5-sigma events happen far more often than your Gaussian math suggests - your actual distribution has fatter tails.
+
+The 2008 financial crisis demonstrates this perfectly. Models assuming normal distributions would have estimated the crisis as a 25-sigma event, demonstrating the failure of those models rather than the rarity of the event. It wasn't that the crisis was impossibly rare; it was that the models were using the wrong distribution. Your models don't dictate reality.
 
 This is where Grey Swans exploit human psychology:
 
@@ -238,7 +246,6 @@ Ask these questions in order. If you answer "yes" to all six, you have a Grey Sw
 
 **2. Was the probability low but non-zero (typically 1-10% annually)?**
 
-
 - YES → Continue to question 3
 - NO, much higher → This is a Grey Rhino (obvious threat you ignored)
 - NO, effectively zero → This is a Black Swan
@@ -308,17 +315,25 @@ This calculator forces you to face the reality: low-probability events at the co
 
 ```python
 # Quick system probability calculator
+# NOTE: Assumes independent component failures.
+# Real systems have correlation effects that can amplify
+# or reduce these probabilities.
 def will_this_actually_happen(component_risk, num_components, years=10):
     """
     Reality check for 'unlikely' events across systems and time.
+    
+    Assumes independent failures (which rarely holds in practice).
+    Correlation can increase risk (cascading failures) or decrease it
+    (redundancy), but the independence assumption provides a baseline
+    estimate.
     """
     annual_system_risk = 1 - (1 - component_risk) ** num_components
     cumulative_risk = 1 - (1 - annual_system_risk) ** years
     
     return {
         "component_annual": f"{component_risk:.1%}",
-        "system_annual": f"{annual_system_risk:.1%}",
-        "over_10_years": f"{cumulative_risk:.1%}",
+        "system_annual": f"{annual_system_risk:.1%} (assuming independence)",
+        "over_10_years": f"{cumulative_risk:.1%} (assuming independence)",
         "verdict": ("Grey Swan - prepare now" if cumulative_risk > 0.25
                     else "Monitor")
     }
@@ -326,9 +341,12 @@ def will_this_actually_happen(component_risk, num_components, years=10):
 # Example: 2% component risk across 50 microservices
 print(will_this_actually_happen(0.02, 50, 10))
 # Output: 64% annual system risk, 99.7% over 10 years → Grey Swan!
+# (Note: Actual probabilities may differ due to correlation effects)
 ```
 
-The output should make you pause. That "unlikely" 2% component risk becomes a 64% annual system risk, and over a decade of operation, it's 99.7% certain to happen. This isn't theoretical; this is the math that explains why Grey Swans hit systems that "shouldn't" have problems. When you multiply low probabilities across many components and many years, unlikely becomes inevitable. The question isn't whether it will happen, but whether you'll be ready when it does.
+The output should make you pause. That "unlikely" 2% component risk becomes a 64% annual system risk, and over a decade of operation, it's 99.7% certain to happen (assuming independent failures). This isn't theoretical; this is the math that explains why Grey Swans hit systems that "shouldn't" have problems. When you multiply low probabilities across many components and many years, unlikely becomes inevitable. The question isn't whether it will happen, but whether you'll be ready when it does.
+
+**Important note:** These calculations assume independence, which is rarely true in practice. Correlation effects can amplify risk (cascading failures across shared infrastructure) or reduce it (redundancy helping when failures are isolated), but the baseline estimate still reveals how component-level probabilities compound at system scale.
 
 #### Warning Signs You're Misclassifying
 
@@ -389,7 +407,7 @@ class FinancialCrisis2008TechImpact:
                              "3-month survival mode")
             },
             "large_impact": {
-                "vc_funding": "90% reduction in available capital",
+                "vc_funding": "90% reduction in available capital (industry estimates)",
                 "enterprise_budgets": ("Massive freezes in "
                                        "infrastructure spending"),
                 "startup_survival": ("Runway calculations suddenly "
@@ -859,15 +877,21 @@ The subtle failure mode is that these assumptions usually work, which makes them
         Error budgets are excellent tools, but they have blind spots.
         """
         return {
-            "assumes_small_frequent_errors": {
-                "error_budget_model": ("Spread small failures across "
-                                       "time period"),
-                "grey_swan_reality": ("One massive failure consumes "
-                                      "entire annual budget"),
+            "assumes_errors_distributed_across_time": {
+                "error_budget_model": ("Traditional error budget models "
+                                       "assume errors are distributed "
+                                       "across time periods"),
+                "grey_swan_reality": ("One massive failure can consume "
+                                      "entire annual budget in a single "
+                                      "event"),
                 "math_problem": ("99.9% SLO = 8.7 hours/year, but "
                                  "Grey Swan = 72 hours"),
                 "result": ("Single event blows through budget, "
-                           "leaving year in 'failure mode'")
+                           "leaving year in 'failure mode'"),
+                "nuance": ("Error budgets can handle large errors if "
+                           "properly sized, but traditional models break "
+                           "when a single large event consumes the entire "
+                           "budget")
             },
             "doesnt_account_for_cumulative_probability": {
                 "error_budget_model": ("Set based on single period "
@@ -1090,6 +1114,11 @@ detector.add_signal("peer_outages", 0.7)
 
 print(detector.assess_risk())
 # Output: "HIGH - Initiate preparation protocols"
+
+# NOTE: Thresholds should be calibrated to your system's normal noise levels.
+# Start conservative (higher thresholds) and adjust based on false positive rates.
+# If you get too many false alarms, increase thresholds. If you miss real events,
+# decrease them. The goal is actionable warnings, not perfect prediction.
 ```
 
 #### The Key Insight
@@ -1100,7 +1129,7 @@ The combination of signals should trigger action, even when each individual sign
 
 ### The Evolution: From Grey Swan to Grey Rhino
 
-Understanding this progression is crucial because organizations that repeatedly dismiss Grey Swans often evolve them into Grey Rhinos through institutional inertia. This is one of the most dangerous transitions in our risk bestiary, and it happens more often than you'd think.
+A Grey Rhino is the obvious threat you're actively ignoring - the massive hazard charging straight at you, horn down, that everyone can see but nobody will address. We'll explore Grey Rhinos in depth later, but understanding this evolution is crucial because organizations that repeatedly dismiss Grey Swans often evolve them into Grey Rhinos through institutional inertia. This is one of the most dangerous transitions in our risk bestiary, and it happens more often than you'd think.
 
 Here's how it works: a Grey Swan is identified through statistical analysis. The probability is low, maybe 2-5% annually. The organization evaluates preparation costs and decides, rationally, that the investment isn't justified. So far, this is normal risk management. But then something subtle happens: the dismissal becomes institutionalized. The risk assessment becomes perfunctory. People who raise concerns are marginalized. The Grey Swan discussion becomes taboo.
 
