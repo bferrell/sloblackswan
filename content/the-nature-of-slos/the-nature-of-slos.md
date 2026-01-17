@@ -1,4 +1,4 @@
--## The Nature of SLOs
+## The Nature of SLOs
 Before we dive into why SLOs can't catch Black Swans, we need to establish exactly what SLOs are, where they came from, and why they work so well for normal operations. If you're already deep into SRE practice, some of this will be review. But bear with me, because understanding the foundations helps us see the limitations.  Suffice it to say, that while I have successfully implemented a few SLI/SLOs in my time, I don't consider myself a master of the craft, just a practitioner. This is a short review, If you want to get the theory and practice of someone I consider a Master, check out Alex Hidalgo's excellent book 
 [Implementing Service Level Objectives](https://www.alex-hidalgo.com/the-slo-book)
 ### The Telecom Roots: Where the "Nines" Came From

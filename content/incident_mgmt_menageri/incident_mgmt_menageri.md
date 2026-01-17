@@ -26,7 +26,7 @@ The parallels to pre-ICS emergency response were obvious:
 
 ITIL tried to codify this for enterprise IT in the 1980s. The DevOps movement brought it to software teams in the 2000s. But the real transformation happened when Ben Treynor Sloss built something new at Google.
 
-In 2003, Treynor founded what would become Site Reliability Engineering, famously described as "what happens when you ask a software engineer to design an operations team." His team didn't just adopt ICS; they reimagined it for distributed systems and software engineers. They took principles designed for coordinating fire trucks and helicopters and adapted them for coordinating microservices and on-call rotations. The result became the foundation for modern tech incident management, codified in the 2016 Google SRE book that changed the industry.
+In 2003, Treynor founded what would become Site Reliability Engineering, famously described as "what happens when you ask a software engineer to design an operations team." His team didn't just adopt ICS; they reimagined it for distributed systems and software engineers. They took principles designed for coordinating fire trucks and helicopters and adapted them for coordinating microservices and on-call rotations. The result became the foundation for modern tech incident management, codified in the 2016 Google SRE book that changed the industry [Beyer et al., 2016].
 {::pagebreak /}
 ### The Google Model: SRE and the Incident Management Revolution
 
@@ -211,7 +211,7 @@ Key responsibilities:
 Common failure mode: **They chase the most interesting problem, not the most incident-relevant one.**
 
 
-
+{::pagebreak /}
 **The ICS Principles That Matter for IT:**
 
 1. **Unity of Command**: Every person reports to one person. No conflicting orders.
@@ -225,6 +225,7 @@ Common failure mode: **They chase the most interesting problem, not the most inc
 5. **Establishment of Command**: The IC is declared early and clearly. "I'm taking IC" is an explicit handoff.
 
 {::pagebreak /}
+
 ### Anatomy of an Incident
 ![][anatomy-of-an-incident]
 
@@ -242,97 +243,7 @@ Before moving further, let's get closure on some important traditional  terms ar
 
 We're going to go with these definitions for now. You may see these things defined differently in other documents or by other authors. To a certain extent, these definitions have become sort of a religious thing in the incident management community. We're just going to go with these for now. 
 {::pagebreak /}
-### NIST 800-61: The Framework Integration
 
-NIST Special Publication 800-61 Revision 2 ("Computer Security Incident Handling Guide") provides the standard framework for incident response, particularly for security incidents but applicable more broadly.
-
-The NIST incident response lifecycle has four phases:
-
-#### 1. Preparation
-
-**What NIST Says:**
-
-- Establish incident response capability
-- Develop policies and procedures
-- Acquire tools and resources
-- Train personnel
-
-**What This Means for Our Bestiary:**
-
-- **Black Swans**: You can't prepare for specific swans, but you can prepare to adapt rapidly to unprecedented events. This means: redundant systems, operational slack, cross-trained teams, and practiced incident response under chaos.
-- **Grey Swans**: Preparation means instrumentation. If you can't see weak signals, you can't act on early warnings. Invest in observability.
-- **Grey Rhinos**: Preparation means acknowledging the charging rhino exists. Maintain a rhino register. Have mitigation plans even if you're not executing them yet.
-- **Elephants**: Preparation means building psychological safety so elephants can be named. This is cultural work, not technical.
-- **Black Jellyfish**: Preparation means mapping dependencies, implementing circuit breakers, and designing for cascade resistance.
-
-#### 2. Detection and Analysis
-
-**What NIST Says:**
-- Determine whether an incident has occurred
-- Assess scope and impact
-- Prioritize response based on severity
-
-**What This Means for Our Bestiary:**
-
-Detection varies dramatically by animal type:
-
-| Animal | Detection Characteristics | Time to Detection | Primary Detection Method |
-|--------|--------------------------|-------------------|-------------------------|
-| Black Swan | Impossible before event, obvious during | Seconds to minutes | Customer reports, total system failure |
-| Grey Swan | Possible with monitoring, requires pattern recognition | Hours to days | Anomaly detection, correlation analysis |
-| Grey Rhino | Trivial (already visible), question is acknowledgment | Months (known) | Capacity monitoring, backlog review |
-| Elephant | Everyone knows, question is who will say it | Years (chronic) | Engagement surveys, exit interviews |
-| Black Jellyfish | Hard initially, exponential once cascade starts | Minutes | Error rate acceleration, cross-service correlation |
-
-#### 3. Containment, Eradication, and Recovery
-
-**What NIST Says:**
-- Contain the incident to prevent further damage
-- Remove the threat
-- Restore systems to normal operation
-
-**What This Means for Our Bestiary:**
-
-Containment strategies differ:
-
-- **Black Swans**: Containment is about stopping the bleeding while you figure out what's happening. Priority: prevent total system collapse. Expect to make decisions with 20% information.
-
-- **Grey Swans**: Containment is about breaking the complex cascade before it fully manifests. You have slightly more time than Black Swans but not much. Use your monitoring to identify and isolate the spreading failure.
-
-- **Grey Rhinos**: Containment is often straightforward (you knew what needed fixing). The challenge is doing it quickly under pressure after procrastinating for months.
-
-- **Elephants**: Containment is about acknowledging the elephant so response can be coordinated. The technical fix might be simple; the organizational fix is hard.
-
-- **Black Jellyfish**: Containment is about breaking positive feedback loops. Stop retry storms, open circuit breakers manually if needed, shed load aggressively. Recovery must happen in dependency order, not all-at-once.
-
-#### 4. Post-Incident Activity
-
-**What NIST Says:**
-
-- Document lessons learned
-- Improve incident response capability
-- Update procedures based on experience
-
-**What This Means for Our Bestiary:**
-
-This is where information flow becomes critical. Per the Unwritten Laws [White, 2025]:
-
-**Information flows to where it's safe.** If your post-incident review is blameful, engineers will hide what they know. You'll get theater, not learning.
-
-**Information flows through trust networks.** The person who understands what really happened might not be the incident commander or the most senior person in the room. Create space for everyone to contribute.
-
-**Information degrades crossing boundaries.** Write the postmortem while the context is fresh. Waiting two weeks means the nuance is gone.
-
-Post-incident learning should explicitly classify the animal type:
-
-- Was this a Black Swan we couldn't have predicted?
-- Was this a Grey Swan we could have monitored for?
-- Was this a Grey Rhino we'd been ignoring?
-- Did this reveal an Elephant we need to address?
-- Was this a Black Jellyfish cascade we need to design against?
-
-Different animals demand different action items. Don't treat all incidents the same way.
-{::pagebreak /}
 ### Key Performance Indicators: Measuring What Customers Feel
 
 Most incident management KPIs are wrong. They measure internal process efficiency, not customer impact.
@@ -402,6 +313,176 @@ The animals reveal what your organization is actually good at. If you handle Bla
 
 Use KPIs diagnostically to understand organizational strengths and weaknesses across the bestiary.
 
+#### Practical Measurement Methods for Qualitative KPIs
+
+The traditional KPIs (MTTD, MTTR) are easy to measure - they're numbers. The KPIs that actually matter (decision latency, information flow velocity, postmortem quality) require qualitative assessment. Here's how to measure them.
+
+**Decision Latency Under Uncertainty**
+
+**What it measures:** Time from "we need to decide" to action when information is incomplete.
+
+**Measurement Method:**
+
+1. **Timeline Analysis:**
+   - Review incident timeline
+   - Identify decision points: "Should we failover?" "Should we roll back?" "Should we escalate?"
+   - Measure time from decision point identification to action taken
+   - Note information available at decision time (percentage complete)
+
+2. **Decision Point Identification:**
+   - During incident: Scribe captures decision points in real-time
+   - Tag each decision: "Decision needed: [what], Information available: [%], Time to decide: [duration]"
+   - Post-incident: Analyze decision latency for each point
+
+3. **Qualitative Assessment:**
+   - Decision made in <15 minutes with <30% information = Low latency (good for Black Swans)
+   - Decision made in >60 minutes with >70% information = High latency (may be appropriate for Complicated, bad for Chaotic)
+   - Pattern: Consistently high latency in Chaotic domains = organizational problem
+
+**Example:** "Decision to failover: Identified at T+12, decided at T+28, executed at T+30. Information available: 25%. Decision latency: 16 minutes."
+
+**Information Flow Velocity**
+
+**What it measures:** Time for critical context to reach decision-makers.
+
+**Measurement Method:**
+
+1. **Communication Path Tracing:**
+   - During incident: Scribe tracks information flow
+   - Identify critical information: "Engineer A noticed anomaly X"
+   - Trace path: A → B → C → IC
+   - Measure time at each hop: A noticed at T+5, told B at T+8, B told C at T+12, C told IC at T+18
+   - Total latency: 13 minutes (from T+5 to T+18)
+
+2. **Path Comparison:**
+   - Compare actual path (trust networks) vs org chart path
+   - Measure latency difference
+   - Identify bottlenecks (which hops take longest?)
+
+3. **Post-Incident Review:**
+   - Ask: "Who knew what when?"
+   - Map information flow diagram
+   - Identify: Where did information get stuck? Why?
+
+**Example:** "Critical info: DNS anomaly. Path: Junior engineer (T+0) → Trusted teammate (T+3) → Senior engineer (T+7) → IC (T+12). Org chart would have been: Junior engineer → Manager → Director → VP → IC (estimated T+45). Trust network was 3.75x faster."
+
+**Postmortem Quality Score**
+
+**What it measures:** Depth of learning, actionability of items, honesty of analysis.
+
+**Measurement Method: Qualitative Rubric**
+
+**Rate each postmortem on 1-5 scale:**
+
+**1. Honesty (Are people telling the truth?)**
+- 5: Multiple people admit mistakes, confusion, disagreements
+- 4: Some people admit mistakes
+- 3: Mistakes mentioned but not attributed
+- 2: Only "system" or "process" failures, no human errors
+- 1: Narrative is too clean, no one admits anything
+
+**2. Depth of Analysis (Do we understand root causes?)**
+- 5: Systemic root causes identified (organizational, cultural, technical)
+- 4: Technical root cause with contributing factors
+- 3: Technical root cause identified
+- 2: Symptom identified, not root cause
+- 1: No analysis, just "incident happened, we fixed it"
+
+**3. Actionability (Are action items specific and trackable?)**
+- 5: Action items are specific, measurable, owned, with timelines
+- 4: Action items are specific and owned
+- 3: Action items exist but vague
+- 2: Generic "improve monitoring" without specifics
+- 1: No action items, or items impossible to complete
+
+**4. Learning Transfer (Will this help future incidents?)**
+- 5: Postmortem teaches reusable patterns, principles, frameworks
+- 4: Postmortem teaches lessons applicable to similar incidents
+- 3: Postmortem documents what happened
+- 2: Postmortem describes incident but no lessons
+- 1: Postmortem is just a timeline, no learning
+
+**Scoring:**
+- 18-20 points: Excellent postmortem
+- 14-17 points: Good postmortem
+- 10-13 points: Adequate postmortem
+- 6-9 points: Poor postmortem (needs improvement)
+- 1-5 points: Theater (not real learning)
+
+**Psychological Safety Index**
+
+**What it measures:** Willingness of team to surface uncomfortable truths.
+
+**Measurement Method:**
+
+1. **Postmortem Survey (Anonymous):**
+   - "Did you feel safe admitting mistakes during this postmortem?"
+   - "Did you hold back information because you feared consequences?"
+   - "Did you disagree with decisions made during the incident but not speak up?"
+   - Rate each 1-5 (1=strongly disagree, 5=strongly agree)
+   - Aggregate scores across team
+
+2. **Retrospective Observation:**
+   - Observe postmortem behavior:
+     - Do people admit mistakes?
+     - Do junior people speak up?
+     - Do people disagree with senior people?
+     - Do people ask questions without fear?
+
+3. **Pattern Analysis:**
+   - Track psychological safety across multiple postmortems
+   - Identify trends: improving or degrading?
+   - Correlate with incident outcomes: Does psychological safety correlate with faster resolution?
+
+**Example Survey Questions:**
+- "I felt comfortable admitting I made a mistake" (1-5)
+- "I felt comfortable disagreeing with senior people" (1-5)
+- "I held back information because I feared consequences" (reverse scored)
+- "I felt safe asking questions without looking stupid" (1-5)
+
+**Aggregate Index:** Average of all responses. Track over time to measure improvement.
+
+**Cross-Team Coordination Efficiency**
+
+**What it measures:** Quality of coordination when incident spans multiple teams.
+
+**Measurement Method: Qualitative Assessment**
+
+**Post-Incident Survey to Participants:**
+
+**1. Communication Effectiveness:**
+- "Information flowed smoothly between teams" (1-5)
+- "We had clear channels for cross-team communication" (1-5)
+- "Conflicts between teams were resolved quickly" (1-5)
+
+**2. Role Clarity:**
+- "Each team knew their responsibilities" (1-5)
+- "We avoided duplicate work across teams" (1-5)
+- "Decision-making authority was clear" (1-5)
+
+**3. Coordination Quality:**
+- "Team coordination enabled faster resolution" (1-5)
+- "We synthesized information effectively across teams" (1-5)
+- "IC coordinated teams without micromanaging" (1-5)
+
+**Aggregate Score:** Average across all questions. Higher = better coordination.
+
+**Qualitative Indicators:**
+- Low score + fast resolution = Teams worked independently (may indicate good isolation)
+- Low score + slow resolution = Coordination problems hurt response
+- High score + fast resolution = Good coordination helped response
+- High score + slow resolution = Coordination good but other factors slowed response
+
+**Implementation Tips:**
+
+- Start with one KPI at a time (don't try to measure everything at once)
+- Use existing incident data (timelines, postmortems) rather than adding new processes
+- Make measurement lightweight (don't create bureaucracy)
+- Focus on trends over time, not individual incident scores
+- Share results with teams to drive improvement (not punishment)
+
+**Remember:** These are qualitative measures. They require judgment. The goal isn't perfect measurement - it's identifying patterns and trends that reveal organizational strengths and weaknesses.
+
 ### Culture as Incident Management Infrastructure
 
 Before we dive into animal-specific incident management, we need to address the foundation that makes everything else possible: culture.
@@ -440,7 +521,7 @@ Engineer A
   → A's manager 
     → Director 
       → VP 
-        → Incident Commander
+        → IC
 ```
 
 By the time information traverses the org chart, the incident is over or the context is destroyed.
@@ -479,7 +560,7 @@ If no one admitted any of these things, your postmortem was theater. Real incide
 
 **Psychological Safety as Technical Requirement**
 
-Google's Project Aristotle found psychological safety was the #1 predictor of team effectiveness. For incident management, it's not just important, it's foundational.
+Google's Project Aristotle found psychological safety was the #1 predictor of team effectiveness [Duhigg, 2016]. For incident management, it's not just important, it's foundational.
 
 Psychological safety means:
 
@@ -523,6 +604,8 @@ Good postmortem culture:
 
 Now, with foundation established, let's examine how incident management differs across our bestiary.
 
+But before we can do that, we need one more tool: a way to think about how to think about incidents. Culture provides the foundation, but different types of problems require different types of thinking. That's where the Cynefin Framework comes in.
+
 ---
 
 ### The Cynefin Framework for Incident Response
@@ -531,7 +614,7 @@ Before we dive into animal-specific incident management, we need one more tool: 
 
 ICS gives us structure. NIST gives us phases. Google SRE gives us practices. But none of them answer the fundamental question: **How should we think about this problem?**
 
-That's where the Cynefin Framework comes in. Developed by Dave Snowden in the late 1990s, Cynefin (pronounced "kuh-NEV-in") is a sense-making framework that categorizes situations based on the relationship between cause and effect. The name is Welsh for "the place of your multiple belongings," representing the multiple factors in our environment that influence us in ways we can never fully understand.
+That's where the Cynefin Framework comes in. Developed by Dave Snowden in the late 1990s, Cynefin (pronounced "kuh-NEV-in") is a sense-making framework that categorizes situations based on the relationship between cause and effect [Snowden & Boone, 2007]. The name is Welsh for "the place of your multiple belongings," representing the multiple factors in our environment that influence us in ways we can never fully understand.
 
 For incident response, Cynefin provides something critical: **Different types of problems require different types of thinking.** Using the wrong approach wastes time, makes things worse, or both.
 
@@ -754,7 +837,7 @@ Black Swans almost always start in Complex or Chaotic domains. Grey Swans often 
 - Failover procedures
 - Load shedding
 - Emergency rollbacks
-- Incident Commander taking control
+- IC taking control
 - Rapid decision-making
 - Stabilization first, understanding second
 
@@ -834,6 +917,98 @@ The IC must explicitly classify the situation to avoid these defaults.
 
 **For Incident Management:**
 Many incidents start in Confusion. The framework provides a way out: break it down, classify the parts, apply appropriate strategies. This is especially important for stampedes (multiple animals attacking simultaneously).
+{::pagebreak /}
+### How ICS Roles Adapt to Cynefin Domains
+
+ICS provides structure, but how you execute that structure depends on which Cynefin domain your incident occupies. The same role requires different approaches in Chaotic vs Complicated vs Complex situations. Understanding these adaptations makes your incident response more effective.
+
+#### ICS Role Adaptations by Cynefin Domain
+
+| Role | Clear Domain | Complicated Domain | Complex Domain | Chaotic Domain |
+|------|-------------|-------------------|----------------|----------------|
+| **Incident Commander (IC)** | Ensure runbook is followed correctly; verify solution worked | Coordinate expert analysis; prevent analysis paralysis; make decision when experts disagree | Coordinate experimentation; maintain multiple parallel probes; synthesize learning | Act immediately; stabilize first; shield responders from external pressure; make rapid decisions with minimal information |
+| **Technical Lead** | Verify runbook steps are executed properly | Direct experts; choose which hypotheses to pursue; manage systematic investigation | Design safe-to-fail probes; coordinate parallel experiments; observe emergent patterns | Execute immediate stabilization actions; break feedback loops; prioritize stopping the bleeding |
+| **Subject Matter Expert (SME)** | Execute runbook procedures in their domain | Perform systematic investigation using expert tools; provide evidence-based analysis | Run experiments in their domain; observe and report emergent behavior; test hypotheses | Execute immediate fixes; provide quick technical assessments; identify critical paths |
+| **Communications Lead** | Standard status update templates; routine stakeholder notifications | Technical status updates as experts converge on cause; ETA based on investigation timeline | Updates on experimentation progress; communicate uncertainty honestly; "still learning" updates | Immediate crisis communication; honest about uncertainty; frequent updates during stabilization |
+| **Scribe** | Document runbook execution; note any deviations | Capture expert analysis; document evidence gathering; record decision rationale | Capture experiment results; document emergent patterns; track what was learned | Real-time timeline of actions taken; capture decisions under pressure; document stabilization steps |
+
+#### Key Insights: Why Role Adaptation Matters
+
+**The IC in Different Domains:**
+
+In **Clear** domains, the IC ensures the runbook is executed correctly - a quality assurance role. In **Complicated** domains, the IC prevents analysis paralysis by making decisions when experts disagree. In **Complex** domains, the IC coordinates experimentation and synthesizes learning. In **Chaotic** domains, the IC acts immediately, prioritizing stabilization over understanding.
+
+The mistake many ICs make: applying Clear-domain management (follow procedures) to Complex problems (need experimentation) or Chaotic situations (need immediate action).
+
+**The Technical Lead in Different Domains:**
+
+In **Clear** domains, the Technical Lead verifies runbook execution. In **Complicated** domains, they direct expert investigation. In **Complex** domains, they design and coordinate experiments. In **Chaotic** domains, they execute stabilization actions directly.
+
+The mistake: Technical Leads often try to analyze their way through Complex problems (should experiment) or Chaotic situations (should act first).
+
+**The SME in Different Domains:**
+
+In **Clear** domains, SMEs execute procedures. In **Complicated** domains, they investigate systematically. In **Complex** domains, they experiment and observe. In **Chaotic** domains, they execute immediate fixes.
+
+The mistake: SMEs often try to investigate Complex problems systematically (should experiment) or analyze Chaotic situations (should act first).
+
+**The Communications Lead in Different Domains:**
+
+In **Clear** domains, standard templates work. In **Complicated** domains, technical updates as analysis progresses. In **Complex** domains, honest communication about uncertainty. In **Chaotic** domains, frequent crisis updates.
+
+The mistake: Communicating certainty in Complex domains (creates false expectations) or staying silent in Chaotic domains (stakeholders panic).
+
+#### Practical Example: Same Incident, Different Domains
+
+**Scenario:** Database performance degradation affecting customer transactions.
+
+**If Classified as Clear:**
+- IC: "This matches runbook #23 for database connection pool exhaustion. Follow procedure."
+- Technical Lead: "Execute steps 1-3 from runbook #23, verify pool size increase worked."
+- SME (Database): "Running standard connection pool increase procedure."
+- Communications: "Standard maintenance procedure in progress, expected resolution in 15 minutes."
+- Scribe: "Following runbook #23, standard procedure."
+
+**If Classified as Complicated:**
+- IC: "Database team, analyze query patterns. Network team, check latency. Report back with evidence."
+- Technical Lead: "We need expert analysis to identify the root cause. Coordinate investigations."
+- SME (Database): "Analyzing slow query log, examining index usage, reviewing connection patterns."
+- Communications: "Database performance issue under investigation. Experts analyzing root cause. ETA based on investigation progress."
+- Scribe: "Multiple expert investigations in progress: database queries, network latency, connection pooling."
+
+**If Classified as Complex:**
+- IC: "This doesn't match any known pattern. Let's run safe-to-fail experiments to learn what's happening."
+- Technical Lead: "Design three parallel probes: test query performance in isolation, test network path, test connection pool behavior under load. Observe patterns."
+- SME (Database): "Running isolated query performance test. Observing behavior as load increases. Testing different query patterns."
+- Communications: "Investigating novel performance issue. Running experiments to understand root cause. Will update as we learn."
+- Scribe: "Experiments in progress: isolated query test, network path test, connection pool load test. Observing emergent patterns."
+
+**If Classified as Chaotic:**
+- IC: "Database is degrading rapidly. Act immediately: failover to standby, shed load, isolate affected queries. Understand later."
+- Technical Lead: "Execute failover immediately. Break feedback loops. Stop the bleeding."
+- SME (Database): "Executing emergency failover. Shedding non-critical load. Isolating problem queries."
+- Communications: "Database performance issue affecting customers. Executing emergency procedures to stabilize. Updates every 5 minutes."
+- Scribe: "T+0: Emergency failover initiated. T+2: Load shedding applied. T+5: Problem queries isolated."
+
+**The Same Incident, Different Approaches:**
+
+Notice how the same technical problem (database performance) requires completely different role execution depending on domain classification. The IC's job changes from quality assurance (Clear) to decision-making under expert disagreement (Complicated) to coordination of experimentation (Complex) to immediate action (Chaotic).
+
+This is why Cynefin classification matters: it tells you not just how to think about the problem, but how to structure your response team's work.
+
+#### Recognizing When Role Adaptation Is Needed
+
+**Warning Signs You're Using the Wrong Approach:**
+
+- IC is insisting on following procedures when the situation is novel (Clear thinking in Complex domain)
+- Technical Lead is trying to analyze when immediate action is needed (Complicated thinking in Chaotic domain)
+- SMEs are investigating systematically when they should be experimenting (Complicated thinking in Complex domain)
+- Communications is promising ETAs when the situation is uncertain (Clear/Complicated thinking in Complex/Chaotic domain)
+
+**The Fix:**
+
+Explicitly classify the Cynefin domain, then adjust role expectations accordingly. Announce to the team: "We're in Complex domain, so Technical Lead is coordinating experiments, not directing expert analysis."
+
 {::pagebreak /}
 ### Applying Cynefin to Incident Response: Practical Framework
 
@@ -920,6 +1095,131 @@ This represents increasing understanding:
 - Don't get stuck in one domain when you should transition
 - Explicitly discuss transitions with the team
 {::pagebreak /}
+### Quick Classification Guide: Real-Time Decision Tree
+
+During an incident, you need to classify the domain quickly, not perfectly. This guide helps you make that call in real-time when every minute matters.
+
+#### The Classification Questions (Ask in Order)
+
+**1. Do we need to act immediately to prevent catastrophe?**
+   - YES → **Chaotic** (Go to Chaotic response immediately)
+   - NO → Continue to question 2
+
+**2. Do we have a runbook or procedure for this exact scenario?**
+   - YES → **Clear** (Follow the runbook)
+   - NO → Continue to question 3
+
+**3. Can domain experts analyze their way to an answer using existing tools and knowledge?**
+   - YES → **Complicated** (Assemble experts, gather data, analyze)
+   - NO → Continue to question 4
+
+**4. Do we need to experiment to learn what's happening?**
+   - YES → **Complex** (Design safe-to-fail probes, observe patterns)
+   - NO → Continue to question 5
+
+**5. Are we unsure which of the above applies, or do different parts require different approaches?**
+   - YES → **Confusion** (Break down into components, classify each part)
+
+#### Quick Recognition Signals
+
+**Clear Domain Signals:**
+- "This matches runbook #47"
+- "We've seen this before, standard procedure is..."
+- Clear cause-effect relationship visible
+- Solution is known and repeatable
+
+**Complicated Domain Signals:**
+- "We need the database team to analyze the query patterns"
+- "This requires network packet capture analysis"
+- Multiple valid solutions exist, experts need to choose
+- Answer is discoverable through investigation
+
+**Complex Domain Signals:**
+- "We've never seen this failure mode before"
+- "Multiple services are failing in ways we don't understand"
+- Cause-effect only clear in hindsight
+- Need to experiment to learn
+
+**Chaotic Domain Signals:**
+- "The entire system is down right now"
+- "We're losing customers by the second"
+- No visible patterns, immediate action required
+- Stabilize first, understand later
+
+**Confusion Domain Signals:**
+- "Some parts look like a known issue, but others are completely new"
+- Team members disagree about what type of problem this is
+- Different parts require different strategies
+- Unclear which domain applies
+
+#### How to Communicate Classification to the Team
+
+**For Chaotic:**
+"I'm classifying this as Chaotic. We're acting immediately to stabilize. Focus on: [failover/load shedding/isolation]. No analysis yet. We'll reassess once stable."
+
+**For Complex:**
+"I'm classifying this as Complex. We need to experiment to learn. Let's design safe-to-fail probes: [specific experiments]. Observe patterns as they emerge."
+
+**For Complicated:**
+"I'm classifying this as Complicated. [Expert A], analyze [specific area]. [Expert B], investigate [specific component]. Report back with evidence, not theories."
+
+**For Clear:**
+"I'm classifying this as Clear. Follow runbook #[number]. [Person], execute steps 1-3. [Person], verify solution worked."
+
+**For Confusion:**
+"We're in Confusion - parts need different approaches. Breaking it down: Component A is [domain], Component B is [domain]. [Person] handles A using [strategy], [Person] handles B using [strategy]."
+
+#### Recognizing Domain Transitions
+
+**Signals You've Moved from Chaotic → Complex:**
+- System is stable (not getting worse)
+- Immediate danger passed
+- Now time to understand what happened
+- Can run experiments safely
+
+**Signals You've Moved from Complex → Complicated:**
+- Patterns have emerged from experiments
+- Cause-effect relationship now visible
+- Experts can analyze with existing tools
+- No longer need to experiment to learn
+
+**Signals You've Moved from Complicated → Clear:**
+- Root cause identified
+- Solution is known and repeatable
+- Can create runbook for next time
+- Following procedure will work
+
+**Signals You've Moved from Clear → Chaotic:**
+- Following the runbook made things worse
+- Context fundamentally changed
+- "This time is different"
+- Need immediate action to stop the bleeding
+
+**Communicating Transitions:**
+"I'm reclassifying from [old domain] to [new domain]. Evidence: [specific observation]. Strategy change: [new approach]."
+
+#### War Room Template: Cynefin Classification
+
+**Incident:** [Name/ID]  
+**Initial Classification:** [Domain]  
+**Classification Time:** [Timestamp]  
+**Who Classified:** [IC Name]  
+**Rationale:** [Brief reason]
+
+**Current Domain:** [Domain]  
+**Last Updated:** [Timestamp]  
+**Evidence of Classification:** [What signals you're seeing]
+
+**Domain Transitions:**
+- [Time] - [Old Domain] → [New Domain] - [Reason]
+
+**Strategy Being Applied:** [Current approach based on domain]
+
+---
+
+Use this guide during incidents. Print it, put it on the war room wall, reference it when uncertainty strikes. The goal isn't perfect classification - it's using the right thinking for the problem you're facing.
+
+{::pagebreak /}
 ### Common Mistakes and How to Avoid Them
 
 **Mistake 1: Applying the Wrong Strategy**
@@ -947,7 +1247,7 @@ Following best practices without recognizing when context has changed.
 
 **How to Avoid:** Periodically challenge best practices. Monitor for context shifts. Recognize when "this time is different."
 
-Now that we understand Cynefin, let's see how it applies to each animal in our bestiary.
+Now that we understand Cynefin, let's see how it applies to each animal in our bestiary. The framework provides the decision-making strategy; the animals provide the context. Together, they tell you not just how to think about an incident, but what type of risk you're actually facing.
 
 ---
 {::pagebreak /}
@@ -1733,7 +2033,7 @@ Intense pressure to ship
    - Concerns about MCAS design raised but minimized
 
 **2. MCAS single-point-of-failure design**
-Lack of srong, insistant technical oversight
+Lack of strong, insistent technical oversight
 
    - Relied on single sensor (AOA sensor)
    - No redundancy
@@ -2004,7 +2304,7 @@ Stampedes almost always start in **Confusion** or **Chaotic** domains:
 
 Sometimes a single risk event, often a Black Swan, doesn't just cause direct damage. It stresses the system in ways that reveal all the other animals that were hiding in the shadows.
 
-Think of it like a stampede in the wild: one lion (Black Swan) appears, and suddenly you realize the savannah is full of animals you didn't know were there. Grey Rhinos that were grazing peacefully start charging. Elephants in the Room become impossible to ignore. Jellyfish that were floating dormant suddenly bloom and sting everything.
+Think of it like a stampede in the wild: one lion (Black Swan) appears, and suddenly you realize the savannah is full of animals you didn't know were there. Grey Rhinos that were grazing peacefully start charging. Elephants in the Room become impossible to ignore. Black Jellyfish that were floating dormant suddenly bloom and sting everything.
 
 The system was always full of these risks. The Black Swan just revealed them.
 
@@ -2019,14 +2319,14 @@ When multiple animals attack simultaneously, you're in Confusion domain. The fir
 - What Black Swan triggered this?
 - What Grey Rhinos are now charging?
 - What Elephants are now visible?
-- What Jellyfish cascades are blooming?
+- What Black Jellyfish cascades are blooming?
 
 **Classify each component:**
 
 - Black Swan component: Chaotic or Complex
 - Grey Rhino component: Complicated
 - Elephant component: Confusion or Complex
-- Jellyfish component: Chaotic or Complex
+- Black Jellyfish component: Chaotic or Complex
 
 **Step 2: Apply Appropriate Strategy to Each Component**
 
@@ -2049,7 +2349,7 @@ When multiple animals attack simultaneously, you're in Confusion domain. The fir
 - Organizational: Usually Complex (requires experimentation)
 - Create psychological safety for truth-telling
 
-**For Jellyfish components (Chaotic/Complex):**
+**For Black Jellyfish components (Chaotic/Complex):**
 
 - Break feedback loops immediately (Chaotic)
 - Then understand cascade mechanics (Complex)
@@ -2248,7 +2548,7 @@ The IC had to:
 
 - Stabilize markets (Chaotic action for Black Swan)
 - Fix exchange capacity (Complicated analysis for Grey Rhino)
-- Break cascade loops (Chaotic action for Jellyfish)
+- Break cascade loops (Chaotic action for Black Jellyfish)
 - Address leverage culture (Complex experimentation for Elephant)
 
 All simultaneously. This is why stampedes are so dangerous - they require multiple types of thinking at once.
@@ -2284,9 +2584,176 @@ Different components need different thinking. The IC must coordinate without cre
 - Different communication channels for different strategies
 - Regular synthesis of all workstreams
 
+#### Stampede Coordination Playbook: Practical Implementation
+
+When multiple animals attack simultaneously, standard incident response breaks down. You need a playbook that enables parallel coordination without chaos. Here's how to structure it.
+
+**War Room Structure for Stampedes**
+
+**Physical/Virtual Organization:**
+
+1. **Main War Room (IC + Scribes + Communications)**
+   - Central coordination hub
+   - Single source of truth (incident timeline, status board)
+   - IC synthesizes information from all workstreams
+   - Communications Lead manages all external messaging
+
+2. **Workstream Rooms (One per Animal/Domain)**
+   - Separate physical/virtual spaces for each component
+   - Each workstream has its own Technical Lead
+   - Each workstream operates independently using appropriate strategy
+   - Workstream leads report to Main War Room IC at regular intervals
+
+3. **Cross-Stream Coordination Channel**
+   - Shared document/chat for information that affects multiple workstreams
+   - IC monitors for interactions between components
+   - Technical Leads use this to coordinate dependencies
+
+**Communication Protocols for Multiple Workstreams**
+
+**Regular Cadence:**
+- Every 15 minutes: Workstream leads provide status update to Main War Room
+- Every 30 minutes: IC synthesizes all workstreams into unified status
+- On-demand: Workstream can escalate to IC if blocked or if component interactions discovered
+
+**Update Format from Workstream to IC:**
+```
+Workstream: [Animal Type - Domain]
+Status: [Chaotic/Complex/Complicated/Clear]
+Progress: [What we've done]
+Findings: [What we've learned]
+Next Actions: [What we're trying next]
+Blockers: [What's preventing progress]
+Interactions: [How this affects other workstreams]
+```
+
+**IC Synthesis Template:**
+```
+Incident Status: [Overall]
+Components: [List all animals/domains active]
+Interactions: [How components are affecting each other]
+Priority: [Which component needs most attention]
+Decisions Needed: [Where IC input required]
+```
+
+**Information Synthesis Techniques for IC**
+
+**The IC's Role in Stampedes:**
+
+The IC doesn't solve technical problems. The IC synthesizes information from multiple parallel workstreams and makes strategic decisions.
+
+**Synthesis Method 1: The Funnel**
+
+Start wide (all components, all possibilities), then narrow as understanding emerges:
+
+1. **Wide Phase (First 30 minutes):**
+   - Identify all animals present
+   - Classify each component's domain
+   - Assign workstreams
+   - Don't try to understand interactions yet
+
+2. **Convergence Phase (Next 1-2 hours):**
+   - Workstreams report findings
+   - IC identifies component interactions
+   - Adjust priorities based on interactions
+   - Make strategic decisions about resource allocation
+
+3. **Focus Phase (Once patterns emerge):**
+   - IC directs coordination of critical interactions
+   - Prioritize workstreams that unblock others
+   - Make decisions about trade-offs between components
+
+**Synthesis Method 2: Dependency Mapping**
+
+Map how components affect each other:
+
+- Component A (Black Jellyfish cascade) is blocking Component B (Grey Rhino fix)
+- Solution: Break cascade first (Component A), then address underlying issue (Component B)
+
+- Component C (Elephant cultural issue) is preventing honest communication about Component D (Black Swan)
+- Solution: Create psychological safety (Component C) to enable accurate assessment (Component D)
+
+**Synthesis Method 3: Time-Based Prioritization**
+
+Different components have different time pressures:
+
+- Component requiring immediate action (Chaotic) gets priority over Component requiring analysis (Complicated)
+- But: Component that unblocks others gets priority over isolated Component
+
+**Decision-Making Framework When Conflicts Arise**
+
+**Conflict Type 1: Resource Conflicts**
+
+"Two workstreams need the same expert/same system access"
+
+**Resolution:**
+- IC assigns priority based on: which component blocks others, which has highest customer impact, which has shortest time window
+- Communicate decision clearly: "Expert goes to Workstream A for next 30 minutes, then B. Here's why."
+
+**Conflict Type 2: Strategy Conflicts**
+
+"Workstream A says stabilize, Workstream B says investigate"
+
+**Resolution:**
+- IC decides based on Cynefin domain classification
+- Chaotic components: stabilize first
+- Complicated components: investigate first
+- If genuine conflict, components might need different approaches (that's the point of stampedes)
+
+**Conflict Type 3: Communication Conflicts**
+
+"Workstream A wants to communicate X, Workstream B wants to communicate Y, they conflict"
+
+**Resolution:**
+- Communications Lead (not workstream leads) owns all external messaging
+- Communications Lead synthesizes workstream updates into unified message
+- If workstreams have conflicting information, IC makes call: which is most accurate, which gets communicated
+
+**Example: Coordinating Multiple Strategies Simultaneously**
+
+**Scenario:** DNS misconfiguration (Black Jellyfish) cascading while talent loss (Grey Rhino) prevents quick diagnosis, and cultural silence (Elephant) blocks honest assessment.
+
+**T+0 to T+30 minutes: Initial Classification**
+
+- IC: "This is a stampede. Breaking down: Component A (Black Jellyfish cascade) = Chaotic, Component B (Talent loss impact) = Complicated, Component C (Cultural silence) = Confusion."
+- IC assigns:
+  - Workstream A: Break cascade loops (Chaotic action)
+  - Workstream B: Analyze talent loss impact (Complicated analysis)
+  - Workstream C: Address cultural barriers (Confusion breakdown)
+
+**T+30 to T+90 minutes: Parallel Execution**
+
+- Workstream A: Breaking retry storms, opening circuit breakers, shedding load
+- Workstream B: Analyzing which missing expertise is blocking diagnosis
+- Workstream C: Creating psychological safety for honest assessment
+
+**T+90 minutes: IC Synthesis**
+
+- IC receives updates from all three workstreams
+- IC identifies interaction: Workstream C's psychological safety work enables Workstream B to accurately assess talent gaps, which helps Workstream A understand why diagnosis is slow
+- IC decision: Prioritize Workstream C (cultural work) because it unblocks others
+
+**T+90 to T+180 minutes: Coordinated Response**
+
+- Workstream C establishes psychological safety
+- Workstream B now accurately assesses: "Missing DNS expertise is blocking diagnosis"
+- Workstream A adjusts: "Focusing on breaking cascade while DNS experts from other teams are brought in"
+
+**Key Insight:** The IC doesn't solve any component. The IC synthesizes information, identifies interactions, and coordinates parallel strategies.
+
+**Warning Signs You're Not Coordinating Well:**
+
+- Workstreams are duplicating effort
+- Workstreams are conflicting with each other
+- IC is trying to solve technical problems instead of coordinating
+- Information from workstreams isn't being synthesized
+- Decisions are being made in isolation without considering interactions
+
+**The Fix:** Explicit synthesis cadence, clear communication protocols, IC focused on coordination not execution.
+
 **3. Watch for Interactions**
 
-Components interact. A Grey Rhino charging can trigger a Jellyfish cascade. An Elephant being named can reveal more Rhinos.
+Components interact. A Grey Rhino charging can trigger a Black Jellyfish cascade. An Elephant being named can reveal more Rhinos.
 
 **Monitor for:**
 
@@ -2389,6 +2856,8 @@ The best postmortem is worthless if action items aren't completed.
 - Dashboard of postmortem action items
 - Regular review and escalation if blocked
 
+These universal principles apply across all animal types, but how you execute them varies dramatically depending on which animal you're facing. Understanding these principles gives you the foundation; understanding the animals gives you the strategy.
+
 ---
 
 ### Conclusion: Incident Management for the Menagerie
@@ -2423,6 +2892,18 @@ Now go manage some incidents. The animals are waiting.
 [White, 2025] White, Geoff. "The Unwritten Laws of Information Flow: Why Culture is the Hardest System to Scale." LinkedIn, October 23, 2025. https://www.linkedin.com/pulse/unwritten-laws-information-flow-why-culture-hardest-system-white-7jxvc/
 
 [White, 2025b] White, Geoff. "The Day the Cloud Forgot Itself." LinkedIn, October 21, 2025. https://www.linkedin.com/pulse/day-cloud-forgot-itself-geoff-white-gviqc/
+
+[Beyer et al., 2016] Beyer, Betsy, et al. "Site Reliability Engineering: How Google Runs Production Systems." O'Reilly Media, 2016.
+
+[Duhigg, 2016] Duhigg, Charles. "What Google Learned From Its Quest to Build the Perfect Team." The New York Times Magazine, February 25, 2016. https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html
+
+[Snowden & Boone, 2007] Snowden, Dave, and Mary E. Boone. "A Leader's Framework for Decision Making." Harvard Business Review, November 2007. https://hbr.org/2007/11/a-leaders-framework-for-decision-making
+
+[AWS, 2017] Amazon Web Services. "Summary of the Amazon S3 Service Disruption in the Northern Virginia (US-EAST-1) Region." AWS Service Health Dashboard, March 2, 2017. https://aws.amazon.com/message/41926/
+
+[Equifax, 2017] Equifax Inc. "Equifax Announces Cybersecurity Incident Involving Consumer Information." Press Release, September 7, 2017. https://investor.equifax.com/news-and-events/news/2017/09-07-2017-224018832
+
+[Boeing, 2019] Boeing Company. "Boeing Statement on Ethiopian Airlines Flight 302 Investigation Report." Press Release, April 4, 2019. https://boeing.mediaroom.com/2019-04-04-Boeing-Statement-on-Ethiopian-Airlines-Flight-302-Investigation-Report
 
 <!-- Reference definitions at bottom -->
 
