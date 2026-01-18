@@ -16,13 +16,8 @@ And then, sometime around the late 1990s, IT folks started having the same reali
 
 Remember what incident response looked like in the early days of internet infrastructure? Your database crashes at 2 AM. Whoever answers the pager becomes the de facto "incident commander," not because they're qualified, but because they picked up the phone. Information scatters across email threads, IRC channels, and voicemails. Three different people make conflicting decisions about whether to failover. Recovery takes four hours instead of forty minutes because nobody knows who's doing what.
 
-The parallels to pre-ICS emergency response were obvious:
-
-- High-stress environments where minutes matter
-- Unclear situations requiring rapid sense-making
-- Multiple specialists who need coordination
-- Information overload requiring filtering and prioritization
-- Need for clear authority without bureaucratic delay
+The parallels to pre-ICS emergency response were obvious.
+Outtages in major service providers, while lives may not be at stake, significant revenue and perhapse the future of the enterprise may be. Both were high-stress environments where minutes matter. Teams werfe dealing with unclear situations  requiring rapid sense-making. There is a need for clear authority assignment without bureaucratic delay and the actions of multiple specialist teams have to be efficiently coordinated. It's easy for personel to experience information overload so the filtering and prioritization is necessary.
 
 ITIL tried to codify this for enterprise IT in the 1980s. The DevOps movement brought it to software teams in the 2000s. But the real transformation happened when Ben Treynor Sloss built something new at Google.
 
@@ -54,12 +49,7 @@ Google's blameless postmortem culture isn't kindness. It's engineering for infor
 
 Google treats runbooks like software: versioned, tested, reviewed, and continuously improved. A runbook that hasn't been tested is fan fiction.
 
-This matters because most IT organizations have runbooks that are:
-
-- Written once during a calm period
-- Never updated
-- Optimized for compliance audits, not operational use
-- Tested only when the incident happens
+This matters because most IT organizations have runbooks that are written once during a calm period, tested only when the incident happens, and never updated until after an incident has been resloved... maybe. 
 
 Google's approach: if you haven't practiced the runbook in a game day, you don't have a runbook.
 
@@ -67,12 +57,7 @@ Google's approach: if you haven't practiced the runbook in a game day, you don't
 
 Google (and Netflix, and Amazon) discovered something counterintuitive: the best way to get better at incidents is to cause more incidents.
 
-Controlled chaos, deliberately breaking things in production, serves multiple purposes:
-
-- Tests your runbooks under realistic conditions
-- Trains your teams on incident response
-- Reveals fragilities before they manifest as customer-impacting outages
-- Builds organizational muscle memory for handling the unexpected
+Controlled chaos, deliberately breaking things in production, serves multiple purposes. You can  tests your runbooks under realistic conditions. You can provide low stakes incident response training for your teams. And you may uncover hidden fragilities before they manifest as customer-impacting outages
 
 This is antifragility in action: getting stronger through stress.
 
@@ -96,7 +81,7 @@ This distinction matters for our bestiary:
 - A Black Jellyfish cascade can go from P3 to P0 in under five minutes
 {::pagebreak /}
 ### The Incident Command System: A Foundation, Not a Straitjacket
-#### **Where ICS Breaks Down for IT:**
+#### **Physical ICS incidents vs. IT incidents:**
 
 ICS assumes:
 
@@ -134,7 +119,7 @@ When things go sideways, the natural state of an org is chaos. Everyone starts "
 
 The IC is not the hero debugger. The IC is the air traffic controller. They run the room, keep information flowing, make decisions when the data is incomplete, and protect the responders from becoming a stakeholder-driven improv troupe. At Google, this role got formalized because scaling systems without scaling coordination is just chaos at a higher QPS.
 
-Key responsibilities:
+*Key responsibilities:*
 
 - Declare the incident, take command early, and make the handoff explicit ("I'm IC")
 - Set priorities: stabilize first, understand second, optimize later
@@ -144,7 +129,7 @@ Key responsibilities:
 - Shield responders from external pressure and random drive-by "ideas"
 - Decide when to close the incident and transition cleanly into learning
 
-Common failure mode: **The IC grabs a keyboard, stops running the room, and the incident reverts to an unmoderated group chat with better uptime graphs.**
+*Common failure mode:* **The IC grabs a keyboard, stops running the room, and the incident reverts to an unmoderated group chat with better uptime graphs.**
 
 **The Communications Lead Role**
 
@@ -152,7 +137,7 @@ During an incident, your engineers are trying to hold a complicated system in th
 
 The Comms Lead is the pressure relief valve. They take messy, half-true technical reality and translate it into accurate, calm updates for humans. Done right, this role keeps the IC and Technical Lead focused, keeps stakeholders informed, and keeps the incident from turning into a second incident made of rumors. Tooling helps here (FireHydrant, Blameless, or whatever your org uses) because the best comms are consistent, timestamped, and boring in the most reassuring way possible.
 
-Key responsibilities:
+*Key responsibilities:*
 
 - Establish an update cadence and stick to it (even if the update is "no new ETA yet")
 - Translate technical status into stakeholder language without lying or speculating
@@ -160,7 +145,7 @@ Key responsibilities:
 - Maintain a single source of truth (status page + internal summary) so Slack doesn't become folklore
 - Protect responders from drive-by questions and context-free escalations
 
-Common failure mode: **Either they go silent (stakeholders panic), or they overshare raw hypotheses (stakeholders panic faster).**
+*Common failure mode:* **Either they go silent (stakeholders panic), or they overshare raw hypotheses (stakeholders panic faster).**
 
 **The Scribe Role**
 
@@ -168,7 +153,7 @@ If you don't write it down during the incident, you will rewrite history afterwa
 
 The Scribe is your external hard drive. They capture the timeline, decisions, hypotheses, and outcomes while everyone else is heads-down. Modern platforms (again: FireHydrant, Blameless, etc.) can auto-capture a bunch of this, but automation isn't the job. The job is building a coherent narrative in real time: what we knew, when we knew it, what we tried, and why.
 
-Key responsibilities:
+*Key responsibilities:*
 
 - Maintain a real-time incident timeline (timestamps matter; vibes do not)
 - Record decisions and the rationale ("we rolled back because p99 doubled after deploy X")
@@ -176,7 +161,7 @@ Key responsibilities:
 - Capture key artifacts: links to dashboards, logs, queries, configs, incident docs
 - Summarize periodically for the IC so the room stays aligned
 
-Common failure mode: **They become a stenographer for Slack spam instead of a curator of signal.**
+*Common failure mode:* **They become a stenographer for Slack spam instead of a curator of signal.**
 
 **The Technical Lead Role**
 
@@ -184,7 +169,7 @@ The Incident Commander runs the room. The Technical Lead runs the work. That sep
 
 The Technical Lead manages the technical strategy: containment, mitigation, recovery, and validation. They direct the SMEs, choose which hypotheses to pursue, and keep the team from turning twelve unrelated fixes into performance art. They also do something subtle but critical: they keep the response shaped like a funnel: wide exploration early, narrow focus once evidence shows up.
 
-Key responsibilities:
+*Key responsibilities:*
 
 - Lead technical triage: form hypotheses, test them, converge on likely causes
 - Direct SMEs and split workstreams cleanly (avoid duplicate effort and random heroics)
@@ -192,7 +177,7 @@ Key responsibilities:
 - Validate recovery (service restored, error rates stable, no hidden second-order failures)
 - Call out when the situation has shifted domains (Clear/Complicated/Complex/Chaotic) and the strategy needs to change
 
-Common failure mode: **They try to be the best debugger in the room instead of the person coordinating the debuggers.**
+*Common failure mode:* **They try to be the best debugger in the room instead of the person coordinating the debuggers.**
 
 **The Subject Matter Expert (SME) Role**
 
@@ -200,7 +185,7 @@ SMEs are the ones in the weeds. They know the service, the dependency graph, the
 
 An SME's job is not to "own the incident." It's to own a slice of the technical problem space and report back with evidence. The best SMEs stay brutally factual under pressure: what they're seeing, what they tried, what changed, and what they recommend next. They don't need to be loud. They need to be right.
 
-Key responsibilities:
+*Key responsibilities:*
 
 - Investigate a specific subsystem/domain (DB, networking, auth, storage, deploy pipeline, etc.)
 - Provide evidence-based updates to the Technical Lead (not just theories)
@@ -208,11 +193,11 @@ Key responsibilities:
 - Identify hidden dependencies and second-order effects ("this cache flush will spike DB load")
 - Contribute to post-incident learning with precise technical context
 
-Common failure mode: **They chase the most interesting problem, not the most incident-relevant one.**
+*Common failure mode:* **They chase the most interesting problem, not the most incident-relevant one.**
 
 
 {::pagebreak /}
-**The ICS Principles That Matter for IT:**
+#### **The ICS Principles That Matter for IT:**
 
 1. **Unity of Command**: Every person reports to one person. No conflicting orders.
 
@@ -241,12 +226,7 @@ Before moving further, let's get closure on some important traditional  terms ar
 | **MTBF** | Mean Time Between Failure | Full cycle time between the end of one incident and the beginning of the next: MTTF → (TTD + TIA + ETRS + ETTR) → next MTTF. |
 
 
-We're going to go with these definitions for now. You may see these things defined differently in other documents or by other authors. To a certain extent, these definitions have become sort of a religious thing in the incident management community. We're just going to go with these for now. 
-{::pagebreak /}
-
-### Key Performance Indicators: Measuring What Customers Feel
-
-Most incident management KPIs are wrong. They measure internal process efficiency, not customer impact.
+This is the traditional view of the time line of an incident. You may see these things defined differently in other documents or by other authors. To a certain extent, these definitions have become sort of a religious thing in the incident management community.  But we're going to assert that this model is somewhat outdated. They measure internal process efficiency, but not customer impact.
 
 #### The Traditional KPIs (And Why They're Incomplete)
 
@@ -276,7 +256,7 @@ Most incident management KPIs are wrong. They measure internal process efficienc
 
 #### The KPIs That Actually Matter
 
-These align with what customers experience and what organizations learn:
+Here are a set of KPI's that align with what customers experience and what organizations learn:
 
 | KPI | Definition | Why It Matters | Measurement Challenge |
 |-----|-----------|----------------|----------------------|
@@ -482,7 +462,7 @@ The traditional KPIs (MTTD, MTTR) are easy to measure - they're numbers. The KPI
 - Share results with teams to drive improvement (not punishment)
 
 **Remember:** These are qualitative measures. They require judgment. The goal isn't perfect measurement - it's identifying patterns and trends that reveal organizational strengths and weaknesses.
-
+{::pagebreak /}
 ### Culture as Incident Management Infrastructure
 
 Before we dive into animal-specific incident management, we need to address the foundation that makes everything else possible: culture.
@@ -612,14 +592,14 @@ But before we can do that, we need one more tool: a way to think about how to th
 
 Before we dive into animal-specific incident management, we need one more tool: a way to think about how to think about incidents.
 
-ICS gives us structure. NIST gives us phases. Google SRE gives us practices. But none of them answer the fundamental question: **How should we think about this problem?**
+ICS gives us structure. Google SRE gives us practices. But none of them answer the fundamental question: **How should we think about this problem?**
 
 That's where the Cynefin Framework comes in. Developed by Dave Snowden in the late 1990s, Cynefin (pronounced "kuh-NEV-in") is a sense-making framework that categorizes situations based on the relationship between cause and effect [Snowden & Boone, 2007]. The name is Welsh for "the place of your multiple belongings," representing the multiple factors in our environment that influence us in ways we can never fully understand.
 
 For incident response, Cynefin provides something critical: **Different types of problems require different types of thinking.** Using the wrong approach wastes time, makes things worse, or both.
 
 
-### Why SREs Need This
+#### Why SREs Need This
 
 Modern distributed systems are inherently complex. Incidents don't follow predictable patterns. The framework gives you a mental model for:
 
@@ -630,7 +610,7 @@ Modern distributed systems are inherently complex. Incidents don't follow predic
 
 The key insight: **ordered domains** (right side of the framework) have discoverable cause-and-effect relationships. **Unordered domains** (left side) have relationships that can only be understood in hindsight or not at all.
 
-### The Five Domains
+#### The Five Domains
 ![][cynefin-framework]
 The framework divides all situations into five domains arranged around a central area:
 {::pagebreak /}
@@ -1220,7 +1200,7 @@ During an incident, you need to classify the domain quickly, not perfectly. This
 Use this guide during incidents. Print it, put it on the war room wall, reference it when uncertainty strikes. The goal isn't perfect classification - it's using the right thinking for the problem you're facing.
 
 {::pagebreak /}
-### Common Mistakes and How to Avoid Them
+### Common Mistakes made in Incidents and How to Avoid Them
 
 **Mistake 1: Applying the Wrong Strategy**
 Using Clear-domain thinking (follow the runbook) for a Complex problem (novel failure mode).
@@ -1253,9 +1233,11 @@ Now that we understand Cynefin, let's see how it applies to each animal in our b
 {::pagebreak /}
 ### Incident Management by Animal Type
 Each animal that may show up has a particular strategy that needs to be implemented in order to appropriately deal with it. A skilled Incident Commander will also realize that there may be more than one animal involved. There may be a stampede or there may be some hybrid animal. Bear in mind that these animal classifications are really just a mnemonic in order for you to bring some structure to a chaotic thought process that you might be embedded in at the time. Read through these incident management scenarios, and use them to formulate your own plan when confronted with individual animals or with a combination of them.
-### Black Swan Incidents: When the Unprecedented Strikes
 
-#### Cynefin Domain Classification
+
+#### Black Swan Incidents: When the Unprecedented Strikes
+
+**Cynefin Domain Classification**
 
 Black Swans almost always start in **Chaotic** or **Complex** domains:
 
@@ -1273,9 +1255,11 @@ Black Swans almost always start in **Chaotic** or **Complex** domains:
 - Safe-to-fail probes essential
 - Patterns emerge over time
 
-**Key Insight:** Black Swans require you to abandon runbooks and expert analysis. You're in uncharted territory. The framework gives you permission to experiment and learn rather than pretending you can analyze your way to a solution.
+**Key Insight:** 
 
-#### Characteristics During the Incident
+Black Swans require you to abandon runbooks and expert analysis. You're in uncharted territory. The framework gives you permission to experiment and learn rather than pretending you can analyze your way to a solution.
+
+**Characteristics During the Incident**
 
 **What You Know:**
 
@@ -1298,7 +1282,7 @@ Black Swan incidents create cognitive dissonance. Your brain wants to fit this i
 
 The IC's job is to maintain this tension: move fast despite uncertainty while resisting the urge to pretend you understand what's happening.
 
-#### Scenario 1: The AWS S3 Outage (February 28, 2017)
+**Scenario 1: The AWS S3 Outage (February 28, 2017)**
 
 **The Trigger:**
 An engineer debugging the S3 billing system needed to remove a few servers. They typed a command with parameters to remove servers. They made a typo. Instead of removing a few servers, the command removed a large number of servers including the index subsystem and placement subsystem.
@@ -1381,7 +1365,7 @@ This Black Swan revealed multiple Grey Rhinos (known risks that had been deprior
 
 This is common: Black Swans often reveal a herd of other animals.
 
-#### Scenario 2: The COVID-19 Digital Transformation Shock
+**Scenario 2: The COVID-19 Digital Transformation Shock**
 
 **The Context:**
 In March 2020, entire organizations shifted to remote work within days. For IT infrastructure, this created unprecedented load patterns that couldn't have been predicted from historical data.
@@ -1462,7 +1446,8 @@ This wasn't a discrete incident; it was a permanent shift masquerading as a temp
 - **Black Jellyfish**: VPN failure cascaded to collaboration tools, to home networks
 - **Grey Swan**: Pandemic was predictable; specific digital impact was complex
 {::pagebreak /}
-#### Black Swan Incident Management Principles
+
+**Black Swan Incident Management Principles**
 
 **1. Recognize You're in Unprecedented Territory (Cynefin: Classify as Chaotic or Complex)**
 
@@ -1586,9 +1571,8 @@ The incident isn't over when service is restored. It's over when you've learned 
 
 ---
 {::pagebreak /}
-### Grey Swan Incidents: The Complex and Monitorable
-
-#### Cynefin Domain Classification
+#### Grey Swan Incidents: The Complex and Monitorable
+**Cynefin Domain Classification**
 
 Grey Swans often start in **Complicated** or **Complex** domains:
 
@@ -1607,7 +1591,7 @@ Grey Swans often start in **Complicated** or **Complex** domains:
 
 **Key Insight:** Grey Swans often start as Complicated (we can analyze this) but reveal themselves as Complex (we need to experiment). The framework helps you recognize when to switch strategies.
 
-#### Characteristics During the Incident
+**Characteristics During the Incident**
 
 **What You Know:**
 
@@ -1626,7 +1610,7 @@ Grey Swans often start in **Complicated** or **Complex** domains:
 
 Grey Swans create false confidence. "We've seen something like this before" can lead to applying the wrong solution to a similar-looking-but-different problem. The complexity is genuine; pattern matching without deep understanding fails.
 
-#### Scenario 1: The Knight Capital Trading Disaster (August 1, 2012)
+**Scenario 1: The Knight Capital Trading Disaster (August 1, 2012)**
 
 **The Context:**
 Knight Capital Group was a major market maker, executing billions in trades daily. They were deploying new trading software to comply with NYSE's Retail Liquidity Program.
@@ -1741,7 +1725,7 @@ Known risk factors (deployment, configuration, algorithm testing) combined in a 
 **Cynefin Lesson:**
 This started as a Complicated-domain problem (could have been analyzed and prevented) but moved to Chaotic (crisis requiring immediate action) because no one was watching. The framework helps recognize that Complicated problems need expert attention, not assumption.
 
-#### Grey Swan Incident Management Principles
+**Grey Swan Incident Management Principles**
 
 **1. Instrument for Weak Signals (Cynefin: Recognize Complicated Domain Needs Monitoring)**
 
@@ -1826,9 +1810,9 @@ Grey Swan postmortems are more valuable than simple failure postmortems because 
 
 ---
 {::pagebreak /}
-### Grey Rhino Incidents: When Ignorance Ends Abruptly
+#### Grey Rhino Incidents: When Ignorance Ends Abruptly
 
-#### Cynefin Domain Classification
+**Cynefin Domain Classification**
 
 Grey Rhinos are usually **Complicated** domain problems:
 
@@ -1839,9 +1823,11 @@ Grey Rhinos are usually **Complicated** domain problems:
 - Solutions exist but aren't being applied
 - Organizational psychology, not technical complexity
 
-**Key Insight:** Grey Rhinos are usually Complicated-domain problems that organizations treat as Clear (ignore) or Complex (too hard to solve). The framework helps recognize that expert analysis and decision-making can address them - the barrier is organizational, not technical.
+**Key Insight:** 
 
-#### Characteristics During the Incident
+Grey Rhinos are usually Complicated-domain problems that organizations treat as Clear (ignore) or Complex (too hard to solve). The framework helps recognize that expert analysis and decision-making can address them - the barrier is organizational, not technical.
+
+**Characteristics During the Incident**
 
 **What You Know:**
 
@@ -1854,9 +1840,7 @@ Grey Rhinos are usually **Complicated** domain problems:
 
 Grey Rhino incidents create cognitive dissonance and organizational shame. Everyone knew this could happen. Now it has happened. The temptation is to pretend it was unpredictable (save face) rather than admit it was ignored (learn the lesson).
 
-#### Scenario: The Equifax Data Breach (2017)
-
-**The Grey Rhino:**
+**Scenario: The Equifax Data Breach (2017)**
 
 Equifax had a known vulnerability in Apache Struts (CVE-2017-5638) for which a patch existed. The vulnerability was:
 
@@ -1945,7 +1929,7 @@ This was entirely preventable. The rhino was visible for months. The cost of fix
 - Identify the organizational barriers
 - Apply systematic solutions
 
-#### Grey Rhino Incident Management Principles
+**Grey Rhino Incident Management Principles**
 
 **1. Acknowledge the Rhino Immediately (Cynefin: Classify as Complicated, Not Complex)**
 
@@ -1990,9 +1974,9 @@ Grey Rhino postmortems are different from other types because the technical fail
 
 ---
 {::pagebreak /}
-### Elephant in the Room Incidents: When Silence Breaks
+#### Elephant in the Room Incidents: When Silence Breaks
 
-#### Cynefin Domain Classification
+**Cynefin Domain Classification**
 
 Elephants in the Room often create **Confusion** or **Complicated** domains:
 
@@ -2004,7 +1988,7 @@ Elephants in the Room often create **Confusion** or **Complicated** domains:
 
 **Key Insight:** Elephants often create Confusion because the technical problem is Clear or Complicated, but the organizational problem (naming the elephant) is Complex. The framework helps separate these.
 
-#### Characteristics During the Incident
+**Characteristics During the Incident**
 
 **What You Know:**
 
@@ -2017,7 +2001,7 @@ Elephants in the Room often create **Confusion** or **Complicated** domains:
 
 Elephant incidents are fundamentally different because they're organizational dysfunctions manifesting as technical failures. The IC must navigate both technical response and cultural exposure.
 
-#### Scenario: The Boeing 737 MAX Crisis
+**Scenario: The Boeing 737 MAX Crisis**
 
 **The Elephant:**
 
@@ -2085,8 +2069,7 @@ The crashes didn't reveal new information to insiders. They forced public acknow
 - Technical issue: Complicated (analyze and fix)
 - Cultural issue: Complex (experiment with organizational change)
 - Apply appropriate strategy to each
-
-#### Elephant Incident Management Principles
+**Elephant Incident Management Principles**
 
 **1. Recognize You're Dealing with a Cultural Problem (Cynefin: Break Down Confusion)**
 
@@ -2127,9 +2110,9 @@ Elephant postmortems are different. Technical root cause is often simple. Organi
 
 ---
 {::pagebreak /}
-### Black Jellyfish Incidents: When Cascades Bloom
+#### Black Jellyfish Incidents: When Cascades Bloom
 
-#### Cynefin Domain Classification
+**Cynefin Domain Classification**
 
 Black Jellyfish (cascades) start in **Chaotic** or **Complex** domains:
 
@@ -2147,7 +2130,7 @@ Black Jellyfish (cascades) start in **Chaotic** or **Complex** domains:
 
 **Key Insight:** Cascades require immediate Chaotic-domain action (break the loop), then Complex-domain learning (understand the system interactions that caused it).
 
-#### Characteristics During the Incident
+**Characteristics During the Incident**
 
 **What You Know:**
 
@@ -2160,7 +2143,7 @@ Black Jellyfish (cascades) start in **Chaotic** or **Complex** domains:
 
 Black Jellyfish incidents create urgency and confusion. Everything is happening fast. Multiple teams are paging. The scope keeps expanding. The temptation is to fix everything at once, which makes coordination impossible.
 
-#### Scenario: The 2017 Amazon S3 US-EAST-1 Outage (Cascade Analysis)
+**Scenario: The 2017 Amazon S3 US-EAST-1 Outage (Cascade Analysis)**
 
 **The Jellyfish Bloom:**
 
@@ -2221,7 +2204,7 @@ Black Jellyfish incidents create urgency and confusion. Everything is happening 
 - Learning about dependency interactions
 - **Action:** Safe-to-fail probes to understand system behavior
 
-#### Black Jellyfish Incident Management Principles
+**Black Jellyfish Incident Management Principles**
 
 **1. Stop the Amplification First (Cynefin: Chaotic Domain Action)**
 
@@ -2285,9 +2268,9 @@ Fix dependencies first, not the biggest problem first.
 
 ---
 {::pagebreak /}
-### Hybrid Animals and Stampedes: When Multiple Animals Attack
+#### Hybrid Animals and Stampedes: When Multiple Animals Attack
 
-#### Cynefin Domain Classification for Stampedes
+**Cynefin Domain Classification for Stampedes**
 
 Stampedes almost always start in **Confusion** or **Chaotic** domains:
 
@@ -2300,7 +2283,7 @@ Stampedes almost always start in **Confusion** or **Chaotic** domains:
 
 **Key Insight:** Stampedes require breaking down into components, classifying each part, and applying appropriate Cynefin strategies to each. This is the framework's strength: handling situations that don't fit neatly into one domain.
 
-#### The Stampede Pattern
+**The Stampede Pattern**
 
 Sometimes a single risk event, often a Black Swan, doesn't just cause direct damage. It stresses the system in ways that reveal all the other animals that were hiding in the shadows.
 
@@ -2308,7 +2291,7 @@ Think of it like a stampede in the wild: one lion (Black Swan) appears, and sudd
 
 The system was always full of these risks. The Black Swan just revealed them.
 
-#### Cynefin Framework for Managing Stampedes
+**Cynefin Framework for Managing Stampedes**
 
 **Step 1: Break Down the Stampede**
 
@@ -2385,7 +2368,7 @@ As you address components, they transition:
 - New components appearing (more animals revealed)
 - Interactions between components creating new domains
 
-#### Example 1: The AWS DynamoDB Outage (October 20, 2025) as a Stampede
+**Example 1: The AWS DynamoDB Outage (October 20, 2025) as a Stampede**
 
 **The Trigger:**
 At 12:11 AM PDT (07:11 UTC) on October 20, 2025, AWS engineers detected a rise in error rates and latency across multiple services in the US-EAST-1 region. By 1:26 AM (08:26 UTC), the problem had escalated into full DynamoDB endpoint failures. The root cause was traced to a DNS resolution error affecting DynamoDB's control layer, a misconfigured DNS propagation update that triggered recursive health checks and retry storms.
@@ -2511,7 +2494,7 @@ This stampede revealed all three animals simultaneously. The DNS misconfiguratio
 - Measure resilience by adaptability, not just uptime
 - Evolve incident protocols; local fixes don't work in globally entangled systems
 
-#### Example 2: The October 10, 2025 Crypto Crash as a Stampede
+**Example 2: The October 10, 2025 Crypto Crash as a Stampede**
 
 **The Trigger:**
 President Trump's tweet about tariffs triggered a market crash that revealed multiple animals.
@@ -2553,7 +2536,7 @@ The IC had to:
 
 All simultaneously. This is why stampedes are so dangerous - they require multiple types of thinking at once.
 
-#### Stampede Incident Management Principles
+**Stampede Incident Management Principles**
 
 **1. Break Down, Don't Simplify (Cynefin: Handle Confusion by Decomposition)**
 
@@ -2584,7 +2567,7 @@ Different components need different thinking. The IC must coordinate without cre
 - Different communication channels for different strategies
 - Regular synthesis of all workstreams
 
-#### Stampede Coordination Playbook: Practical Implementation
+**Stampede Coordination Playbook: Practical Implementation**
 
 When multiple animals attack simultaneously, standard incident response breaks down. You need a playbook that enables parallel coordination without chaos. Here's how to structure it.
 
@@ -2862,7 +2845,7 @@ These universal principles apply across all animal types, but how you execute th
 
 ### Conclusion: Incident Management for the Menagerie
 
-We've covered a lot of ground. From forest fires to failing servers. From ICS to NIST to Google SRE. From the Cynefin Framework to animal-specific strategies.
+We've covered a lot of ground. From forest fires to failing servers. From ICS to Google SRE. From the Cynefin Framework to animal-specific strategies.
 
 The key insight: **Different animals require different thinking.** The Cynefin Framework gives us a way to classify incidents and choose appropriate strategies. The bestiary gives us a way to understand what types of risks we're facing.
 
@@ -2878,7 +2861,7 @@ The key insight: **Different animals require different thinking.** The Cynefin F
 
 **For Stampedes:** Start in Confusion. Break down into components, classify each, apply appropriate strategies, coordinate multiple approaches.
 
-The framework doesn't replace ICS, NIST, or Google SRE practices. It enhances them by providing the decision-making strategy that guides when and how to apply other techniques.
+The framework doesn't replace ICS or Google SRE practices. It enhances them by providing the decision-making strategy that guides when and how to apply other techniques.
 
 Remember: Culture is infrastructure. Information flow is everything. And different problems require different thinking.
 
