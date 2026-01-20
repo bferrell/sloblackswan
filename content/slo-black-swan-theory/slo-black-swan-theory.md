@@ -31,8 +31,8 @@ When they occur, they change everything. The changes can be physical (infrastruc
 
 Despite their outlier status and our complete surprise, human nature compels us to construct retrospective explanations. These explanations make the event seem predictable in hindsight, creating the dangerous illusion that the *next* Black Swan will also be predictable
 
-#### Black Swans create a seismic shift
-Taleb's insight is that Black Swans dominate history not because they're frequent, but because their impact dwarfs everything else combined. Statistical models can only cover what's been measured. For truly rare, high-impact events like the 9/11 attacks or the 2008 financial crash, no historical model is adequate. Such events are only "obvious" after the fact.
+### Black Swans create a seismic shift
+Taleb's insight is that Black Swans dominate history not because they're frequent, but because their impact dwarfs everything else combined. Statistical models can only cover what's been measured. For truly rare, high-impact events like the 9/11 attacks or the atomic bomb detonations on Hiroshima and Nagasaki, no historical model is adequate. Such events are only "obvious" after the fact.
 
 This matters for SRE because we're constantly building models from historical data, setting SLOs based on past performance, and making predictions about future behavior. But what happens when the future doesn't look like the past?
 
@@ -107,7 +107,7 @@ Then Thanksgiving arrives.
 From the turkey's perspective, Thanksgiving is a perfect Black Swan. It was completely unpredictable based on all available data. The historical evidence suggested the opposite. The turkey's models were sophisticated and well-validated. And yet the turkey was completely, catastrophically wrong.
 
 The turkey's mistake? Assuming that the thing providing safety (the butcher's daily feeding) would continue indefinitely, without considering that there might be a larger pattern invisible to the turkey.
-
+{::pagebreak /}
 This is devastatingly relevant for SRE:
 
 - Each day your SLOs are within bounds reinforces your confidence in the system
@@ -178,8 +178,8 @@ The answer isn't to abandon SLOs. It's to recognize that SLOs are tools for mana
 
 **We need both ! :**
 
-- SLOs for the predictable day-to-day reliability work
-- Antifragility for the unpredictable disasters that will eventually arrive
+- **SLOs** for the predictable day-to-day reliability work
+- **Antifragility** for the unpredictable disasters that will eventually arrive
 
 Some ‘tails’ are statistically expected; Black Swans are the category break new modes, new couplings, new adversaries.
 

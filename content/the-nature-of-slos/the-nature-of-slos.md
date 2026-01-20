@@ -7,6 +7,8 @@ Service Level Objectives didn't spring fully formed from Google's SRE organizati
 In the 1970s, AT&T established "five nines" (99.999% availability) as the gold standard for telecommunications reliability. This wasn't arbitrary. It was based on what human psychology could tolerate for phone service and what was technically achievable with the switching equipment of the era.
 
 That standard stuck. It became the aspirational target for any critical communications infrastructure. And when the internet age arrived, we inherited that framework. The "nines" became our common language for discussing reliability, even as the systems we built became vastly more complex than circuit-switched phone networks.
+![1ESS - Class 5 (1970)][1AESS]
+
 {::pagebreak /}
 ### The Nines: What They Actually Mean
 Here's the brutal math behind availability percentages. The table shows how much downtime you're allowed at different availability levels:
@@ -62,12 +64,12 @@ SLI = (Good Events / Total Events) × 100%
 
 This gives you a percentage between 0 and 100%. The consistency makes building common tooling easier and makes it simple to compare different services.
 
-Good SLIs have a predictable relationship with user happiness. When your SLI goes down, users should be having a worse experience. When it goes up, they should be happier. If your SLI is moving but user satisfaction isn't changing, you're measuring the wrong thing. I can't emphasize this point enough. **SLOs should **always** be crafted in a way that their value tracks *user happiness*. Not management happiness, not storage team's happiness, not dev team's happiness (unless the dev teams are the users being served), *user happiness*.** Too often we are tempted to craft SLOs from a sys admin mindset, but that is what monitoring and dashboards are for.
-
+Good SLIs have a predictable relationship with user happiness. When your SLI goes down, users should be having a worse experience. When it goes up, they should be happier. If your SLI is moving but user satisfaction isn't changing, you're measuring the wrong thing. I can't emphasize this point enough. **SLOs should **always** be crafted in a way that their value tracks *user happiness*. Not management happiness, not storage team's happiness, not dev team's happiness (unless the dev teams are the users being served), *user happiness*.** 
 Here's a practical example:
-- Bad SLI: "Network packet loss on backup segment"
+
+- **Bad SLI**: "Network packet loss on backup segment"
   - Users don't care about your backup network unless it's actively serving their traffic
-- Good SLI: "Percentage of API requests that complete in under 500ms"
+- **Good SLI**: "Percentage of API requests that complete in under 500ms"
   - This directly affects user experience for every request
 
 {::pagebreak /}
@@ -124,8 +126,7 @@ The beauty of SLOs is that they give you a shared language across engineering, p
 
 Our SLOs should trigger before we violate our SLA.
 
-
-
+{::pagebreak /}
 ### Error Budgets: The Math of Acceptable Failure
 
 ![][Errorbudgetburndowngraph]
@@ -718,3 +719,4 @@ Hidalgo, Alex. Implementing Service Level Objectives. O'Reilly Media, 5 Aug. 202
 [slo-new-illustration-small]: slo-new-illustration-small.png
 
 [Errorbudgetburndowngraph]: Errorbudgetburndowngraph.png
+[1AESS]: 1AESS_MCC.jpeg

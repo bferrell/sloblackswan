@@ -1,6 +1,6 @@
 ## Introduction: The Incident That Wasn't In Any Runbook
 
-It's 2:47 AM on a Tuesday. PagerDuty on your phone is squawking at you ... "something's broken, something's broken, it's your fault, it's your fault..." . The primary on-call engineer is already on the bridge, and you can hear the tension in their voice during the first few seconds of the call. "We're seeing cascading failures across three regions. SLOs are green. Literally everything looks fine in the dashboards, but customers can't connect."
+It's 2:47 AM on a Tuesday. PagerDuty on your phone is squawking at you ... *"something's broken, something's broken, it's your fault, it's your fault..."* . The primary on-call engineer is already on the bridge, and you can hear the tension in their voice during the first few seconds of the call. "We're seeing cascading failures across three regions. SLOs are green. Literally everything looks fine in the dashboards, but customers can't connect."
 
 You suppress your initial reaction, feeling the knot in your stomach. You know what this means: you're dealing with something your monitoring wasn't designed to catch. Something that exists in the gaps between your carefully crafted Service Level Objectives. Something that's about to teach your entire team a lesson about the difference between measuring reliability and understanding it.
 
@@ -80,7 +80,7 @@ The code examples throughout are pseudo-code designed for clarity and insight, n
 
 ### The Journey Ahead
 
-We'll start with Taleb definitions of Black Swan and Antifragility, the desired state past Resiliency. The we will establish a common understanding of SLAs, SLOs, SLIs, and Error Budgets, the foundation of reliability engineering. Then we'll explore each animal in our bestiary in detail, understanding their nature, their warning signs, and their lessons. And finally we will look at some real world situations and realize that in the real world, you often don’t just encounter just one animal, but a stampede, or, in some cases, a hybrid creature. We will then offer frameworks and solutions in the realm of Incident Management, so that you can tame the beast or at least quell the stampede
+We'll start with Taleb's definitions of Black Swan and Antifragility, the desired state past Resiliency. The we will establish a common understanding of SLAs, SLOs, SLIs, and Error Budgets, the foundation of site reliability engineering. Then we'll explore each animal in our bestiary in detail, understanding their nature, their warning signs, and their lessons. And finally we will look at some real world situations and realize that in the real world, you often don’t just encounter just one animal, but a stampede, or, in some cases, a hybrid creature. We will then offer frameworks and solutions in the realm of Incident Management, so that you can tame the beast or at least quell the stampede
 
 By the end, you'll have a framework for thinking about system reliability that goes beyond metrics and dashboards. You'll understand why the biggest risks aren't always the ones you can measure, and why organizational health matters just as much as system architecture.
 
