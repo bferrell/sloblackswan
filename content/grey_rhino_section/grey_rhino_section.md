@@ -1113,4 +1113,4 @@ But first, take a moment to audit your own Grey Rhinos. You know which ones they
 
 They're the ones you've been meaning to fix.
 
-[Grey Rhino]: Grey Rhino.png
+[Grey Rhino]: grey-rhino.png
