@@ -7,7 +7,7 @@ In September 2013, the Oskarshamn Nuclear Power Plant in Sweden was forced to sh
 
 Millions of jellyfish, driven by rising ocean temperatures and favorable breeding conditions, formed a massive bloom that clogged the plant's cooling water intake pipes. A similar event happened at the Diablo Canyon nuclear plant in California. And at facilities in Japan, Israel, and Scotland. Small, soft, seemingly innocuous creatures brought down critical infrastructure by arriving in overwhelming numbers through pathways no one had seriously considered.
 
-This is the essence of the black jellyfish: a known phenomenon that we think we understand, that escalates rapidly through positive feedback loops and unexpected pathways, creating cascading failures across interconnected systems. The term was coined by futurist Ziauddin Sardar and John A. Sweeney in their 2016 paper "The Three Tomorrows of Postnormal Times" published in the journal Futures, as part of their "menagerie of postnormal potentialities": a framework for understanding risks in what they call "postnormal times," characterized by complexity, chaos, and contradiction.
+This is the essence of the black jellyfish: a known phenomenon that we think we understand, that escalates rapidly through positive feedback loops and unexpected pathways, creating cascading failures across interconnected systems. The term was coined by futurist Ziauddin Sardar and John A. Sweeney in their 2016 paper "The Three Tomorrows of Postnormal Times" published in the journal Futures, asrt of their "menagerie of postnormal potentialities": a framework for understanding risks in what they call "postnormal times," characterized by complexity, chaos, and contradiction.
 
 Sardar and Sweeney chose the jellyfish metaphor deliberately. Jellyfish blooms happen when thousands or millions of jellyfish suddenly cluster in an area, driven by ocean temperature changes, breeding cycles, and feedback loops that amplify their numbers exponentially. They're natural phenomena: known, observable, and scientifically documented. But the speed and scale at which they can appear, and the unexpected ways they can impact human systems, make them unpredictable in their consequences.
 
@@ -141,7 +141,7 @@ SLOs are fundamentally unsuited for detecting or preventing black jellyfish casc
 During the AWS Oct 20 outage, individual service SLOs might still have been green, or they might have been red, but the dashboard didn't show the systemic pattern. It didn't show that error rates were doubling. It didn't show that three new services were failing per minute. It didn't show that positive feedback was active. By the time all the SLOs turned red, the cascade was complete.
 
 This is why organizations with excellent SLO compliance still experience catastrophic cascades. The SLOs aren't measuring cascade risk.
-
+{::pagebreak /}
 ### Common Cascade Patterns
 
 Before diving into detection, let's examine the patterns that regularly sting infrastructure teams:
@@ -400,7 +400,7 @@ Cascade prevention isn't just technical; it's organizational. Retry storms are o
 1. **Every new dependency must be justified**: Could this be async? Could we cache instead? What's the cascade risk? What's the fallback?
 
 2. **Reject designs with obvious cascade vulnerabilities**: Circular dependencies. Dependency depth >5. No circuit breakers. No fallback mechanisms.
-
+{::pagebreak /}
 ### Conclusion: The Jellyfish Always Finds the Pipes
 
 Black jellyfish events teach us that the most dangerous failures aren't the ones we can't predict; they're the ones that arise from what we think we understand.
