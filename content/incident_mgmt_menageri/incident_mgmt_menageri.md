@@ -185,7 +185,7 @@ After the IC approves action, the Technical Lead validates recovery. Service res
 
 And throughout the incident, the Technical Lead calls out when the situation has shifted domains. You started in Complicated - investigating with experts. But twenty minutes in, you realize this is actually Complex - no amount of analysis is revealing the answer, you need to start probing. That domain shift changes the strategy, and the Technical Lead needs to announce it so everyone adapts their approach.
 
-The most common failure mode? The Technical Lead tries to be the best debugger in the room instead of the person coordinating the debuggers. They grab a terminal and start running queries instead of directing the SME who owns that subsystem. They solve one piece of the problem personally while three other pieces stay uncoordinated. Your job is orchestration, not implementation. Stay one level above the weeds.
+The most common failure mode? The Technical Lead tries to be the best debugger in the room instead of the person coordinating the debuggers. They grab a terminal and start running queries instead of directing the SME who owns that subsystem. They solve one piece of the problem personally while three other pieces stay uncoordinated. Your job is orchestration, not implementation. Even though the temptation is great to jump into the fight, stay one level above the weeds.
 
 **The Subject Matter Expert (SME) Role**
 
@@ -249,7 +249,7 @@ MTTA measures time from alert to human acknowledgment. It's supposed to measure 
 MTTR measures time from detection to resolution, which directly correlates with customer pain duration. This one matters more than the others because it tracks something customers actually experience. But "resolution" is often gamed. Did you fix the root cause or apply a band-aid? Did you learn anything or just restore service? MTTR rewards speed over learning, which means organizations optimize for closing the ticket rather than understanding the problem. Fix it fast, learn nothing, repeat the same incident next month. Great MTTR, terrible organizational learning.
 
 Incident Frequency counts incidents per time period for trend analysis. Useful for spotting patterns, but completely context-free. One Black Swan matters more than ten minor incidents. Frequency without severity context is noise. You can have low incident frequency and still be fragile - you're just lucky you haven't been tested yet. Or you can have high incident frequency because you're practicing chaos engineering and deliberately breaking things to learn. The number alone tells you nothing.
-
+{::pagebreak /}
 #### The KPIs That Actually Matter
 
 Here are a set of KPI's that align with what customers experience and what organizations learn:
@@ -297,26 +297,26 @@ The traditional KPIs (MTTD, MTTR) are easy to measure - they're numbers. The KPI
 
 **What it measures:** Time from "we need to decide" to action when information is incomplete.
 
-**Measurement Method:**
+**Measurement Method**
 
-1. **Timeline Analysis:**
+**1. Timeline Analysis:**
 
-   - Review incident timeline
-   - Identify decision points: "Should we failover?" "Should we roll back?" "Should we escalate?"
-   - Measure time from decision point identification to action taken
-   - Note information available at decision time (percentage complete)
+- Review incident timeline
+- Identify decision points: "Should we failover?" "Should we roll back?" "Should we escalate?"
+- Measure time from decision point identification to action taken
+- Note information available at decision time (percentage complete)
 
-2. **Decision Point Identification:**
+**2 .Decision Point Identification:**
 
-   - During incident: Scribe captures decision points in real-time
-   - Tag each decision: "Decision needed: [what], Information available: [%], Time to decide: [duration]"
-   - Post-incident: Analyze decision latency for each point
+- During incident: Scribe captures decision points in real-time
+- Tag each decision: "Decision needed: [what], Information available: [%], Time to decide: [duration]"
+- Post-incident: Analyze decision latency for each point
 
-3. **Qualitative Assessment:**
+**3. Qualitative Assessment:**
 
-   - Decision made in <15 minutes with <30% information = Low latency (good for Black Swans)
-   - Decision made in >60 minutes with >70% information = High latency (may be appropriate for Complicated, bad for Chaotic)
-   - Pattern: Consistently high latency in Chaotic domains = organizational problem
+- Decision made in <15 minutes with <30% information = Low latency (good for Black Swans)
+- Decision made in >60 minutes with >70% information = High latency (may be appropriate for Complicated, bad for Chaotic)
+- Pattern: Consistently high latency in Chaotic domains = organizational problem
 
 **Example:**
  "Decision to failover: Identified at T+12, decided at T+28, executed at T+30. Information available: 25%. Decision latency: 16 minutes."
@@ -327,25 +327,25 @@ The traditional KPIs (MTTD, MTTR) are easy to measure - they're numbers. The KPI
 
 **Measurement Method:**
 
-1. **Communication Path Tracing:**
+**1. Communication Path Tracing:**
 
-   - During incident: Scribe tracks information flow
-   - Identify critical information: "Engineer A noticed anomaly X"
-   - Trace path: A → B → C → IC
-   - Measure time at each hop: A noticed at T+5, told B at T+8, B told C at T+12, C told IC at T+18
-   - Total latency: 13 minutes (from T+5 to T+18)
+- During incident: Scribe tracks information flow
+- Identify critical information: "Engineer A noticed anomaly X"
+- Trace path: A → B → C → IC
+- Measure time at each hop: A noticed at T+5, told B at T+8, B told C at T+12, C told IC at T+18
+- Total latency: 13 minutes (from T+5 to T+18)
 
-2. **Path Comparison:**
+**2. Path Comparison:**
 
-   - Compare actual path (trust networks) vs org chart path
-   - Measure latency difference
-   - Identify bottlenecks (which hops take longest?)
+- Compare actual path (trust networks) vs org chart path
+- Measure latency difference
+- Identify bottlenecks (which hops take longest?)
 
-3. **Post-Incident Review:**
+**3. Post-Incident Review:**
 
-   - Ask: "Who knew what when?"
-   - Map information flow diagram
-   - Identify: Where did information get stuck? Why?
+- Ask: "Who knew what when?"
+- Map information flow diagram
+- Identify: Where did information get stuck? Why?
 
 **Example:** 
 "Critical info: DNS anomaly. Path: Junior engineer (T+0) → Trusted teammate (T+3) → Senior engineer (T+7) → IC (T+12). Org chart would have been: Junior engineer → Manager → Director → VP → IC (estimated T+45). Trust network was 3.75x faster."
@@ -404,27 +404,27 @@ The traditional KPIs (MTTD, MTTR) are easy to measure - they're numbers. The KPI
 
 **Measurement Method:**
 
-1. **Postmortem Survey (Anonymous):**
+**1. Postmortem Survey (Anonymous):**
 
-   - "Did you feel safe admitting mistakes during this postmortem?"
-   - "Did you hold back information because you feared consequences?"
-   - "Did you disagree with decisions made during the incident but not speak up?"
-   - Rate each 1-5 (1=strongly disagree, 5=strongly agree)
-   - Aggregate scores across team
+- "Did you feel safe admitting mistakes during this postmortem?"
+- "Did you hold back information because you feared consequences?"
+- "Did you disagree with decisions made during the incident but not speak up?"
+- Rate each 1-5 (1=strongly disagree, 5=strongly agree)
+- Aggregate scores across team
 
-2. **Retrospective Observation:**
+**2. Retrospective Observation:**
 
-   - Observe postmortem behavior:
-   - Do people admit mistakes?
-   - Do junior people speak up?
-   - Do people disagree with senior people?
-   - Do people ask questions without fear?
+- Observe postmortem behavior:
+- Do people admit mistakes?
+- Do junior people speak up?
+- Do people disagree with senior people?
+- Do people ask questions without fear?
 
-3. **Pattern Analysis:**
+**3. Pattern Analysis:**
 
-   - Track psychological safety across multiple postmortems
-   - Identify trends: improving or degrading?
-   - Correlate with incident outcomes: Does psychological safety correlate with faster resolution?
+- Track psychological safety across multiple postmortems
+- Identify trends: improving or degrading?
+- Correlate with incident outcomes: Does psychological safety correlate with faster resolution?
 
 **Example Survey Questions:**
 
@@ -524,7 +524,7 @@ Engineer A
 By the time information traverses the org chart, the incident is over or the context is destroyed.
 
 Good incident management creates direct channels between domain experts and decision-makers, regardless of hierarchy. War rooms, Slack channels, and Zoom bridges exist to short-circuit the org chart.
-
+{::pagebreak /}
 **Third Law: Information Degrades Crossing Boundaries**
 
 Every hop in the communication chain loses fidelity:
@@ -595,7 +595,7 @@ Now, with foundation established, let's examine how incident management differs 
 But before we can do that, we need one more tool: a way to think about how to think about incidents. Culture provides the foundation, but different types of problems require different types of thinking. That's where the Cynefin Framework comes in.
 
 ---
-
+{::pagebreak /}
 ### The Cynefin Framework for Incident Response
 
 Before we dive into animal-specific incident management, we need one more tool: a way to think about how to think about incidents.
@@ -606,7 +606,7 @@ That's where the Cynefin Framework comes in. Developed by Dave Snowden in the la
 
 For incident response, Cynefin provides something critical: **Different types of problems require different types of thinking.** Using the wrong approach wastes time, makes things worse, or both.
 ![][cynefin-framework]
-
+{::pagebreak /}
 #### Why SREs Need This
 
 Modern distributed systems are inherently complex. Incidents don't follow predictable patterns. The framework gives you a mental model for:
@@ -621,7 +621,7 @@ The key insight: **ordered domains** (right side of the framework) have discover
 #### The Five Domains
 
 The framework divides all situations into five domains arranged around a central area:
-{::pagebreak /}
+
 #### Domain 1: Clear (Simple/Obvious) - "The Recipe Domain"
 
 Start with the easy stuff. The Clear domain is where cause and effect are obvious to any reasonable person. You see the problem, you know what it is, you know how to fix it. Best practices exist and are well-established. The solution is known and repeatable. Following procedures produces predictable results. This is your runbook territory.
@@ -637,7 +637,6 @@ What doesn't work: overthinking simple problems. Calling in experts when a runbo
 But here's the danger - what I call the cliff edge. Clear domains have a sharp boundary with Chaotic. If you're following a recipe and something fundamental changes, you can suddenly find yourself in chaos. Your standard database restart procedure works 99% of the time. But when the underlying storage system fails, following that same procedure makes things worse - the database comes up, can't reach storage, cascades errors to every connected service, and now you've amplified the problem. You thought you were in Clear, applying best practices. You were actually in Chaotic, and your best practices became accelerant.
 
 For incident management: Most routine incidents - your P3s and P4s - live in the Clear domain. They're the "known knowns." We know what they are, we know how to fix them, we've documented the fix. The danger is when teams treat Complex or Chaotic incidents as Clear, applying runbooks that don't fit. That's not efficiency. That's denial. If your runbook doesn't match what you're seeing, you're not in Clear anymore. Stop following the recipe and reassess.
-{::pagebreak /}
 
 #### Domain 2: Complicated - "The Expert Domain"
 
@@ -700,7 +699,7 @@ Common actions during Chaotic incidents: Failover - route traffic away from fail
 Once you've stabilized (Act), you can assess (Sense), and then make strategic decisions (Respond). The situation typically transitions from Chaotic → Complex → Complicated as understanding increases. You contain the crisis, which gets you to Complex where you can start probing. The probes reveal patterns, which gets you to Complicated where you can analyze. The analysis finds the root cause, which gets you to Clear where you can permanently fix it. But all of that starts with acting immediately to stabilize.
 
 For incident management: Black Swans often start in Chaotic. The system fails in a way you've never seen, cascades rapidly, and your first response has to be "stop the spread" not "understand the cause." The framework provides permission - no, provides a mandate - to act without full understanding. That's critical for Black Swan response because waiting to understand means you're analyzing during catastrophe. Many teams waste precious minutes trying to understand a Chaotic situation when they should be stabilizing first. Those minutes turn P0 incidents into existential incidents.
-{::pagebreak /}
+
 #### Domain 5: Confusion (Disorder) - "The Unknown Domain"
 
 The fifth domain is different: Confusion, sometimes called Disorder. This is where you don't know which of the other four domains applies. It's unclear what type of problem you're facing. The situation has elements of multiple domains. Team members disagree about what's happening. No clear decision-making strategy is apparent. You're confused about which framework to use.
