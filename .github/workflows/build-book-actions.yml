@@ -238,21 +238,6 @@ jobs:
               handle.write(updated)
           PY
 
-      - name: Commit and push latest artifacts
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update latest artifacts for PR #${PR_NUMBER}"
-            git push
-          fi
-
       - name: Create GitHub Release with assets
         env:
           GH_TOKEN: ${{ github.token }}
@@ -282,3 +267,26 @@ jobs:
           EOF
           
           echo "Release ${VERSION} created with assets"
+
+      - name: Remove build artifacts from repo root
+        env:
+          OUTPUT_DIR: ${{ steps.build_md.outputs.output_dir }}
+          MD_ZIP: ${{ steps.prepare_latest.outputs.md_zip }}
+        run: |
+          rm -rf "$OUTPUT_DIR"
+          rm -f "$MD_ZIP"
+
+      - name: Commit and push latest artifacts
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update latest artifacts for PR #${PR_NUMBER}"
+            git push
+          fi
