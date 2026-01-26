@@ -74,7 +74,11 @@ jobs:
           # Find the highest existing minor number for this major version.
           LAST_MINOR=$(git tag --list "v${MAJOR}.*" | sed -E "s/^v${MAJOR}\.//" | sort -n | tail -1)
           if [ -z "$LAST_MINOR" ]; then
-            NEXT_MINOR=1
+            if [ "$MAJOR" = "1" ]; then
+              NEXT_MINOR=0
+            else
+              NEXT_MINOR=1
+            fi
           else
             NEXT_MINOR=$((LAST_MINOR + 1))
           fi
