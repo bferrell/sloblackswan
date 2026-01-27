@@ -92,16 +92,7 @@ jobs:
               NEXT_MINOR=1
             fi
           else
-            # Allow a one-time v1.0 even if the v1.0 tag exists from sloblackswan_release.
-            if [ "$MAJOR" = "1" ] && [ "$LAST_MINOR" = "0" ]; then
-              if gh release view v1.0 >/dev/null 2>&1; then
-                NEXT_MINOR=1
-              else
-                NEXT_MINOR=0
-              fi
-            else
-              NEXT_MINOR=$((LAST_MINOR + 1))
-            fi
+            NEXT_MINOR=$((LAST_MINOR + 1))
           fi
           VERSION="v${MAJOR}.${NEXT_MINOR}"
           echo "Determined version: $VERSION"
